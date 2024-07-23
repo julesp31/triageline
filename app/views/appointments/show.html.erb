@@ -1,0 +1,13 @@
+<div>
+
+<h1>Appointment Details</h1>
+<p>Date: <%= @appointment.appointment_date %></p>
+<p>Type: <%= @appointment.appointment_type %></p>
+<p>Status: <%= @appointment.status %></p>
+<p>Severity: <%= @appointment.severity %></p>
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to 'Back', appointments_path %>
+
+</div>
+<%# NEED TO ENABLE AND DISABLE CERTAIN CONTROLS DEPENDING ON IF IT IS A PATIENT OR A CLINICIAN %>
