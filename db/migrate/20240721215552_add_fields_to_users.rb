@@ -11,11 +11,11 @@ class AddFieldsToUsers < ActiveRecord::Migration[7.1]
     add_column :users, :home_postcode, :string, null: false
     add_column :users, :clinician, :boolean, default: false
     add_column :users, :job_title, :string
-    add_column :users, :work_name, :string
-    add_column :users, :work_address, :string
-    add_column :users, :work_town, :string
-    add_column :users, :work_postcode, :string
-    add_column :users, :gp_name, :string
+    add_column :users, :work_gpname, :string
+    add_column :users, :work_gpaddress, :string
+    add_column :users, :work_gptown, :string
+    add_column :users, :work_gppostcode, :string
+    add_column :users, :practice_doctorname, :string
     add_column :users, :practice_name, :string
     add_column :users, :practice_address, :string
     add_column :users, :practice_town, :string
