@@ -1,5 +1,4 @@
 <div>
-  <%# Select symptom category page %>
   <div>
     <h1>What can we help with?</h1>
   </div>
@@ -21,15 +20,45 @@
     <div class="category-card" data-category="other">Other</div>
   </div>
 
-  <div id="triage-questions">
+  <div id="triage-questions" style="display: none;">
     <h2 id="triage-title"></h2>
     <div id="questions-container"></div>
-    <button id="submit-triage">Submit</button>
+    <button id="submit-triage">Submit Triage</button>
+  </div>
+
+  <div id="reason-for-appointment" style="display: none;">
+    <h1>Why would you like an appointment?</h1>
+    <h3>Tell us about your symptoms, condition, or reason for booking (200 characters)</h3>
+    <textarea id="appointment-reason" maxlength="200" rows="4" cols="50"></textarea>
+    <button id="submit-reason">Submit</button>
   </div>
 
   <div>
-    <h1>Why would you like an appointment?</h1>
-    <h3>Tell us about your symptoms, condition, or reason for booking (200 characters)</h3>
+    <h1>Choose your appointment type</h1>
+  </div>
+
+  <div id="appointment-type-list" style="display: none;">
+    <div class="appointment-type-card" data-appointment-type="phone">Phone</div>
+    <div class="appointment-type-card" data-appointment-type="video">Video Call</div>
+    <div class="appointment-type-card" data-appointment-type="in-person">In-person</div>
+  </div>
+
+  <div id="available-clinicians" style="display: none;">
+    <h2>Available Clinicians</h2>
+    <div id="clinicians-container">
+      <!-- Clinician cards will be inserted here -->
+    </div>
+  </div>
+
+  <div id="calendar-view" style="display: none;">
+    <h2>Select Date and Time</h2>
+    <div id="calendar-container">
+      <!-- Calendar will be inserted here -->
+    </div>
+    <div id="available-times" style="display: flex; justify-content: space-around; margin-top: 20px;">
+      <!-- Available times will be shown here -->
+    </div>
+    <button id="close-calendar">Close</button>
   </div>
 
   <%= link_to 'Back', appointments_path %>
@@ -41,6 +70,15 @@
     const triageQuestions = document.getElementById('triage-questions');
     const triageTitle = document.getElementById('triage-title');
     const questionsContainer = document.getElementById('questions-container');
+    const reasonForAppointment = document.getElementById('reason-for-appointment');
+    const appointmentTypeList = document.getElementById('appointment-type-list');
+    const availableClinicians = document.getElementById('available-clinicians');
+    const cliniciansContainer = document.getElementById('clinicians-container');
+    const calendarView = document.getElementById('calendar-view');
+    const calendarContainer = document.getElementById('calendar-container');
+    const availableTimes = document.getElementById('available-times');
+    const closeCalendarButton = document.getElementById('close-calendar');
+    const submitTriageButton = document.getElementById('submit-triage');
 
     const triageData = {
       'admin': ['Question 1 for Admin?', 'Question 2 for Admin?', 'Question 3 for Admin?', 'Question 4 for Admin?'],
@@ -59,6 +97,21 @@
       'other': ['Question 1 for Other?', 'Question 2 for Other?', 'Question 3 for Other?', 'Question 4 for Other?']
     };
 
+    const cliniciansData = {
+      'phone': [
+        { name: 'Clinician 1', times: ['8:00am', '10:00am', '1:00pm'] },
+        { name: 'Clinician 2', times: ['9:00am', '11:00am', '2:00pm'] },
+      ],
+      'video': [
+        { name: 'Clinician 3', times: ['8:30am', '10:30am', '1:30pm'] },
+        { name: 'Clinician 4', times: ['9:30am', '11:30am', '2:30pm'] },
+      ],
+      'in-person': [
+        { name: 'Clinician 5', times: ['8:45am', '10:45am', '1:45pm'] },
+        { name: 'Clinician 6', times: ['9:45am', '11:45am', '2:45pm'] },
+      ],
+    };
+
     categoryList.addEventListener('click', function(event) {
       if (event.target && event.target.matches('.category-card')) {
         const category = event.target.getAttribute('data-category');
@@ -67,7 +120,7 @@
         triageTitle.textContent = event.target.textContent;
         questionsContainer.innerHTML = '';
 
-        questions.forEach(question => {
+        questions.forEach((question, index) => {
           const questionElement = document.createElement('div');
           questionElement.className = 'question';
           questionElement.textContent = question;
@@ -83,6 +136,18 @@
           noButton.textContent = 'No';
           noButton.setAttribute('data-answer', 'no');
 
+          yesButton.addEventListener('click', () => {
+            questionElement.setAttribute('data-answered', 'true');
+            yesButton.disabled = true;
+            noButton.disabled = true;
+          });
+
+          noButton.addEventListener('click', () => {
+            questionElement.setAttribute('data-answered', 'true');
+            yesButton.disabled = true;
+            noButton.disabled = true;
+          });
+
           buttonsContainer.appendChild(yesButton);
           buttonsContainer.appendChild(noButton);
 
@@ -95,10 +160,98 @@
       }
     });
 
-    document.getElementById('submit-triage').addEventListener('click', function() {
-      // Handle the triage submission
-      alert('Triage submitted!');
-      // Redirect or show a confirmation message
+    submitTriageButton.addEventListener('click', function() {
+      const allAnswered = [...questionsContainer.querySelectorAll('.question')].every(question => question.getAttribute('data-answered') === 'true');
+
+      if (allAnswered) {
+        triageQuestions.style.display = 'none';
+        reasonForAppointment.style.display = 'block';
+      } else {
+        alert('Please answer all triage questions before proceeding.');
+      }
+    });
+
+    document.getElementById('submit-reason').addEventListener('click', function() {
+      const appointmentReason = document.getElementById('appointment-reason').value.trim();
+      if (appointmentReason) {
+        reasonForAppointment.style.display = 'none';
+        appointmentTypeList.style.display = 'block';
+      } else {
+        alert('Please provide a reason for your appointment.');
+      }
+    });
+
+    appointmentTypeList.addEventListener('click', function(event) {
+      if (event.target && event.target.matches('.appointment-type-card')) {
+        const appointmentType = event.target.getAttribute('data-appointment-type');
+        const clinicians = cliniciansData[appointmentType];
+
+        cliniciansContainer.innerHTML = '';
+
+        clinicians.forEach(clinician => {
+          const clinicianCard = document.createElement('div');
+          clinicianCard.className = 'clinician-card';
+
+          const clinicianName = document.createElement('div');
+          clinicianName.textContent = clinician.name;
+          clinicianCard.appendChild(clinicianName);
+
+          const times = document.createElement('div');
+          times.className = 'times';
+          clinician.times.forEach(time => {
+            const timeSlot = document.createElement('div');
+            timeSlot.textContent = time;
+            times.appendChild(timeSlot);
+          });
+
+          const moreButton = document.createElement('div');
+          moreButton.textContent = 'More';
+          moreButton.className = 'more-button';
+          moreButton.addEventListener('click', () => {
+            showCalendarView(clinician.name);
+          });
+          times.appendChild(moreButton);
+
+          clinicianCard.appendChild(times);
+          cliniciansContainer.appendChild(clinicianCard);
+        });
+
+        appointmentTypeList.style.display = 'none';
+        availableClinicians.style.display = 'block';
+      }
+    });
+
+    function showCalendarView(clinicianName) {
+      // Assuming we use a date picker library like flatpickr for the calendar
+      flatpickr(calendarContainer, {
+        onChange: function(selectedDates, dateStr, instance) {
+          // This would be replaced with the actual data fetch
+          const availableTimesData = getAvailableTimesForClinicianOnDate(clinicianName, dateStr);
+          displayAvailableTimes(availableTimesData);
+        }
+      });
+
+      availableClinicians.style.display = 'none';
+      calendarView.style.display = 'block';
+    }
+
+    function displayAvailableTimes(times) {
+      availableTimes.innerHTML = '';
+      times.forEach(time => {
+        const timeSlot = document.createElement('div');
+        timeSlot.textContent = time;
+        availableTimes.appendChild(timeSlot);
+      });
+    }
+
+    function getAvailableTimesForClinicianOnDate(clinicianName, dateStr) {
+      // Mock data, replace with actual fetch from server
+      return ['8:00am', '10:00am', '1:00pm', '3:00pm'];
+    }
+
+    closeCalendarButton.addEventListener('click', function() {
+      calendarView.style.display = 'none';
+      availableClinicians.style.display = 'block';
     });
   });
 </script>
