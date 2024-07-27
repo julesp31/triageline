@@ -19,3 +19,30 @@
   display: none; /* Initially hide the fields */
   margin-top: 20px;
 }
+
+.category-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: calc(33.333% - 40px);
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  background-color: #f1f1f1;
+}
+
+#category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#triage-questions {
+  display: none;
+}
