@@ -27,12 +27,14 @@
     <button id="submit-triage">Submit</button>
   </div>
 
+
+
+  <%= link_to 'Back', appointments_path %>
   <div>
     <h1>Why would you like an appointment?</h1>
     <h3>Tell us about your symptoms, condition, or reason for booking (200 characters)</h3>
+    <input type='text'>
   </div>
-
-  <%= link_to 'Back', appointments_path %>
 </div>
 
 <script>
@@ -45,14 +47,14 @@
     const triageData = {
       'admin': ['Question 1 for Admin?', 'Question 2 for Admin?', 'Question 3 for Admin?', 'Question 4 for Admin?'],
       'test_results': ['Question 1 for Test Results?', 'Question 2 for Test Results?', 'Question 3 for Test Results?', 'Question 4 for Test Results?'],
-      'muscles_and_joints': ['Question 1 for Muscles and Joints?', 'Question 2 for Muscles and Joints?', 'Question 3 for Muscles and Joints?', 'Question 4 for Muscles and Joints?'],
-      'contraception': ['Question 1 for Contraception?', 'Question 2 for Contraception?', 'Question 3 for Contraception?', 'Question 4 for Contraception?'],
-      'breathing_conditions_and_allergies': ['Question 1 for Breathing conditions & Allergies?', 'Question 2 for Breathing conditions & Allergies?', 'Question 3 for Breathing conditions & Allergies?', 'Question 4 for Breathing conditions & Allergies?'],
-      'mental_health': ['Question 1 for Mental health?', 'Question 2 for Mental health?', 'Question 3 for Mental health?', 'Question 4 for Mental health?'],
+      'muscles_and_joints': ['Do you have a fever?', 'Do you have a rash?', 'Is your pain chronic??', 'Is your pain acute?'],
+      'contraception': ['Is you appointment emergency?', 'Is your appointment for Copper intrauterine device (IUD)?'],
+      'breathing_conditions_and_allergies': ['Do you have a short breath?', 'Are you using inhaler?', 'Do you have a productive cough with green or yellow sputum?', 'Do you have a productive cough with green or yellow sputum?'],
+      'mental_health': ['Do you feel suicidal?', 'Have you ever experienced an attack of fear, anxiety, or panic?', 'Do you ever feel that you have been affected by feelings of edginess, anxiety, or nerves?', 'Have you experienced a week or longer of lower-than-usual interest in activities that you usually enjoy?'],
       'prescriptions': ['Question 1 for Prescriptions?', 'Question 2 for Prescriptions?', 'Question 3 for Prescriptions?', 'Question 4 for Prescriptions?'],
-      'diabetes_care': ['Question 1 for Diabetes Care?', 'Question 2 for Diabetes Care?', 'Question 3 for Diabetes Care?', 'Question 4 for Diabetes Care?'],
+      'diabetes_care': ['Do you take pills for blood sugar?', 'Do you tahe insulin?', 'Do you know what type of diabetes you have?', 'Is there any chance you are pregnant?'],
       'cold_cough_flu_sore_throat_and_earaches': ['Question 1 for Cold, cough, flu, sore throat & Earaches?', 'Question 2 for Cold, cough, flu, sore throat & Earaches?', 'Question 3 for Cold, cough, flu, sore throat & Earaches?', 'Question 4 for Cold, cough, flu, sore throat & Earaches?'],
-      'skin_issues': ['Question 1 for Skin issues?', 'Question 2 for Skin issues?', 'Question 3 for Skin issues?', 'Question 4 for Skin issues?'],
+      'skin_issues': ['hello', 'Question 2 for Skin issues?', 'Question 3 for Skin issues?', 'Question 4 for Skin issues?'],
       'stomach_problems': ['Question 1 for Stomach problems?', 'Question 2 for Stomach problems?', 'Question 3 for Stomach problems?', 'Question 4 for Stomach problems?'],
       'urine_problems': ['Question 1 for Urine problems?', 'Question 2 for Urine problems?', 'Question 3 for Urine problems?', 'Question 4 for Urine problems?'],
       'travel_health': ['Question 1 for Travel health?', 'Question 2 for Travel health?', 'Question 3 for Travel health?', 'Question 4 for Travel health?'],
