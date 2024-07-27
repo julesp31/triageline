@@ -5,7 +5,7 @@ class AddFieldsToUsers < ActiveRecord::Migration[7.1]
     add_column :users, :date_of_birth, :date, null: false
     add_column :users, :gender_at_birth, :string, null: false
     add_column :users, :phone_number, :string, null: false
-    add_column :users, :nhs_number, :integer, null: false
+    add_column :users, :nhs_number, :string, null: false
     add_column :users, :home_address, :string, null: false
     add_column :users, :home_town, :string, null: false
     add_column :users, :home_postcode, :string, null: false
