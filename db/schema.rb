@@ -92,17 +92,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_194654) do
     t.date "date_of_birth", null: false
     t.string "gender_at_birth", null: false
     t.string "phone_number", null: false
-    t.integer "nhs_number", null: false
+    t.string "nhs_number", null: false
     t.string "home_address", null: false
     t.string "home_town", null: false
     t.string "home_postcode", null: false
     t.boolean "clinician", default: false
     t.string "job_title"
-    t.string "work_name"
-    t.string "work_address"
-    t.string "work_town"
-    t.string "work_postcode"
-    t.string "gp_name"
+    t.string "work_gpname"
+    t.string "work_gpaddress"
+    t.string "work_gptown"
+    t.string "work_gppostcode"
+    t.string "practice_doctorname"
     t.string "practice_name"
     t.string "practice_address"
     t.string "practice_town"

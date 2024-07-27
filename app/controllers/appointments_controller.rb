@@ -3,9 +3,9 @@ class AppointmentsController < ApplicationController
 
   def index
     if current_user.clinician
-      @appointments = Appointment.where(clinician_id: current_user.id)
+      @appointments = current_user.appointments_as_clinician
     else
-      @appointments = Appointment.where(patient_id: current_user.id)
+      @appointments = current_user.appointments_as_patient
     end
   end
 
@@ -53,5 +53,4 @@ class AppointmentsController < ApplicationController
     def appointment_params
       params.require(:appointment).permit(:patient_id, :clinician_id, :appointment_date, :appointment_type, :status, :severity)
     end
-end
 end
