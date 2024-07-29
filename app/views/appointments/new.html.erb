@@ -1,4 +1,3 @@
-
   <title>Appointment Booking</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -24,6 +23,7 @@
       padding: 10px;
       width: 100%;
       max-width: 300px;
+      border-radius: 20px;
     }
     .category-card, .appointment-type-card, .clinician-card, .time-slot {
       padding: 10px;
@@ -43,15 +43,26 @@
       padding: 10px;
       width: 100%;
       max-width: 300px;
+      border-radius: 20px;
     }
     .question-buttons {
       display: flex;
       justify-content: space-between;
+      margin: 10px;
     }
     .question-buttons button {
       flex: 1;
       margin: 0 5px;
       padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .question-buttons button.selected {
+      background-color: #4CAF50;
+      color: #fff;
     }
     textarea {
       width: 100%;
@@ -85,63 +96,63 @@
   <div class="margin-container">
     <div id="category-list" class="form-section">
       <div class="booking-index-headings">
-        <h1>What can we help with?</h1>
+        <h1>How can we assist you today?</h1>
       </div>
       <div class="category-card" data-category="admin">
-        <h3>Admin</h3>
-        <p>Any non-clinical or administrative related queries.</p>
+        <h3>Administrative Issues</h3>
+        <p>For any non-clinical or administrative questions or concerns.</p>
       </div>
       <div class="category-card" data-category="test_results">
         <h3>Test Results</h3>
-        <p>Talk through test results and next steps.</p>
+        <p>Discuss your test results and plan the next steps.</p>
       </div>
       <div class="category-card" data-category="muscles_and_joints">
-        <h3>Muscles and Joints</h3>
-        <p>Back, neck, shoulder or other muscle and joint problems.</p>
+        <h3>Muscle and Joint Problems</h3>
+        <p>Issues with your back, neck, shoulders, or other muscles and joints.</p>
       </div>
       <div class="category-card" data-category="contraception">
         <h3>Contraception</h3>
-        <p>Advice and prescriptions for contraception.</p>
+        <p>Guidance and prescriptions for contraceptive options.</p>
       </div>
       <div class="category-card" data-category="breathing_conditions_and_allergies">
-        <h3>Breathing conditions & Allergies</h3>
-        <p>Asthma management, hayfever symptoms & all concerns relating to breathing.</p>
+        <h3>Breathing Conditions & Allergies</h3>
+        <p>Management of asthma, hay fever, and other breathing-related concerns.</p>
       </div>
       <div class="category-card" data-category="mental_health">
-        <h3>Mental health</h3>
-        <p>Advice and review for all concerns relating to mental health.</p>
+        <h3>Mental Health</h3>
+        <p>Advice and support for mental health issues.</p>
       </div>
       <div class="category-card" data-category="prescriptions">
         <h3>Prescriptions</h3>
-        <p>Advice, reviews and requests for repeat and new prescriptions.</p>
+        <p>Help with new or repeat prescription requests and reviews.</p>
       </div>
       <div class="category-card" data-category="diabetes_care">
         <h3>Diabetes Care</h3>
-        <p>Diabetes & Pre-diabetes advice & support.</p>
+        <p>Support and advice for diabetes and pre-diabetes management.</p>
       </div>
       <div class="category-card" data-category="cold_cough_flu_sore_throat_and_earaches">
-        <h3>Cold, cough, flu, sore throat & Earaches</h3>
-        <p>Runny nose, fever, aching, sore throat and ear issues.</p>
+        <h3>Cold, Cough, Flu, Sore Throat & Earaches</h3>
+        <p>Help with symptoms like runny nose, fever, sore throat, and ear pain.</p>
       </div>
       <div class="category-card" data-category="skin_issues">
-        <h3>Skin problems</h3>
-        <p>Rashes, acne, eczema, infections, lumps or moles.</p>
+        <h3>Skin Problems</h3>
+        <p>Treatment for rashes, acne, eczema, infections, lumps, or moles.</p>
       </div>
       <div class="category-card" data-category="stomach_problems">
-        <h3>Stomach issues</h3>
-        <p>Feeling sick, pain in the tummy, bloating, constipation or diarrhoea.</p>
+        <h3>Stomach Issues</h3>
+        <p>Addressing nausea, abdominal pain, bloating, constipation, or diarrhea.</p>
       </div>
       <div class="category-card" data-category="urine_problems">
-        <h3>Urine problem</h3>
-        <p>Pain or stinging when urinating, needing to urinate often.</p>
+        <h3>Urinary Problems</h3>
+        <p>Trouble with urination, including pain or frequent urination.</p>
       </div>
       <div class="category-card" data-category="travel_health">
-        <h3>Travel health</h3>
-        <p>Advice and vaccinations for travelling abroad.</p>
+        <h3>Travel Health</h3>
+        <p>Travel advice and necessary vaccinations for trips abroad.</p>
       </div>
       <div class="category-card" data-category="other">
-        <h3>Other</h3>
-        <p>Enter Symptoms Manually.</p>
+        <h3>Other Concerns</h3>
+        <p>Describe your symptoms if they don't fit into the categories above.</p>
       </div>
     </div>
 
@@ -311,14 +322,14 @@
 
             yesButton.addEventListener('click', () => {
               questionElement.setAttribute('data-answered', 'true');
-              yesButton.disabled = true;
-              noButton.disabled = true;
+              yesButton.classList.add('selected');
+              noButton.classList.remove('selected');
             });
 
             noButton.addEventListener('click', () => {
               questionElement.setAttribute('data-answered', 'true');
-              yesButton.disabled = true;
-              noButton.disabled = true;
+              noButton.classList.add('selected');
+              yesButton.classList.remove('selected');
             });
 
             buttonsContainer.appendChild(yesButton);
@@ -473,5 +484,7 @@
         // Handle the booking confirmation logic here
         showForm(appointmentPending);
       });
+
+      showForm(categoryList); // Display the category list form by default
     });
   </script>
