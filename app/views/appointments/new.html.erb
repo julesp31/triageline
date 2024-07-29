@@ -1,351 +1,477 @@
 
-<div class=margin-container>
-<%# Select symptom category page %>
+  <title>Appointment Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .margin-container {
+      padding: 10px;
+      box-sizing: border-box;
+      margin: 6px;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+    button {
+      font-weight: 500;
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+    }
+    .category-card, .appointment-type-card, .clinician-card, .time-slot {
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+      width: calc(100% - 6px);
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+    }
+    .back-button, #close-calendar {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+    }
+    .question-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+    .question-buttons button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 10px;
+    }
+    textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 10px;
+      box-sizing: border-box;
+      margin: 10px 0;
+    }
+    .close-button {
+      text-decoration: none;
+      font-weight: bold;
+      color: red;
+    }
+    .booking-index-headings {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .form-section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+    .category-card h3, .category-card p {
+      margin: 0;
+      padding: 2px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="margin-container">
+    <div id="category-list" class="form-section">
+      <div class="booking-index-headings">
+        <h1>What can we help with?</h1>
+      </div>
+      <div class="category-card" data-category="admin">
+        <h3>Admin</h3>
+        <p>Any non-clinical or administrative related queries.</p>
+      </div>
+      <div class="category-card" data-category="test_results">
+        <h3>Test Results</h3>
+        <p>Talk through test results and next steps.</p>
+      </div>
+      <div class="category-card" data-category="muscles_and_joints">
+        <h3>Muscles and Joints</h3>
+        <p>Back, neck, shoulder or other muscle and joint problems.</p>
+      </div>
+      <div class="category-card" data-category="contraception">
+        <h3>Contraception</h3>
+        <p>Advice and prescriptions for contraception.</p>
+      </div>
+      <div class="category-card" data-category="breathing_conditions_and_allergies">
+        <h3>Breathing conditions & Allergies</h3>
+        <p>Asthma management, hayfever symptoms & all concerns relating to breathing.</p>
+      </div>
+      <div class="category-card" data-category="mental_health">
+        <h3>Mental health</h3>
+        <p>Advice and review for all concerns relating to mental health.</p>
+      </div>
+      <div class="category-card" data-category="prescriptions">
+        <h3>Prescriptions</h3>
+        <p>Advice, reviews and requests for repeat and new prescriptions.</p>
+      </div>
+      <div class="category-card" data-category="diabetes_care">
+        <h3>Diabetes Care</h3>
+        <p>Diabetes & Pre-diabetes advice & support.</p>
+      </div>
+      <div class="category-card" data-category="cold_cough_flu_sore_throat_and_earaches">
+        <h3>Cold, cough, flu, sore throat & Earaches</h3>
+        <p>Runny nose, fever, aching, sore throat and ear issues.</p>
+      </div>
+      <div class="category-card" data-category="skin_issues">
+        <h3>Skin problems</h3>
+        <p>Rashes, acne, eczema, infections, lumps or moles.</p>
+      </div>
+      <div class="category-card" data-category="stomach_problems">
+        <h3>Stomach issues</h3>
+        <p>Feeling sick, pain in the tummy, bloating, constipation or diarrhoea.</p>
+      </div>
+      <div class="category-card" data-category="urine_problems">
+        <h3>Urine problem</h3>
+        <p>Pain or stinging when urinating, needing to urinate often.</p>
+      </div>
+      <div class="category-card" data-category="travel_health">
+        <h3>Travel health</h3>
+        <p>Advice and vaccinations for travelling abroad.</p>
+      </div>
+      <div class="category-card" data-category="other">
+        <h3>Other</h3>
+        <p>Enter Symptoms Manually.</p>
+      </div>
+    </div>
 
-<div>
-  <div class=h2>
-    <h2>Admin</h2>
-<div id="category-list">
-  <div>
-    <h1>What can we help with?</h1>
+    <div id="triage-questions" class="form-section">
+      <div class="booking-index-headings">
+        <h2 id="triage-title"></h2>
+      </div>
+      <div id="questions-container"></div>
+      <button id="submit-triage">Submit</button>
+      <button class="back-button">Back</button>
+    </div>
+
+    <div id="reason-for-appointment" class="form-section">
+      <div class="booking-index-headings">
+        <h1>Why would you like an appointment?</h1>
+      </div>
+      <h3>Tell us about your symptoms, condition, or reason for booking (200 characters)</h3>
+      <textarea id="appointment-reason" maxlength="200" rows="4"></textarea>
+      <button id="submit-reason">Submit</button>
+      <button class="back-button">Back</button>
+    </div>
+
+    <div id="appointment-type-list" class="form-section">
+      <div class="booking-index-headings">
+        <h1>Choose your appointment type</h1>
+      </div>
+      <div class="appointment-type-card" data-appointment-type="phone">Phone</div>
+      <div class="appointment-type-card" data-appointment-type="video">Video Call</div>
+      <div class="appointment-type-card" data-appointment-type="in-person">In-person</div>
+      <button class="back-button">Back</button>
+    </div>
+
+    <div id="available-clinicians" class="form-section">
+      <div class="booking-index-headings">
+        <h2>Available Clinicians</h2>
+      </div>
+      <div id="clinicians-container">
+        <!-- Clinician cards will be inserted here -->
+      </div>
+      <button class="back-button">Back</button>
+    </div>
+
+    <div id="calendar-view" class="form-section">
+      <div class="booking-index-headings">
+        <h2>Select Date and Time</h2>
+      </div>
+      <input type="text" id="calendar-container" />
+      <div id="available-times" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 20px;">
+        <!-- Available times will be shown here -->
+      </div>
+      <button id="close-calendar">Close</button>
+      <button class="back-button">Back</button>
+    </div>
+
+    <div id="booking-details" class="form-section">
+      <div class="booking-index-headings">
+        <h2>Booking Details</h2>
+      </div>
+      <div id="details-container">
+        <!-- Booking details will be inserted here -->
+      </div>
+      <button id="confirm-booking">Confirm Booking</button>
+      <button class="back-button">Back</button>
+    </div>
+
+    <div id="appointment-pending" class="form-section">
+      <div class="booking-index-headings">
+        <h1>Appointment Request Pending</h1>
+      </div>
+      <p>Thank you for requesting an appointment.</p>
+      <p>Your appointment request has been received and is currently pending approval from the clinician.</p>
+      <h3>Additional Information:</h3>
+      <p>Pending Approval: Your requested appointment is awaiting confirmation from the clinician. You will receive an update as soon as your appointment status changes.</p>
+      <h3>Need to make changes?</h3>
+      <p>If you need to modify or cancel your appointment request, you can do this within the 'My Appointments' section</p>
+      <footer>
+        <p>Please note that the availability of appointments may vary based on clinician schedules.</p>
+      </footer>
+    </div>
+
+    <a href="<%= appointments_path %>" class="close-button">X</a>
   </div>
-  <div class="category-card" data-category="admin">Admin</div>
-  <div class="category-card" data-category="test_results">Test Results</div>
-  <div class="category-card" data-category="muscles_and_joints">Muscles and Joints</div>
-  <div class="category-card" data-category="contraception">Contraception</div>
-  <div class="category-card" data-category="breathing_conditions_and_allergies">Breathing conditions & Allergies</div>
-  <div class="category-card" data-category="mental_health">Mental health</div>
-  <div class="category-card" data-category="prescriptions">Prescriptions</div>
-  <div class="category-card" data-category="diabetes_care">Diabetes Care</div>
-  <div class="category-card" data-category="cold_cough_flu_sore_throat_and_earaches">Cold, cough, flu, sore throat & Earaches</div>
-  <div class="category-card" data-category="skin_issues">Skin issues</div>
-  <div class="category-card" data-category="stomach_problems">Stomach problems</div>
-  <div class="category-card" data-category="urine_problems">Urine problems</div>
-  <div class="category-card" data-category="travel_health">Travel health</div>
-  <div class="category-card" data-category="other">Other</div>
-  <button class="back-button">Back</button>
-</div>
 
-<div id="triage-questions" style="display: none;">
-  <h2 id="triage-title"></h2>
-  <div id="questions-container"></div>
-  <button id="submit-triage">Submit</button>
-  <button class="back-button">Back</button>
-</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const categoryList = document.getElementById('category-list');
+      const triageQuestions = document.getElementById('triage-questions');
+      const triageTitle = document.getElementById('triage-title');
+      const questionsContainer = document.getElementById('questions-container');
+      const reasonForAppointment = document.getElementById('reason-for-appointment');
+      const appointmentTypeList = document.getElementById('appointment-type-list');
+      const availableClinicians = document.getElementById('available-clinicians');
+      const cliniciansContainer = document.getElementById('clinicians-container');
+      const calendarView = document.getElementById('calendar-view');
+      const calendarContainer = document.getElementById('calendar-container');
+      const availableTimes = document.getElementById('available-times');
+      const closeCalendarButton = document.getElementById('close-calendar');
+      const bookingDetails = document.getElementById('booking-details');
+      const detailsContainer = document.getElementById('details-container');
+      const confirmBookingButton = document.getElementById('confirm-booking');
+      const backButtons = document.querySelectorAll('.back-button');
+      const closeButton = document.querySelector('.close-button');
+      const appointmentPending = document.getElementById('appointment-pending');
+      const submitTriageButton = document.getElementById('submit-triage');
 
-<div id="reason-for-appointment" style="display: none;">
-  <div>
-    <h1>Why would you like an appointment?</h1>
-  </div>
-  <h3>Tell us about your symptoms, condition, or reason for booking (200 characters)</h3>
-  <textarea id="appointment-reason" maxlength="200" rows="4" cols="50"></textarea>
-  <button id="submit-reason">Submit</button>
-  <button class="back-button">Back</button>
-</div>
+      let selectedClinician = '';
+      let selectedDate = '';
+      let selectedTime = '';
+      let historyStack = [];
 
-<div id="appointment-type-list" style="display: none;">
-  <div>
-    <h1>Choose your appointment type</h1>
-  </div>
-  <div class="appointment-type-card" data-appointment-type="phone">Phone</div>
-  <div class="appointment-type-card" data-appointment-type="video">Video Call</div>
-  <div class="appointment-type-card" data-appointment-type="in-person">In-person</div>
-  <button class="back-button">Back</button>
-</div>
+      const triageData = {
+        'admin': ['Question 1 for Admin?', 'Question 2 for Admin?', 'Question 3 for Admin?', 'Question 4 for Admin?'],
+        'test_results': ['Question 1 for Test Results?', 'Question 2 for Test Results?', 'Question 3 for Test Results?', 'Question 4 for Test Results?'],
+        'muscles_and_joints': ['Question 1 for Muscles and Joints?', 'Question 2 for Muscles and Joints?', 'Question 3 for Muscles and Joints?', 'Question 4 for Muscles and Joints?'],
+        'contraception': ['Question 1 for Contraception?', 'Question 2 for Contraception?', 'Question 3 for Contraception?', 'Question 4 for Contraception?'],
+        'breathing_conditions_and_allergies': ['Question 1 for Breathing conditions & Allergies?', 'Question 2 for Breathing conditions & Allergies?', 'Question 3 for Breathing conditions & Allergies?', 'Question 4 for Breathing conditions & Allergies?'],
+        'mental_health': ['Question 1 for Mental health?', 'Question 2 for Mental health?', 'Question 3 for Mental health?', 'Question 4 for Mental health?'],
+        'prescriptions': ['Question 1 for Prescriptions?', 'Question 2 for Prescriptions?', 'Question 3 for Prescriptions?', 'Question 4 for Prescriptions?'],
+        'diabetes_care': ['Question 1 for Diabetes Care?', 'Question 2 for Diabetes Care?', 'Question 3 for Diabetes Care?', 'Question 4 for Diabetes Care?'],
+        'cold_cough_flu_sore_throat_and_earaches': ['Question 1 for Cold, cough, flu, sore throat & Earaches?', 'Question 2 for Cold, cough, flu, sore throat & Earaches?', 'Question 3 for Cold, cough, flu, sore throat & Earaches?', 'Question 4 for Cold, cough, flu, sore throat & Earaches?'],
+        'skin_issues': ['Question 1 for Skin issues?', 'Question 2 for Skin issues?', 'Question 3 for Skin issues?', 'Question 4 for Skin issues?'],
+        'stomach_problems': ['Question 1 for Stomach problems?', 'Question 2 for Stomach problems?', 'Question 3 for Stomach problems?', 'Question 4 for Stomach problems?'],
+        'urine_problems': ['Question 1 for Urine problems?', 'Question 2 for Urine problems?', 'Question 3 for Urine problems?', 'Question 4 for Urine problems?'],
+        'travel_health': ['Question 1 for Travel health?', 'Question 2 for Travel health?', 'Question 3 for Travel health?', 'Question 4 for Travel health?'],
+        'other': ['Question 1 for Other?', 'Question 2 for Other?', 'Question 3 for Other?', 'Question 4 for Other?']
+      };
 
-<div id="available-clinicians" style="display: none;">
-  <h2>Available Clinicians</h2>
-  <div id="clinicians-container">
-    <!-- Clinician cards will be inserted here -->
-  </div>
-  <button class="back-button">Back</button>
-</div>
+      const cliniciansData = {
+        'phone': [
+          { name: 'Clinician 1', times: ['8:00am', '10:00am', '1:00pm'] },
+          { name: 'Clinician 2', times: ['9:00am', '11:00am', '2:00pm'] },
+        ],
+        'video': [
+          { name: 'Clinician 3', times: ['8:30am', '10:30am', '1:30pm'] },
+          { name: 'Clinician 4', times: ['9:30am', '11:30am', '2:30pm'] },
+        ],
+        'in-person': [
+          { name: 'Clinician 5', times: ['8:45am', '10:45am', '1:45pm'] },
+          { name: 'Clinician 6', times: ['9:45am', '11:45am', '2:45pm'] },
+        ],
+      };
 
-<div id="calendar-view" style="display: none;">
-  <h2>Select Date and Time</h2>
-  <input type="text" id="calendar-container" />
-  <div id="available-times" style="display: flex; justify-content: space-around; margin-top: 20px;">
-    <!-- Available times will be shown here -->
-  </div>
-  <button id="close-calendar">Close</button>
-  <button class="back-button">Back</button>
-</div>
+      categoryList.addEventListener('click', function(event) {
+        const categoryCard = event.target.closest('.category-card');
+        if (categoryCard) {
+          const category = categoryCard.getAttribute('data-category');
+          const questions = triageData[category];
 
-<div id="booking-details" style="display: none;">
-  <h2>Booking Details</h2>
-  <div id="details-container">
-    <!-- Booking details will be inserted here -->
-  </div>
-  <button id="confirm-booking">Confirm Booking</button>
-  <button class="back-button">Back</button>
-</div>
+          triageTitle.textContent = categoryCard.querySelector('h3').textContent;
+          questionsContainer.innerHTML = '';
 
-<div id="appointment-pending" style="display: none;">
-  <div>
-  <h1>Appointment Request Pending</h1>
-  </div>
-  <p>Thank you for requesting an appointment.</p>
-  <p>Your appointment request has been received and is currently pending approval from the clinician.</p>
-  <h3>Additional Information:</h3>
-  <p>Pending Approval: Your requested appointment is awaiting confirmation from the clinician. You will receive an update as soon as your appointment status changes.</p>
-  <h3>Need to make changes?</h3>
-  <p>If you need to modify or cancel your appointment request, you can do this within the 'My Appointments' section</p>
-  <footer>
-    <p>Please note that the availability of appointments may vary based on clinician schedules.</p>
-  </footer>
-</div>
+          questions.forEach((question, index) => {
+            const questionElement = document.createElement('div');
+            questionElement.className = 'question';
+            questionElement.textContent = question;
 
-<a href="<%= appointments_path %>" class="close-button">X</a>
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.className = 'question-buttons';
 
+            const yesButton = document.createElement('button');
+            yesButton.textContent = 'Yes';
+            yesButton.setAttribute('data-answer', 'yes');
 
+            const noButton = document.createElement('button');
+            noButton.textContent = 'No';
+            noButton.setAttribute('data-answer', 'no');
 
+            yesButton.addEventListener('click', () => {
+              questionElement.setAttribute('data-answered', 'true');
+              yesButton.disabled = true;
+              noButton.disabled = true;
+            });
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const categoryList = document.getElementById('category-list');
-  const triageQuestions = document.getElementById('triage-questions');
-  const triageTitle = document.getElementById('triage-title');
-  const questionsContainer = document.getElementById('questions-container');
-  const reasonForAppointment = document.getElementById('reason-for-appointment');
-  const appointmentTypeList = document.getElementById('appointment-type-list');
-  const availableClinicians = document.getElementById('available-clinicians');
-  const cliniciansContainer = document.getElementById('clinicians-container');
-  const calendarView = document.getElementById('calendar-view');
-  const calendarContainer = document.getElementById('calendar-container');
-  const availableTimes = document.getElementById('available-times');
-  const closeCalendarButton = document.getElementById('close-calendar');
-  const bookingDetails = document.getElementById('booking-details');
-  const detailsContainer = document.getElementById('details-container');
-  const confirmBookingButton = document.getElementById('confirm-booking');
-  const backButtons = document.querySelectorAll('.back-button');
-  const closeButton = document.querySelector('.close-button');
-  const appointmentPending = document.getElementById('appointment-pending');
-  const submitTriageButton = document.getElementById('submit-triage');
+            noButton.addEventListener('click', () => {
+              questionElement.setAttribute('data-answered', 'true');
+              yesButton.disabled = true;
+              noButton.disabled = true;
+            });
 
-  let selectedClinician = '';
-  let selectedDate = '';
-  let selectedTime = '';
-  let historyStack = [];
+            buttonsContainer.appendChild(yesButton);
+            buttonsContainer.appendChild(noButton);
 
-  const triageData = {
-    'admin': ['Question 1 for Admin?', 'Question 2 for Admin?', 'Question 3 for Admin?', 'Question 4 for Admin?'],
-    'test_results': ['Question 1 for Test Results?', 'Question 2 for Test Results?', 'Question 3 for Test Results?', 'Question 4 for Test Results?'],
-    'muscles_and_joints': ['Question 1 for Muscles and Joints?', 'Question 2 for Muscles and Joints?', 'Question 3 for Muscles and Joints?', 'Question 4 for Muscles and Joints?'],
-    'contraception': ['Question 1 for Contraception?', 'Question 2 for Contraception?', 'Question 3 for Contraception?', 'Question 4 for Contraception?'],
-    'breathing_conditions_and_allergies': ['Question 1 for Breathing conditions & Allergies?', 'Question 2 for Breathing conditions & Allergies?', 'Question 3 for Breathing conditions & Allergies?', 'Question 4 for Breathing conditions & Allergies?'],
-    'mental_health': ['Question 1 for Mental health?', 'Question 2 for Mental health?', 'Question 3 for Mental health?', 'Question 4 for Mental health?'],
-    'prescriptions': ['Question 1 for Prescriptions?', 'Question 2 for Prescriptions?', 'Question 3 for Prescriptions?', 'Question 4 for Prescriptions?'],
-    'diabetes_care': ['Question 1 for Diabetes Care?', 'Question 2 for Diabetes Care?', 'Question 3 for Diabetes Care?', 'Question 4 for Diabetes Care?'],
-    'cold_cough_flu_sore_throat_and_earaches': ['Question 1 for Cold, cough, flu, sore throat & Earaches?', 'Question 2 for Cold, cough, flu, sore throat & Earaches?', 'Question 3 for Cold, cough, flu, sore throat & Earaches?', 'Question 4 for Cold, cough, flu, sore throat & Earaches?'],
-    'skin_issues': ['Question 1 for Skin issues?', 'Question 2 for Skin issues?', 'Question 3 for Skin issues?', 'Question 4 for Skin issues?'],
-    'stomach_problems': ['Question 1 for Stomach problems?', 'Question 2 for Stomach problems?', 'Question 3 for Stomach problems?', 'Question 4 for Stomach problems?'],
-    'urine_problems': ['Question 1 for Urine problems?', 'Question 2 for Urine problems?', 'Question 3 for Urine problems?', 'Question 4 for Urine problems?'],
-    'travel_health': ['Question 1 for Travel health?', 'Question 2 for Travel health?', 'Question 3 for Travel health?', 'Question 4 for Travel health?'],
-    'other': ['Question 1 for Other?', 'Question 2 for Other?', 'Question 3 for Other?', 'Question 4 for Other?']
-  };
+            questionElement.appendChild(buttonsContainer);
+            questionsContainer.appendChild(questionElement);
+          });
 
-  const cliniciansData = {
-    'phone': [
-      { name: 'Clinician 1', times: ['8:00am', '10:00am', '1:00pm'] },
-      { name: 'Clinician 2', times: ['9:00am', '11:00am', '2:00pm'] },
-    ],
-    'video': [
-      { name: 'Clinician 3', times: ['8:30am', '10:30am', '1:30pm'] },
-      { name: 'Clinician 4', times: ['9:30am', '11:30am', '2:30pm'] },
-    ],
-    'in-person': [
-      { name: 'Clinician 5', times: ['8:45am', '10:45am', '1:45pm'] },
-      { name: 'Clinician 6', times: ['9:45am', '11:45am', '2:45pm'] },
-    ],
-  };
-
-  categoryList.addEventListener('click', function(event) {
-    if (event.target && event.target.matches('.category-card')) {
-      const category = event.target.getAttribute('data-category');
-      const questions = triageData[category];
-
-      triageTitle.textContent = event.target.textContent;
-      questionsContainer.innerHTML = '';
-
-      questions.forEach((question, index) => {
-        const questionElement = document.createElement('div');
-        questionElement.className = 'question';
-        questionElement.textContent = question;
-
-        const buttonsContainer = document.createElement('div');
-        buttonsContainer.className = 'question-buttons';
-
-        const yesButton = document.createElement('button');
-        yesButton.textContent = 'Yes';
-        yesButton.setAttribute('data-answer', 'yes');
-
-        const noButton = document.createElement('button');
-        noButton.textContent = 'No';
-        noButton.setAttribute('data-answer', 'no');
-
-        yesButton.addEventListener('click', () => {
-          questionElement.setAttribute('data-answered', 'true');
-          yesButton.disabled = true;
-          noButton.disabled = true;
-        });
-
-        noButton.addEventListener('click', () => {
-          questionElement.setAttribute('data-answered', 'true');
-          yesButton.disabled = true;
-          noButton.disabled = true;
-        });
-
-        buttonsContainer.appendChild(yesButton);
-        buttonsContainer.appendChild(noButton);
-
-        questionElement.appendChild(buttonsContainer);
-        questionsContainer.appendChild(questionElement);
+          showForm(triageQuestions);
+        }
       });
 
-      showForm(triageQuestions);
-    }
-  });
+      submitTriageButton.addEventListener('click', function() {
+        const allAnswered = [...questionsContainer.querySelectorAll('.question')].every(question => question.getAttribute('data-answered') === 'true');
 
-  submitTriageButton.addEventListener('click', function() {
-    console.log('Submit Triage Button Clicked');
-    const allAnswered = [...questionsContainer.querySelectorAll('.question')].every(question => question.getAttribute('data-answered') === 'true');
+        if (allAnswered) {
+          showForm(reasonForAppointment);
+        } else {
+          alert('Please answer all triage questions before proceeding.');
+        }
+      });
 
-    if (allAnswered) {
-      showForm(reasonForAppointment);
-    } else {
-      alert('Please answer all triage questions before proceeding.');
-    }
-  });
+      document.getElementById('submit-reason').addEventListener('click', function() {
+        const appointmentReason = document.getElementById('appointment-reason').value.trim();
+        if (appointmentReason) {
+          showForm(appointmentTypeList);
+        } else {
+          alert('Please provide a reason for your appointment.');
+        }
+      });
 
-  document.getElementById('submit-reason').addEventListener('click', function() {
-    const appointmentReason = document.getElementById('appointment-reason').value.trim();
-    if (appointmentReason) {
-      showForm(appointmentTypeList);
-    } else {
-      alert('Please provide a reason for your appointment.');
-    }
-  });
+      appointmentTypeList.addEventListener('click', function(event) {
+        const appointmentTypeCard = event.target.closest('.appointment-type-card');
+        if (appointmentTypeCard) {
+          const appointmentType = appointmentTypeCard.getAttribute('data-appointment-type');
+          const clinicians = cliniciansData[appointmentType];
 
-  appointmentTypeList.addEventListener('click', function(event) {
-    if (event.target && event.target.matches('.appointment-type-card')) {
-      const appointmentType = event.target.getAttribute('data-appointment-type');
-      const clinicians = cliniciansData[appointmentType];
+          cliniciansContainer.innerHTML = '';
 
-      cliniciansContainer.innerHTML = '';
+          clinicians.forEach(clinician => {
+            const clinicianCard = document.createElement('div');
+            clinicianCard.className = 'clinician-card';
 
-      clinicians.forEach(clinician => {
-        const clinicianCard = document.createElement('div');
-        clinicianCard.className = 'clinician-card';
+            const clinicianName = document.createElement('div');
+            clinicianName.textContent = clinician.name;
+            clinicianCard.appendChild(clinicianName);
 
-        const clinicianName = document.createElement('div');
-        clinicianName.textContent = clinician.name;
-        clinicianCard.appendChild(clinicianName);
+            const times = document.createElement('div');
+            times.className = 'times';
+            clinician.times.forEach(time => {
+              const timeSlot = document.createElement('div');
+              timeSlot.textContent = time;
+              timeSlot.className = 'time-slot';
+              timeSlot.addEventListener('click', () => {
+                showBookingDetails(clinician.name, '', time);
+              });
+              times.appendChild(timeSlot);
+            });
 
-        const times = document.createElement('div');
-        times.className = 'times';
-        clinician.times.forEach(time => {
+            const moreButton = document.createElement('div');
+            moreButton.textContent = 'More';
+            moreButton.className = 'more-button';
+            moreButton.addEventListener('click', () => {
+              showCalendarView(clinician.name);
+            });
+            times.appendChild(moreButton);
+
+            clinicianCard.appendChild(times);
+            cliniciansContainer.appendChild(clinicianCard);
+          });
+
+          showForm(availableClinicians);
+        }
+      });
+
+      function showForm(form) {
+        const forms = [categoryList, triageQuestions, reasonForAppointment, appointmentTypeList, availableClinicians, calendarView, bookingDetails, appointmentPending];
+        forms.forEach(f => f.style.display = 'none');
+        form.style.display = 'flex';
+
+        if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== form) {
+          historyStack.push(form);
+        }
+
+        if (historyStack.length > 1) {
+          backButtons.forEach(btn => btn.style.display = 'inline-block');
+        } else {
+          backButtons.forEach(btn => btn.style.display = 'none');
+        }
+      }
+
+      backButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          if (historyStack.length > 1) {
+            historyStack.pop(); // Remove current form
+            const previousForm = historyStack[historyStack.length - 1];
+            showForm(previousForm);
+          }
+        });
+      });
+
+      function showCalendarView(clinicianName) {
+        flatpickr(calendarContainer, {
+          onChange: function(selectedDates, dateStr, instance) {
+            const availableTimesData = getAvailableTimesForClinicianOnDate(clinicianName, dateStr);
+            displayAvailableTimes(availableTimesData, clinicianName, dateStr);
+          }
+        });
+
+        showForm(calendarView);
+      }
+
+      function displayAvailableTimes(times, clinicianName, dateStr) {
+        availableTimes.innerHTML = '';
+        times.forEach(time => {
           const timeSlot = document.createElement('div');
           timeSlot.textContent = time;
           timeSlot.className = 'time-slot';
           timeSlot.addEventListener('click', () => {
-            showBookingDetails(clinician.name, '', time);
+            showBookingDetails(clinicianName, dateStr, time);
           });
-          times.appendChild(timeSlot);
+          availableTimes.appendChild(timeSlot);
         });
+      }
 
-        const moreButton = document.createElement('div');
-        moreButton.textContent = 'More';
-        moreButton.className = 'more-button';
-        moreButton.addEventListener('click', () => {
-          showCalendarView(clinician.name);
-        });
-        times.appendChild(moreButton);
+      function getAvailableTimesForClinicianOnDate(clinicianName, dateStr) {
+        // Mock data, replace with actual fetch from server
+        return ['8:00am', '10:00am', '1:00pm', '3:00pm'];
+      }
 
-        clinicianCard.appendChild(times);
-        cliniciansContainer.appendChild(clinicianCard);
+      function showBookingDetails(clinicianName, dateStr, time) {
+        selectedClinician = clinicianName;
+        selectedDate = dateStr;
+        selectedTime = time;
+
+        detailsContainer.innerHTML = `
+          <p><strong>Clinician:</strong> ${clinicianName}</p>
+          <p><strong>Date:</strong> ${dateStr || 'Not selected'}</p>
+          <p><strong>Time:</strong> ${time}</p>
+        `;
+
+        showForm(bookingDetails);
+      }
+
+      closeCalendarButton.addEventListener('click', function() {
+        showForm(availableClinicians);
       });
 
-      showForm(availableClinicians);
-    }
-  });
-
-  function showForm(form) {
-    const forms = [categoryList, triageQuestions, reasonForAppointment, appointmentTypeList, availableClinicians, calendarView, bookingDetails, appointmentPending];
-    forms.forEach(f => f.style.display = 'none');
-    form.style.display = 'block';
-
-    if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== form) {
-      historyStack.push(form);
-    }
-
-    if (historyStack.length > 1) {
-      backButtons.forEach(btn => btn.style.display = 'inline-block');
-    } else {
-      backButtons.forEach(btn => btn.style.display = 'none');
-    }
-  }
-
-  backButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      if (historyStack.length > 1) {
-        historyStack.pop(); // Remove current form
-        const previousForm = historyStack[historyStack.length - 1];
-        showForm(previousForm);
-      }
-    });
-  });
-
-  function showCalendarView(clinicianName) {
-    flatpickr(calendarContainer, {
-      onChange: function(selectedDates, dateStr, instance) {
-        const availableTimesData = getAvailableTimesForClinicianOnDate(clinicianName, dateStr);
-        displayAvailableTimes(availableTimesData, clinicianName, dateStr);
-      }
-    });
-
-    showForm(calendarView);
-  }
-
-  function displayAvailableTimes(times, clinicianName, dateStr) {
-    availableTimes.innerHTML = '';
-    times.forEach(time => {
-      const timeSlot = document.createElement('div');
-      timeSlot.textContent = time;
-      timeSlot.className = 'time-slot';
-      timeSlot.addEventListener('click', () => {
-        showBookingDetails(clinicianName, dateStr, time);
+      confirmBookingButton.addEventListener('click', function() {
+        alert(`Booking confirmed with ${selectedClinician} on ${selectedDate} at ${selectedTime}`);
+        // Handle the booking confirmation logic here
+        showForm(appointmentPending);
       });
-      availableTimes.appendChild(timeSlot);
     });
-  }
-
-  function getAvailableTimesForClinicianOnDate(clinicianName, dateStr) {
-    // Mock data, replace with actual fetch from server
-    return ['8:00am', '10:00am', '1:00pm', '3:00pm'];
-  }
-
-  function showBookingDetails(clinicianName, dateStr, time) {
-    selectedClinician = clinicianName;
-    selectedDate = dateStr;
-    selectedTime = time;
-
-    detailsContainer.innerHTML = `
-      <p><strong>Clinician:</strong> ${clinicianName}</p>
-      <p><strong>Date:</strong> ${dateStr || 'Not selected'}</p>
-      <p><strong>Time:</strong> ${time}</p>
-    `;
-
-    showForm(bookingDetails);
-  }
-
-  closeCalendarButton.addEventListener('click', function() {
-    showForm(availableClinicians);
-  });
-
-  confirmBookingButton.addEventListener('click', function() {
-    alert(`Booking confirmed with ${selectedClinician} on ${selectedDate} at ${selectedTime}`);
-    // Handle the booking confirmation logic here
-    showForm(appointmentPending);
-  });
-});
-</script>
+  </script>
