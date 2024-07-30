@@ -1,0 +1,64 @@
+
+.h2header {
+  text-align: center;
+}
+
+  .logincardcontainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+
+  }
+
+  .card-form {
+    flex: 2;
+    padding: 40px;
+  }
+
+  .card-form .form-inputs {
+    margin-bottom: 20px;
+  }
+
+  .card-form .form-actions {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: $green;
+    // color: $white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    // display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  }
+
+  .formbgrcontainer {
+    position: relative; /* Ensure positioning context for pseudo-element */
+    background-image: url('backgroundImage.webp');
+    max-width: 1800px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 91vh; /* Ensures full viewport height coverage */
+    // overflow-x: hidden; /* Prevents horizontal scrolling */
+  }
+  .formbgrcontainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Cover entire height of the container */
+    // background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity for darkness */
+    z-index: 1; /* Ensure overlay is above background image */
+  }
+
+  .formbgrcontainer > * {
+    position: relative;
+    z-index: 2;
+  }
