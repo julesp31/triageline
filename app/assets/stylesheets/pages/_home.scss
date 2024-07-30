@@ -1,8 +1,70 @@
 // Specific CSS for your home-page
+
+
+//* Padding for the whole website *//
+
 $default-padding: 20px;
 $default-margin: 20px;
 
+//* CLASS to be applied on any page to adapt Padding for the whole website *//
 .margin-container {
   padding: $default-padding;
   margin: $default-margin;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+
+//* home page *//
+
+.welcome-card {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.background-image img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+}
+
+.profile-image {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid white;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 0%;
+}
+
+.welcome-text {
+  margin-top: 60px;
+}
+
+.welcome-text h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.welcome-text p {
+  font-size: 18px;
+  color: gray;
 }
