@@ -335,7 +335,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   error_highlight (>= 0.4.0)
-  flatpickr (~> 2.3, >= 2.3.5.0)
+  flatpickr
   font-awesome-sass (~> 6.1)
   http
   importmap-rails
