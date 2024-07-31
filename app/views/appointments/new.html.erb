@@ -1,145 +1,173 @@
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <title>Appointment Booking</title>
-  <div class="margin-container">
-    <div id="category-list" class="form-section">
-      <div class="booking-index-headings">
-        <h1>How can we assist you today?</h1>
+<title>Appointment Booking</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+<body>
+      <a href="<%= appointments_path %>" class="close-button">X</a>
+  <div class="side-bottom-margin-container">
+    <div class="appointmentbooking">
+      <div id="category-list" class="form-section">
+        <div class="booking-index-headings">
+
+          <!-- How can we assist you today? -->
+          <h1>How can we assist you today?</h1>
+        </div>
+        <div class="category-card" data-category="admin">
+          <h3>Administrative Issues</h3>
+          <p>For any non-clinical or administrative questions or concerns.</p>
+        </div>
+        <div class="category-card" data-category="test_results">
+          <h3>Test Results</h3>
+          <p>Discuss your test results and plan the next steps.</p>
+        </div>
+        <div class="category-card" data-category="muscles_and_joints">
+          <h3>Muscle and Joint Problems</h3>
+          <p>Issues with your back, neck, shoulders, or other muscles and joints.</p>
+        </div>
+        <div class="category-card" data-category="contraception">
+          <h3>Contraception</h3>
+          <p>Guidance and prescriptions for contraceptive options.</p>
+        </div>
+        <div class="category-card" data-category="breathing_conditions_and_allergies">
+          <h3>Breathing Conditions & Allergies</h3>
+          <p>Management of asthma, hay fever, and other breathing-related concerns.</p>
+        </div>
+        <div class="category-card" data-category="mental_health">
+          <h3>Mental Health</h3>
+          <p>Advice and support for mental health issues.</p>
+        </div>
+        <div class="category-card" data-category="prescriptions">
+          <h3>Prescriptions</h3>
+          <p>Help with new or repeat prescription requests and reviews.</p>
+        </div>
+        <div class="category-card" data-category="diabetes_care">
+          <h3>Diabetes Care</h3>
+          <p>Support and advice for diabetes and pre-diabetes management.</p>
+        </div>
+        <div class="category-card" data-category="cold_cough_flu_sore_throat_and_earaches">
+          <h3>Cold, Cough, Flu, Sore Throat & Earaches</h3>
+          <p>Help with symptoms like runny nose, fever, sore throat, and ear pain.</p>
+        </div>
+        <div class="category-card" data-category="skin_issues">
+          <h3>Skin Problems</h3>
+          <p>Treatment for rashes, acne, eczema, infections, lumps, or moles.</p>
+        </div>
+        <div class="category-card" data-category="stomach_problems">
+          <h3>Stomach Issues</h3>
+          <p>Addressing nausea, abdominal pain, bloating, constipation, or diarrhea.</p>
+        </div>
+        <div class="category-card" data-category="urine_problems">
+          <h3>Urinary Problems</h3>
+          <p>Trouble with urination, including pain or frequent urination.</p>
+        </div>
+        <div class="category-card" data-category="travel_health">
+          <h3>Travel Health</h3>
+          <p>Travel advice and necessary vaccinations for trips abroad.</p>
+        </div>
+        <div class="category-card" data-category="other">
+          <h3>Other Concerns</h3>
+          <p>Describe your symptoms if they don't fit into the categories above.</p>
+        </div>
+
+      <!-- triage-questions -->
+      <div id="triage-questions" class="form-section">
+        <div class="booking-index-headings">
+          <h1 id="triage-title"></h1>
+        </div>
+        <div id="questions-container"></div>
+        <button id="submit-triage">Submit</button>
+        <button class="back-button">Back</button>
       </div>
-      <div class="category-card" data-category="admin">
-        <h3>Administrative Issues</h3>
-        <p>For any non-clinical or administrative questions or concerns.</p>
+
+      <!-- reason-for-appointment -->
+      <div id="reason-for-appointment" class="form-section">
+        <div class="booking-index-headings">
+          <h1>Why would you like an appointment?</h1>
+        </div>
+        <p>Tell us about your symptoms, condition, or reason for booking (200 characters)</p>
+        <textarea id="appointment-reason" maxlength="200" rows="4"></textarea>
+        <button id="submit-reason">Submit</button>
+        <button class="back-button">Back</button>
       </div>
-      <div class="category-card" data-category="test_results">
-        <h3>Test Results</h3>
-        <p>Discuss your test results and plan the next steps.</p>
+
+      <!-- Choose your appointment type -->
+      <div id="appointment-type-list" class="form-section">
+        <div class="booking-index-headings">
+          <h1>Choose your appointment type</h1>
+        </div>
+
+        <div class="appointment-type-container">
+          <div class="appointment-type-row">
+            <div class="appointment-type-card" data-appointment-type="phone">
+              <i class="fas fa-phone"></i>
+              <span>Phone</span>
+            </div>
+
+            <div class="appointment-type-card" data-appointment-type="video">
+              <i class="fas fa-video"></i>
+              <span>Video Call</span>
+            </div>
+          </div>
+
+          <div class="appointment-type-card" data-appointment-type="in-person">
+            <i class="fas fa-user"></i>
+            <span>In-person</span>
+          </div>
+        </div>
+
+        <button class="back-button">Back</button>
       </div>
-      <div class="category-card" data-category="muscles_and_joints">
-        <h3>Muscle and Joint Problems</h3>
-        <p>Issues with your back, neck, shoulders, or other muscles and joints.</p>
+
+      <!-- Available Clinicians-->
+      <div id="available-clinicians" class="form-section">
+        <div class="booking-index-headings">
+            <h2>Available Clinicians</h2>
+        </div>
+       <div id="clinicians-container" class="clinicians-container">
+          <!-- Clinician cards will be inserted here -->
+        </div>
+        <button class="back-button">Back</button>
       </div>
-      <div class="category-card" data-category="contraception">
-        <h3>Contraception</h3>
-        <p>Guidance and prescriptions for contraceptive options.</p>
+
+
+      <div id="calendar-view" class="form-section">
+        <div class="booking-index-headings">
+          <h2>Select Date and Time</h2>
+        </div>
+        <input type="text" id="calendar-container" />
+        <div id="available-times" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 20px;">
+          <!-- Available times will be shown here -->
+        </div>
+        <button id="close-calendar">Close</button>
+        <button class="back-button">Back</button>
       </div>
-      <div class="category-card" data-category="breathing_conditions_and_allergies">
-        <h3>Breathing Conditions & Allergies</h3>
-        <p>Management of asthma, hay fever, and other breathing-related concerns.</p>
+
+      <div id="booking-details" class="form-section">
+        <div class="booking-index-headings">
+          <h2>Booking Details</h2>
+        </div>
+        <div id="details-container">
+          <!-- Booking details will be inserted here -->
+        </div>
+        <button id="confirm-booking">Confirm Booking</button>
+        <button class="back-button">Back</button>
       </div>
-      <div class="category-card" data-category="mental_health">
-        <h3>Mental Health</h3>
-        <p>Advice and support for mental health issues.</p>
+
+      <div id="appointment-pending" class="form-section">
+        <div class="booking-index-headings">
+          <h1>Appointment Request Pending</h1>
+        </div>
+        <p>Thank you for requesting an appointment.</p>
+        <p>Your appointment request has been received and is currently pending approval from the clinician.</p>
+        <h3>Additional Information:</h3>
+        <p>Pending Approval: Your requested appointment is awaiting confirmation from the clinician. You will receive an update as soon as your appointment status changes.</p>
+        <h3>Need to make changes?</h3>
+        <p>If you need to modify or cancel your appointment request, you can do this within the 'My Appointments' section</p>
+        <footer>
+          <p>Please note that the availability of appointments may vary based on clinician schedules.</p>
+        </footer>
       </div>
-      <div class="category-card" data-category="prescriptions">
-        <h3>Prescriptions</h3>
-        <p>Help with new or repeat prescription requests and reviews.</p>
-      </div>
-      <div class="category-card" data-category="diabetes_care">
-        <h3>Diabetes Care</h3>
-        <p>Support and advice for diabetes and pre-diabetes management.</p>
-      </div>
-      <div class="category-card" data-category="cold_cough_flu_sore_throat_and_earaches">
-        <h3>Cold, Cough, Flu, Sore Throat & Earaches</h3>
-        <p>Help with symptoms like runny nose, fever, sore throat, and ear pain.</p>
-      </div>
-      <div class="category-card" data-category="skin_issues">
-        <h3>Skin Problems</h3>
-        <p>Treatment for rashes, acne, eczema, infections, lumps, or moles.</p>
-      </div>
-      <div class="category-card" data-category="stomach_problems">
-        <h3>Stomach Issues</h3>
-        <p>Addressing nausea, abdominal pain, bloating, constipation, or diarrhea.</p>
-      </div>
-      <div class="category-card" data-category="urine_problems">
-        <h3>Urinary Problems</h3>
-        <p>Trouble with urination, including pain or frequent urination.</p>
-      </div>
-      <div class="category-card" data-category="travel_health">
-        <h3>Travel Health</h3>
-        <p>Travel advice and necessary vaccinations for trips abroad.</p>
-      </div>
-      <div class="category-card" data-category="other">
-        <h3>Other Concerns</h3>
-        <p>Describe your symptoms if they don't fit into the categories above.</p>
-      </div>
+
     </div>
-
-    <div id="triage-questions" class="form-section">
-      <div class="booking-index-headings">
-        <h2 id="triage-title"></h2>
-      </div>
-      <div id="questions-container"></div>
-      <button id="submit-triage">Submit</button>
-      <button class="back-button">Back</button>
-    </div>
-
-    <div id="reason-for-appointment" class="form-section">
-      <div class="booking-index-headings">
-        <h1>Why would you like an appointment?</h1>
-      </div>
-      <h3>Tell us about your symptoms, condition, or reason for booking (200 characters)</h3>
-      <textarea id="appointment-reason" maxlength="200" rows="4"></textarea>
-      <button id="submit-reason">Submit</button>
-      <button class="back-button">Back</button>
-    </div>
-
-    <div id="appointment-type-list" class="form-section">
-      <div class="booking-index-headings">
-        <h1>Choose your appointment type</h1>
-      </div>
-      <div class="appointment-type-card" data-appointment-type="phone">Phone</div>
-      <div class="appointment-type-card" data-appointment-type="video">Video Call</div>
-      <div class="appointment-type-card" data-appointment-type="in-person">In-person</div>
-      <button class="back-button">Back</button>
-    </div>
-
-    <div id="available-clinicians" class="form-section">
-      <div class="booking-index-headings">
-        <h2>Available Clinicians</h2>
-      </div>
-      <div id="clinicians-container">
-        <!-- Clinician cards will be inserted here -->
-      </div>
-      <button class="back-button">Back</button>
-    </div>
-
-    <div id="calendar-view" class="form-section">
-      <div class="booking-index-headings">
-        <h2>Select Date and Time</h2>
-      </div>
-      <input type="text" id="calendar-container" />
-      <div id="available-times" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 20px;">
-        <!-- Available times will be shown here -->
-      </div>
-      <button id="close-calendar">Close</button>
-      <button class="back-button">Back</button>
-    </div>
-
-    <div id="booking-details" class="form-section">
-      <div class="booking-index-headings">
-        <h2>Booking Details</h2>
-      </div>
-      <div id="details-container">
-        <!-- Booking details will be inserted here -->
-      </div>
-      <button id="confirm-booking">Confirm Booking</button>
-      <button class="back-button">Back</button>
-    </div>
-
-    <div id="appointment-pending" class="form-section">
-      <div class="booking-index-headings">
-        <h1>Appointment Request Pending</h1>
-      </div>
-      <p>Thank you for requesting an appointment.</p>
-      <p>Your appointment request has been received and is currently pending approval from the clinician.</p>
-      <h3>Additional Information:</h3>
-      <p>Pending Approval: Your requested appointment is awaiting confirmation from the clinician. You will receive an update as soon as your appointment status changes.</p>
-      <h3>Need to make changes?</h3>
-      <p>If you need to modify or cancel your appointment request, you can do this within the 'My Appointments' section</p>
-      <footer>
-        <p>Please note that the availability of appointments may vary based on clinician schedules.</p>
-      </footer>
-    </div>
-
-    <a href="<%= appointments_path %>" class="close-button">X</a>
   </div>

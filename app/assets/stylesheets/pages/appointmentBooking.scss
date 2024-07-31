@@ -1,0 +1,241 @@
+
+.appointmentbooking {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.margin-container {
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 6px;
+}
+h1, h2, h3 {
+  font-weight: 700;
+  color: $darkgreen;
+}
+
+p {
+  color: $darkgreen;
+}
+button {
+  font-weight: 500;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+}
+.category-card, .appointment-type-card, .clinician-card, .time-slot {
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  width: calc(100% - 6px);
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.back-button, #close-calendar {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+}
+.question-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.question-buttons button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.question-buttons button.selected {
+  background-color: #4CAF50;
+  color: #fff;
+}
+textarea {
+
+  width: 100%;
+  max-width: 500px;
+  padding: 20px; /* Increased padding for more space inside the textarea */
+  box-sizing: border-box;
+  margin: 20px 0; /* Increased margin for better spacing */
+  border: 1px solid $midgreen; /* Added border for better visibility */
+  border-radius: 10px; /* Rounded corners for a nicer look */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); /* Inner shadow */
+}
+
+.booking-index-headings {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.form-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+.category-card h3, .category-card p {
+  margin: 0;
+  padding: 2px 0;
+}
+
+.close-button {
+  position: fixed; /* Fix the button at the top right */
+  // top: 10px; /* Adjust the position */
+  right: 15px; /* Adjust the position */
+  bottom: 110px;
+  background-color:$green ; /* Red background */
+  color: white; /* White text color */
+  padding: 10px 15px; /* Padding for better click area */
+  border-radius: 50px; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Bold text */
+  z-index: 1001; /* Ensure it is above other content */
+}
+
+
+/* Container to manage layout */
+.appointment-type-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Row containing the first two icons */
+.appointment-type-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px; /* Space between the top row and the bottom icon */
+}
+
+/* Style the appointment type cards */
+.appointment-type-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border-radius: 100%;
+  background-color: $midgreen;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.appointment-type-card i {
+  font-size: 40px; /* Big icons */
+  margin-bottom: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Container styling */
+.side-bottom-margin-container {
+  padding: 20px;
+}
+
+/* Available Clinicians Section */
+#available-clinicians {
+
+  border-radius: 8px;
+  padding: 0px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Clinicians Container */
+.clinicians-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+/* Clinician Card */
+.clinician-card {
+  background: $blue;
+  border-radius: 8px;
+  padding: 20px;
+  width: calc(50% - 20px); /* Adjust width for responsiveness */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.clinician-card div {
+  margin-bottom: 10px;
+}
+
+.clinician-card .times {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-slot {
+  background: #fff;
+  color: $darkgreen;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.time-slot:hover {
+  background: $lightblue;
+}
+
+.more-button {
+  background: #fff;
+  color: $green;
+  border: 1px solid $green;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.more-button:hover {
+  background: $green;
+  color: #fff;
+}
+
+/* Back Button */
+.back-button {
+  background: $green;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  background: $darkgreen;
+}
