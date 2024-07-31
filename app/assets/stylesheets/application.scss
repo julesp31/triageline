@@ -15,6 +15,96 @@
  *= require flatpickr
  */
 
+ body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.margin-container {
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 6px;
+}
+h1, h2, h3 {
+  font-weight: 700;
+}
+button {
+  font-weight: 500;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+}
+.category-card, .appointment-type-card, .clinician-card, .time-slot {
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  width: calc(100% - 6px);
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.back-button, #close-calendar {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+}
+.question-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.question-buttons button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.question-buttons button.selected {
+  background-color: #4CAF50;
+  color: #fff;
+}
+textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+.close-button {
+  text-decoration: none;
+  font-weight: bold;
+  color: red;
+}
+.booking-index-headings {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.form-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+.category-card h3, .category-card p {
+  margin: 0;
+  padding: 2px 0;
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   /* Styles */
@@ -74,5 +164,3 @@
 @media only screen and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 192dpi) and (max-width: 640px) {
   /* Styles */
 }
-
-
