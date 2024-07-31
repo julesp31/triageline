@@ -7,15 +7,15 @@ $default-padding: 20px;
 $default-margin: 20px;
 
 //* CLASS to be applied on any page to adapt Padding for the whole website *//
-.margin-container {
+.side-bottom-margin-container {
   padding: $default-padding;
   margin: $default-margin;
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
+  padding-bottom: 100px; /* Adjust according to the footer height */
+  //  position: relative;
+  //  width: 100%;
+  //   max-width: 500px;
+  //  margin: 0 auto;
 }
-
 
 //* home page *//
 
