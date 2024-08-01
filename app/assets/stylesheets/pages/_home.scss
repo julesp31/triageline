@@ -3,17 +3,19 @@
 
 //* Padding for the whole website *//
 
-$default-padding: 20px;
-$default-margin: 20px;
+$default-padding: 10px;
+$default-margin: 10px;
 
-//* CLASS to be applied on any page to adapt Padding for the whole website *//
+// //* CLASS to be applied on any page to adapt Padding for the whole website *//
 .side-bottom-margin-container {
   padding: $default-padding;
   margin: $default-margin;
   padding-bottom: 100px; /* Adjust according to the footer height */
+  // // box-sizing: border-box;
+  // // margin: 6px;
   //  position: relative;
   //  width: 100%;
-  //   max-width: 500px;
+  //   // max-width: 500px;
   //  margin: 0 auto;
 }
 

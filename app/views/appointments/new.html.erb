@@ -1,29 +1,39 @@
-<title>Appointment Booking</title>
+  <title>Appointment Booking</title>
 
   <a href="<%= appointments_path %>" class="close-button">X</a>
   <div class="side-bottom-margin-container">
     <div class="appointmentbooking">
       <div id="category-list" class="form-section">
-        <div class="booking-index-headings">
           <h1>How can we assist you today?</h1>
+        <div class="booking-index-headings">
         </div>
+
         <div class="category-card" data-category="admin">
+          <i class="fas fa-user-cog"></i>
           <h3>Administrative Issues</h3>
           <p>For any non-clinical or administrative questions or concerns.</p>
         </div>
+
         <div class="category-card" data-category="test_results">
-          <h3>Test Results</h3>
+            <i class="fas fa-file-medical"></i>
+            <h3>Test Results</h3>
           <p>Discuss your test results and plan the next steps.</p>
         </div>
+
         <div class="category-card" data-category="muscles_and_joints">
+          <i class="fas fa-bone"></i> <!-- Joint icon -->
           <h3>Muscle and Joint Problems</h3>
           <p>Issues with your back, neck, shoulders, or other muscles and joints.</p>
         </div>
+
         <div class="category-card" data-category="contraception">
+          <i class="fas fa-capsules"></i> <!-- Contraceptive capsules icon -->
           <h3>Contraception</h3>
           <p>Guidance and prescriptions for contraceptive options.</p>
         </div>
+
         <div class="category-card" data-category="breathing_conditions_and_allergies">
+          <i class="fas fa-lungs"></i> <!-- Lungs icon -->
           <h3>Breathing Conditions & Allergies</h3>
           <p>Management of asthma, hay fever, and other breathing-related concerns.</p>
         </div>

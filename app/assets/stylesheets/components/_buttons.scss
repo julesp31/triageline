@@ -29,3 +29,23 @@
     max-width: 300px;
     border-radius: 20px;
 }
+
+button, .back-button, #close-calendar {
+  margin: 0px opx;
+  width: 100%;
+  max-width: 300px;
+}
+
+.question-buttons {
+  display: flex;
+  justify-content: space-around; /* Adjust as needed for spacing */
+  width: 100%;
+}
+
+// #close-calendar, .question-buttons button {
+  //   font-weight: 500;
+  //   padding: 10px;
+  //   border-radius: 20px;
+  //   cursor: pointer;
+  // }
+
