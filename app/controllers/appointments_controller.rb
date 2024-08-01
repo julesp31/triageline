@@ -1,4 +1,5 @@
 class AppointmentsController < ApplicationController
+  before_action :set_show_navbar, only: [:show, :new, :index]
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :confirmation]
 
   def index
@@ -45,7 +46,12 @@ class AppointmentsController < ApplicationController
   def confirmation
   end
 
-  private
+    private
+
+    def set_show_navbar
+      @show_navbar = false
+    end
+
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
