@@ -1,13 +1,8 @@
-// Graphical variables
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
-
-// External libraries
 @import "bootstrap";
 @import "font-awesome";
-
-// Your CSS partials
 @import "components/index";
 @import "pages/index";
 
@@ -15,22 +10,28 @@
  *= require flatpickr
  */
 
- body {
+body {
   font-family: 'Roboto', sans-serif;
+  background-color: #EBFFF8;
+  color: #022B3A;
   margin: 0;
   padding: 0;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .margin-container {
   padding: 10px;
   box-sizing: border-box;
   margin: 6px;
 }
+
 h1, h2, h3 {
   font-weight: 700;
 }
+
 button {
   font-weight: 500;
   margin: 10px 0;
@@ -39,6 +40,7 @@ button {
   max-width: 300px;
   border-radius: 20px;
 }
+
 .category-card, .appointment-type-card, .clinician-card, .time-slot {
   padding: 10px;
   margin: 8px 0;
@@ -52,6 +54,12 @@ button {
   flex-direction: column;
   background-color: #fff;
 }
+
+.category-card h3, .category-card p {
+  margin: 0;
+  padding: 2px 0;
+}
+
 .back-button, #close-calendar {
   margin-top: 20px;
   padding: 10px;
@@ -59,11 +67,13 @@ button {
   max-width: 300px;
   border-radius: 20px;
 }
+
 .question-buttons {
   display: flex;
   justify-content: space-between;
   margin: 10px;
 }
+
 .question-buttons button {
   flex: 1;
   margin: 0 5px;
@@ -74,35 +84,51 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .question-buttons button.selected {
   background-color: #4CAF50;
   color: #fff;
 }
+
 textarea {
   width: 100%;
   max-width: 500px;
+  height: 200px;
   padding: 10px;
   box-sizing: border-box;
   margin: 10px 0;
 }
+
 .close-button {
   text-decoration: none;
   font-weight: bold;
   color: red;
 }
+
 .booking-index-headings {
   display: flex;
   justify-content: center;
   width: 100%;
 }
+
 .form-section {
   display: none;
   flex-direction: column;
   align-items: center;
 }
-.category-card h3, .category-card p {
-  margin: 0;
-  padding: 2px 0;
+
+.btn-primary {
+  background-color: #1F7A8C;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #022B3A;
+  border: none;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  background-color: #35C5CE;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
