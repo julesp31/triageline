@@ -45,7 +45,8 @@ button {
   border-radius: 20px;
 }
 
-.category-card, .appointment-type-card, .clinician-card, .time-slot {
+// .category-card,
+.appointment-type-card, .clinician-card, .time-slot {
   padding: 10px;
   margin: 8px 0;
   border-radius: 10px;
@@ -59,15 +60,15 @@ button {
   align-items: center;
 }
 
-.category-card h3, .category-card p {
-  margin: 0;
-  padding: 2px 0;
-}
+// .category-card h3, .category-card p {
+//   margin: 0;
+//   padding: 2px 0;
+// }
 
-.category-card i {
-  font-size: 24px;
-  margin-right: 15px;
-}
+// .category-card i {
+//   font-size: 24px;
+//   margin-right: 15px;
+// }
 
 .question-buttons {
   display: flex;
