@@ -31,33 +31,33 @@ p, .form-section p {
 .more-button
 {
   display: flex;
-  flex-direction: column;
-  padding: 20px;
+  // flex-direction: column;
+  padding: 5px;
   margin: 10px 0;
   width: calc(100% - 6px);
   max-width: 500px;
-  background-color: #81C8F2;
+  // background-color: #81C8F2;
 }
 
-.category-card i {
-  font-size: 34px;
-  margin-right: 10px; /* Adjust space between icon and text */
-}
+// .category-card i {
+//   font-size: 34px;
+//   margin-right: 10px; /* Adjust space between icon and text */
+// }
 
-.category-card h3 {
-  margin: 0;
-  flex-grow: 1; /* Allows h3 to take up remaining space */
-}
+// .category-card h3 {
+//   margin: 0;
+//   flex-grow: 1; /* Allows h3 to take up remaining space */
+// }
 
-.category-card p {
-  flex-basis: 100%;
-  margin-top: 10px; /* Space between h3 and p */
-}
+// .category-card p {
+//   flex-basis: 100%;
+//   margin-top: 10px; /* Space between h3 and p */
+// }
 
-.category-card{
-  background-color: #F4F4F4;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2)
-}
+// .category-card{
+//   background-color: #F4F4F4;
+//   box-shadow: 0 0 15px rgba(0,0,0,0.2)
+// }
 
 
 .question-buttons button {
@@ -188,6 +188,6 @@ textarea {
 //   border: none;
 // }
 
-.category-card i {
-  color: #1F7A8C;
-}
+// .category-card i {
+//   color: #1F7A8C;
+// }

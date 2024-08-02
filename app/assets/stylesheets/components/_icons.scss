@@ -1,0 +1,51 @@
+.category-card {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.ccategory-card .image-container {
+  height: 100%;
+  width: 90px; /* Adjust width to accommodate the image and padding */
+  background-color: aquamarine;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.category-card img {
+  height: 70%;
+  width: 70px; /* Adjusted width for better fit */
+  object-fit: cover;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.category-card h2 {
+  font-size: 18px; /* Reduced font size to fit within card */
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2; /* Adjusted line height */
+}
+
+.category-card p {
+  font-size: 14px; /* Reduced font size to fit within card */
+  line-height: 1.2; /* Adjusted line height */
+  margin: 5px 0 0 0; /* Adjusted margin for spacing */
+}
+
+.ccategory-card .category-card-infos {
+  padding: 0 10px; /* Reduced padding for better spacing */
+  flex: 1; /* Allow the infos section to take the remaining space */
+  overflow: hidden; /* Ensure content doesn't overflow */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
