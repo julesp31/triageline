@@ -12,14 +12,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body> <%= render "shared/navbar" %>
+  <body>
+    <%= render "shared/navbar" %>
 
     <%= render "shared/flashes" %>
 
     <%= yield %>
 
-    <%= render "shared/footerMenu" %>
+    <% unless @hide_footer %>
+      <%= render "shared/footerMenu" %>
+    <% end %>
 
   </body>
-
 </html>

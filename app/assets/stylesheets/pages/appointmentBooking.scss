@@ -34,7 +34,6 @@ p, .form-section p {
   flex-direction: column;
   padding: 20px;
   margin: 10px 0;
-  border-radius: 10px;
   width: calc(100% - 6px);
   max-width: 500px;
   background-color: #81C8F2;
@@ -57,7 +56,7 @@ p, .form-section p {
 
 .category-card{
   background-color: #F4F4F4;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2)
 }
 
 
@@ -67,15 +66,6 @@ p, .form-section p {
   max-width: 100px; /* Optional: to set a maximum width for the buttons */
 }
 
-
-.category-card:hover,
-.appointment-type-card:hover,
-.clinician-card:hover,
-.time-slot:hover,
-.more-button:hover,
-.question-buttons button:hover {
-  background-color: #35C5CE;
-}
 
 textarea {
   width: 100%;
@@ -98,22 +88,7 @@ textarea {
   display: none;
   flex-direction: column;
   align-items: center;
-  background-color: #BFDBF7;
-  padding: 20px;
   border-radius: 8px;
-}
-
-.close-button {
-  position: fixed;
-  right: 15px;
-  bottom: 110px;
-  background-color: #228B22; /* Example hex value for $green */
-  color: white;
-  padding: 5px 11px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  z-index: 1001;
 }
 
 .appointment-type-container {
@@ -188,10 +163,6 @@ textarea {
   text-align: center;
 }
 
-.time-slot:hover {
-  background: #ADD8E6; /* Example hex value for $lightblue */
-}
-
 .more-button {
   background: #fff;
   color: #228B22; /* Example hex value for $green */
@@ -200,22 +171,10 @@ textarea {
   margin-top: 10px;
 }
 
-.more-button:hover {
-  background: #228B22; /* Example hex value for $green */
-  color: #fff;
-}
-
 .back-button {
-  background: $midgreen; /* Example hex value for $green */
-  color: #fff;
+  background: white; /* Example hex value for $green */
   border: none;
-  padding: 10px 20px;
-  cursor: pointer;
   font-size: 16px;
-}
-
-.back-button:hover {
-  background: $lightblue; /* Example hex value for $darkgreen */
 }
 
 .btn-primary {
@@ -223,10 +182,6 @@ textarea {
   border: none;
 }
 
-.btn-primary:hover,
-.btn-secondary:hover {
-  background-color: #35C5CE;
-}
 
 // .btn-secondary {
 //   background-color: #022B3A;

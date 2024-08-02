@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_show_navbar, only: [:show, :new, :index]
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :confirmation]
+  before_action :hide_footer, only: [:new]
 
   def index
     if current_user.clinician
@@ -58,5 +59,9 @@ class AppointmentsController < ApplicationController
 
     def appointment_params
       params.require(:appointment).permit(:patient_id, :clinician_id, :appointment_date, :appointment_type, :status, :severity)
+    end
+
+    def hide_footer
+      @hide_footer = true
     end
 end
