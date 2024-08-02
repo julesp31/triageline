@@ -16,7 +16,7 @@ body {
   color: #022B3A;
   margin: 0;
   padding: 0;
-  display: flex;
+  // display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -46,9 +46,12 @@ button {
 }
 
 // .category-card,
-.appointment-type-card, .clinician-card, .time-slot {
+// .appointment-type-card,
+.more-button,
+.clinician-card,
+.time-slot {
   padding: 10px;
-  margin: 8px 0;
+  // margin: 8px 0;
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
@@ -56,19 +59,23 @@ button {
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
   align-items: center;
 }
 
-// .category-card h3, .category-card p {
-//   margin: 0;
-//   padding: 2px 0;
-// }
+.time-slot {
+  background-color: $blue;
+  color: #fff;
+}
 
-// .category-card i {
-//   font-size: 24px;
-//   margin-right: 15px;
-// }
+.clinician-card {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.category-card i {
+  font-size: 24px;
+  margin-right: 15px;
+}
 
 .question-buttons {
   display: flex;
@@ -119,8 +126,17 @@ textarea {
 }
 
 .btn-secondary {
-  background-color: #022B3A;
+  background-color: $midgreen;
   border: none;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  display: flex;
+  padding: 5px;
+  margin: 10px 0;
+  width: calc(100% - 6px);
+  max-width: 500px;
+  align-content: center;
 }
 
 .custom-navbar {

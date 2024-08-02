@@ -25,8 +25,6 @@ p, .form-section p {
 }
 
 .category-card,
-.appointment-type-card,
-.clinician-card,
 .time-slot,
 .more-button
 {
@@ -39,25 +37,7 @@ p, .form-section p {
   // background-color: #81C8F2;
 }
 
-// .category-card i {
-//   font-size: 34px;
-//   margin-right: 10px; /* Adjust space between icon and text */
-// }
 
-// .category-card h3 {
-//   margin: 0;
-//   flex-grow: 1; /* Allows h3 to take up remaining space */
-// }
-
-// .category-card p {
-//   flex-basis: 100%;
-//   margin-top: 10px; /* Space between h3 and p */
-// }
-
-// .category-card{
-//   background-color: #F4F4F4;
-//   box-shadow: 0 0 15px rgba(0,0,0,0.2)
-// }
 
 
 .question-buttons button {
@@ -93,7 +73,7 @@ textarea {
 
 .appointment-type-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -109,13 +89,14 @@ textarea {
   width: 100px;
   height: 100px;
   margin: 10px;
-  border-radius: 100%;
-  background-color: #228B22; /* Example hex value for $midgreen */
+  border-radius: 50%;
+  background-color: $midgreen; /* Example hex value for $midgreen */
   color: white;
   font-size: 14px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .appointment-type-card i {
@@ -123,11 +104,6 @@ textarea {
   margin-bottom: 0px;
 }
 
-#available-clinicians {
-  border-radius: 8px;
-  padding: 0px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 .clinicians-container {
   display: flex;
@@ -135,14 +111,6 @@ textarea {
   gap: 25px;
 }
 
-.clinician-card {
-  background: #0000FF; /* Example hex value for $blue */
-  border-radius: 8px;
-  padding: 20px;
-  width: calc(50% - 20px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
 
 .clinician-card div {
   margin-bottom: 10px;
@@ -153,23 +121,14 @@ textarea {
   flex-direction: column;
 }
 
-.time-slot {
-  background: #fff;
-  color: #006400; /* Example hex value for $darkgreen */
-  border-radius: 4px;
-  padding: 10px;
-  margin: 5px 5px;
-  cursor: pointer;
-  text-align: center;
-}
 
-.more-button {
-  background: #fff;
-  color: #228B22; /* Example hex value for $green */
-  border: 1px solid #228B22; /* Example hex value for $green */
-  border-radius: 4px;
-  margin-top: 10px;
-}
+// .more-button {
+//   background: #fff;
+//   color: #228B22; /* Example hex value for $green */
+//   border: 1px solid #228B22; /* Example hex value for $green */
+//   border-radius: 4px;
+//   margin-top: 10px;
+// }
 
 .back-button {
   background: white; /* Example hex value for $green */
@@ -181,13 +140,3 @@ textarea {
   background-color: $midgreen;
   border: none;
 }
-
-
-// .btn-secondary {
-//   background-color: #022B3A;
-//   border: none;
-// }
-
-// .category-card i {
-//   color: #1F7A8C;
-// }
