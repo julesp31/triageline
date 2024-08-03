@@ -577,6 +577,11 @@ patient1 = User.new(
   home_town: 'London',
   home_postcode: 'SE22 8TH',
   clinician: false,
+  practice_doctorname: 'Doctor Alexander Fleming',
+  practice_name: 'Silverlock Medical Centre',
+  practice_address: '2 Verney Way',
+  practice_town: 'London',
+  practice_postcode: 'SE16 3HA'
 )
 patient1.save!
 
