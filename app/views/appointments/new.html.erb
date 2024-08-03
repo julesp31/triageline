@@ -247,22 +247,34 @@
                 <button id="confirm-booking" class="btn btn-primary mt-3">Confirm Booking</button>
             </div>
 
-            <div id="appointment-pending" class="form-section">
+            <div id="appointment-pending" class="form-section appt-pending">
                 <div class="text-center">
                     <h1>Appointment Request Pending</h1>
                 </div>
                 <br>
                 <p>Thank you for requesting an appointment.</p>
-                <p>Your appointment request has been received and is currently pending approval from the clinician.</p>
-                <br>
-                <h4>Additional Information:</h4>
-                <p>Pending Approval: Your requested appointment is awaiting confirmation from the clinician. You will receive an update as soon as your appointment status changes.</p>
-                <br>
-                <h4>Need to make changes?</h4>
-                <p>If you need to modify or cancel your appointment request, you can do this within the 'My Appointments' section</p>
-                <footer>
-                    <p>Please note that the availability of appointments may vary based on clinician schedules.</p>
-                </footer>
+
+                <%= image_tag 'date.png', alt: 'date_icon', class: 'confirmation-icons' %>
+                <div class="confirmation-card">
+                    <p>Your appointment request has been received and is currently pending approval from the clinician.</p>
+                    <br>
+                      <h4>Additional Information:</h4>
+                      <p>Pending Approval: Your requested appointment is awaiting confirmation from the clinician. You will receive an update as soon as your appointment status changes.</p>
+                      <h3>Need to make changes?</h3>
+                      <p>If you need to modify or cancel your appointment request, you can do this within the section
+
+                      <div class="text-center">
+                        <%= link_to 'My Appointments', appointments_path, class:"btn btn-primary" %></p>
+                      </div>
+
+
+                      <footer>
+                        <div class="extra-info">
+                        <p>Please note that the availability of appointments may vary based on clinician schedules.</p>
+                      </div>
+                      </footer>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>

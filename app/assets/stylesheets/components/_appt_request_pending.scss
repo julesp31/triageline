@@ -1,0 +1,31 @@
+
+.appt-pending {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  margin: auto;
+  align-items: left;
+}
+
+.appointments-link {
+color: black;
+}
+
+.confirmation-card {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  // color: $white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  // display: inline-block;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.confirmation-icons {
+  width: 4em;
+}
+.extra-info {
+  font-size: 10px;
+}
