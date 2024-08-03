@@ -142,16 +142,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
       'phone': [
-          { name: 'Clinician 1', times: ['8:00am', '10:00am', '1:00pm'] },
-          { name: 'Clinician 2', times: ['9:00am', '11:00am', '2:00pm'] },
+          { name: 'Dr. Itoro Umana', times: ['8:00am', '10:00am', '1:00pm'] },
+          { name: 'Dr. Basia Brzoza', times: ['9:00am', '11:00am', '2:00pm'] },
       ],
       'video': [
-          { name: 'Clinician 3', times: ['8:30am', '10:30am', '1:30pm'] },
-          { name: 'Clinician 4', times: ['9:30am', '11:30am', '2:30pm'] },
+          { name: 'Dr. Jules Pinto', times: ['8:30am', '10:30am', '1:30pm'] },
+          { name: 'Dr. Jones Day', times: ['9:30am', '11:30am', '2:30pm'] },
       ],
       'in-person': [
-          { name: 'Clinician 5', times: ['8:45am', '10:45am', '1:45pm'] },
-          { name: 'Clinician 6', times: ['9:45am', '11:45am', '2:45pm'] },
+          { name: 'Dr. Emma Patel', times: ['8:45am', '10:45am', '1:45pm'] },
+          { name: 'Dr. Meagan Good', times: ['9:45am', '11:45am', '2:45pm'] },
       ],
   };
 
