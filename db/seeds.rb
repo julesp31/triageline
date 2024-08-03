@@ -578,12 +578,12 @@ patient1 = User.new(
   home_postcode: 'SE22 8TH',
   clinician: false,
 )
-patient.save!
+patient1.save!
 
 
 appointment = Appointment.create!(
-  patient: patient,
-  clinician: clinician,
+  patient: patient1,
+  clinician: clinician1,
   appointment_date: Date.current,
   appointment_type: 'dermatology',
   status: 'confirmed',
