@@ -70,3 +70,15 @@ $default-margin: 10px;
   font-size: 18px;
   color: gray;
 }
+
+.bookbutton-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // height: 100vh; /* Full viewport height to center vertically */
+}
+
+.bookbutton-container button {
+  padding: 10px 20px; /* Optional: add some padding to the button */
+  font-size: 16px; /* Optional: set the font size of the button */
+}

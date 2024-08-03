@@ -560,9 +560,6 @@ clinician20 = User.new(
 )
 clinician20.save!
 
-puts "Total number of users created: #{User.count}"
-
-
 patient1 = User.new(
   email: 'patient@gmail.com',
   password: 'test12345',
@@ -577,13 +574,19 @@ patient1 = User.new(
   home_town: 'London',
   home_postcode: 'SE22 8TH',
   clinician: false,
+  practice_doctorname: 'Doctor Alexander Fleming',
+  practice_name: 'Silverlock Medical Centre',
+  practice_address: '2 Verney Way',
+  practice_town: 'London',
+  practice_postcode: 'SE16 3HA'
 )
-patient.save!
+patient1.save!
 
+puts "Total number of Users created: #{User.count}"
 
 appointment = Appointment.create!(
-  patient: patient,
-  clinician: clinician,
+  patient: patient1,
+  clinician: clinician1,
   appointment_date: Date.current,
   appointment_type: 'dermatology',
   status: 'confirmed',

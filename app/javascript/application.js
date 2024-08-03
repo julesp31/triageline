@@ -169,6 +169,21 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
           backButton.style.display = 'none';
       }
+
+      // Initialize the calendar when the calendar view is shown
+      if (form === calendarView) {
+          initializeCalendar();
+      }
+  }
+
+  function initializeCalendar() {
+      flatpickr(calendarContainer, {
+          inline: true, // Ensures the calendar is always visible
+          onChange: function(selectedDates, dateStr, instance) {
+              const availableTimesData = getAvailableTimesForClinicianOnDate(selectedClinician, dateStr);
+              displayAvailableTimes(availableTimesData, selectedClinician, dateStr);
+          }
+      });
   }
 
   function handleBackButtonClick() {

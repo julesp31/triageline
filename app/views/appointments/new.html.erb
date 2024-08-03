@@ -227,9 +227,11 @@
 
             <div id="calendar-view" class="form-section">
                 <div class="text-center">
-                    <h2>Select Date and Time</h2>
+                    <h1>Select Date and Time</h1>
                 </div>
-                <input type="text" id="calendar-container" class="form-control mt-3" />
+                <div id="calendar-container" class="card">
+                    <!-- Calendar will be rendered here -->
+                </div>
                 <div id="available-times" class="d-flex flex-column justify-content-center align-items-center mt-3">
                     <!-- Available times will be shown here -->
                 </div>
@@ -237,7 +239,7 @@
 
             <div id="booking-details" class="form-section">
                 <div class="text-center">
-                    <h2>Booking Details</h2>
+                    <h1>Booking Details</h1>
                 </div>
                 <div id="details-container" class="mt-3">
                     <!-- Booking details will be inserted here -->
@@ -249,11 +251,13 @@
                 <div class="text-center">
                     <h1>Appointment Request Pending</h1>
                 </div>
+                <br>
                 <p>Thank you for requesting an appointment.</p>
                 <%= image_tag 'check.png', alt: 'check_icon', class: 'confirmation-icons' %>
                 <%= image_tag 'date.png', alt: 'date_icon', class: 'confirmation-icons' %>
                 <p>Your appointment request has been received and is currently pending approval from the clinician.</p>
-                <h3>Additional Information:</h3>
+                <br>
+                <h4>Additional Information:</h4>
                 <p>Pending Approval: Your requested appointment is awaiting confirmation from the clinician. You will receive an update as soon as your appointment status changes.</p>
                 <h3>Need to make changes?</h3>
                 <p>If you need to modify or cancel your appointment request, you can do this within the section <%= link_to 'My Appointments', appointments_path, class:"appointments-link" %></p>
