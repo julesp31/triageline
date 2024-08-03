@@ -560,9 +560,6 @@ clinician20 = User.new(
 )
 clinician20.save!
 
-puts "Total number of users created: #{User.count}"
-
-
 patient1 = User.new(
   email: 'patient@gmail.com',
   password: 'test12345',
@@ -585,6 +582,7 @@ patient1 = User.new(
 )
 patient1.save!
 
+puts "Total number of Users created: #{User.count}"
 
 appointment = Appointment.create!(
   patient: patient1,
