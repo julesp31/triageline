@@ -227,11 +227,12 @@
                 <button id="confirm-booking" class="btn btn-primary mt-3">Confirm Booking</button>
             </div>
 
-            <div id="appointment-pending" class="form-section">
+            <div id="appointment-pending" class="form-section appt-pending">
                 <div class="text-center">
                     <h1>Appointment Request Pending</h1>
                 </div>
                 <p>Thank you for requesting an appointment.</p>
+                <%= image_tag 'check.png', alt: 'check_icon', class: 'app-icons' %>
                 <p>Your appointment request has been received and is currently pending approval from the clinician.</p>
                 <h3>Additional Information:</h3>
                 <p>Pending Approval: Your requested appointment is awaiting confirmation from the clinician. You will receive an update as soon as your appointment status changes.</p>
