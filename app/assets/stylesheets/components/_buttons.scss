@@ -1,9 +1,8 @@
-
 // Book appointment button styling //
 .btn-bookappointment {
-  display: inline-block; /* Ensure it takes up space as a block element */
-  width: auto; /* Set auto width if you want it to be defined by its content */
-  padding: 10px 20px; /* Ensure padding is applied */
+  display: inline-block;
+  width: auto;
+  padding: 10px 20px;
   background-color: $green;
   color: $white;
   border: none;
@@ -12,34 +11,31 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.back-button {
+  background: white; /* Example hex value for $green */
+  border: none;
+  font-size: 16px;
+}
 
-.bookbutton-container {
-  .a{
-    color: $darkgreen;
-  }
+.btn-primary {
+  background-color: $midgreen;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.btn-secondary {
+  background-color: $midgreen;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically if the container has a height */
+  padding: 5px;
+  margin: 10px 0;
+  width: calc(100% - 6px);
+  max-width: 500px;
+  align-content: center;
 }
-
-#submit-reason {
-    margin-top: 20px;
-    padding: 10px;
-    width: 100%;
-    max-width: 300px;
-    border-radius: 20px;
-}
-
-
-.question-buttons {
-  display: flex;
-  justify-content: space-around; /* Adjust as needed for spacing */
-  width: 100%;
-}
-
-// #close-calendar, .question-buttons button {
-  //   font-weight: 500;
-  //   padding: 10px;
-  //   border-radius: 20px;
-  //   cursor: pointer;
-  // }
