@@ -12,11 +12,11 @@ require "open-uri"
 
 puts "Purging database..."
 
-User.destroy_all
-Appointment.destroy_all
-Symptom.destroy_all
 AppointmentSymptom.destroy_all
 Message.destroy_all
+Appointment.destroy_all
+Symptom.destroy_all
+User.destroy_all
 
 puts "Creating users..."
 
@@ -35,6 +35,8 @@ clinician1 = User.new(
   home_postcode: 'SE22 8TH',
   clinician: true,
   job_title: 'Doctor',
+  specialty: 'General Practitioner',
+  years_of_experience: '28',
   work_gpname: 'Silverlock Medical Centre',
   work_gpaddress: '2 Verney Way',
   work_gptown: 'London',
@@ -63,7 +65,7 @@ clinician2 = User.new(
   clinician: true,
   job_title: 'Doctor',
   specialty: 'General Practitioner',
-  years_of_experience: 8,
+  years_of_experience: '19',
   work_gpname: 'Battersea Fields Practice',
   work_gpaddress: '159 Battersea Park Road',
   work_gptown: 'London',
@@ -92,7 +94,7 @@ clinician3 = User.new(
   clinician: true,
   job_title: 'Nurse',
   specialty: 'Senior Nurse',
-  years_of_experience: 8,
+  years_of_experience: '9',
   work_gpname: 'Hampstead Group Practice',
   work_gpaddress: '75 Fleet Road',
   work_gptown: 'London',
@@ -121,7 +123,7 @@ clinician4 = User.new(
   clinician: true,
   job_title: 'Doctor',
   specialty: 'General Practitioner',
-  years_of_experience: 8,
+  years_of_experience: '4',
   work_gpname: 'Islington Central Medical Centre',
   work_gpaddress: '28 Laycock Street',
   work_gptown: 'London',
@@ -149,8 +151,8 @@ clinician5 = User.new(
   home_postcode: 'E1 4QT',
   clinician: true,
   job_title: 'Physician Associate',
-  specialty: 'Senior Physician Associate'
-  years_of_experience: 14,
+  specialty: 'Senior Physician Associate',
+  years_of_experience: '14',
   work_gpname: 'The Spitalfields Practice',
   work_gpaddress: '20 Old Montague Street',
   work_gptown: 'London',
@@ -179,7 +181,7 @@ clinician6 = User.new(
   clinician: true,
   job_title: 'Doctor',
   specialty: 'General Practitioner',
-  years_of_experience: 15,
+  years_of_experience: '7',
   work_gpname: 'Peckham Family Practice',
   work_gpaddress: '5 Peckham Park Road',
   work_gptown: 'London',
@@ -208,7 +210,7 @@ clinician7 = User.new(
   clinician: true,
   job_title: 'Doctor',
   specialty: 'General Practitioner',
-  years_of_experience: 12,
+  years_of_experience: '12',
   work_gpname: 'Hendon Heart Centre',
   work_gpaddress: '22 Queen Road',
   work_gptown: 'London',
@@ -460,11 +462,11 @@ symptom3 = Symptom.create!(
 
 symptom4 = Symptom.create!(
   category: 'Stomach Issues',
-  description: "I’ve been experiencing severe stomach pains and frequent nausea, especially after meals. The pain sometimes becomes unbearable, affecting my daily activities. I suspect it might be related to something I’m eating, but I can’t pinpoint the cause. The discomfort has started to impact my sleep and overall well-being significantly."
+  description: "I've been experiencing severe stomach pains and frequent nausea, especially after meals. The pain sometimes becomes unbearable, affecting my daily activities. I suspect it might be related to something I'm eating, but I can't pinpoint the cause. The discomfort has started to impact my sleep and overall well-being significantly."
 )
 
 symptom5 = Symptom.create!(
-  category: 'Prescriptions'
+  category: 'Prescriptions',
   description: "I'm here to get a refill on my blood pressure medication. There haven't been any changes in my condition or the medication dosage, and my blood pressure has been stable whenever I check it at home."
 )
 
