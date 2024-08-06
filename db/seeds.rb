@@ -12,16 +12,16 @@ require "open-uri"
 
 puts "Purging database..."
 
-Symptom.destroy_all
-# Appointment_symptom.destroy_all
-Message.destroy_all
-Appointment.destroy_all
 User.destroy_all
+Appointment.destroy_all
+Symptom.destroy_all
+AppointmentSymptom.destroy_all
+Message.destroy_all
 
 puts "Creating users..."
 
 clinician1 = User.new(
-  email: 'mcure@gmail.com',
+  email: 'clinician@gmail.com',
   password: 'test12345',
   title: 'Doctor',
   first_name: 'Marie',
@@ -62,6 +62,8 @@ clinician2 = User.new(
   home_postcode: 'SW11 5EH',
   clinician: true,
   job_title: 'Doctor',
+  specialty: 'General Practitioner',
+  years_of_experience: 8,
   work_gpname: 'Battersea Fields Practice',
   work_gpaddress: '159 Battersea Park Road',
   work_gptown: 'London',
@@ -77,7 +79,7 @@ clinician2.save!
 clinician3 = User.new(
   email: 'jdoe@gmail.com',
   password: 'test12345',
-  title: 'Nurse',
+  title: 'Miss',
   first_name: 'Jane',
   last_name: 'Doe',
   date_of_birth: '25/12/1980',
@@ -89,6 +91,8 @@ clinician3 = User.new(
   home_postcode: 'NW3 2HE',
   clinician: true,
   job_title: 'Nurse',
+  specialty: 'Senior Nurse',
+  years_of_experience: 8,
   work_gpname: 'Hampstead Group Practice',
   work_gpaddress: '75 Fleet Road',
   work_gptown: 'London',
@@ -116,6 +120,8 @@ clinician4 = User.new(
   home_postcode: 'N1 2TW',
   clinician: true,
   job_title: 'Doctor',
+  specialty: 'General Practitioner',
+  years_of_experience: 8,
   work_gpname: 'Islington Central Medical Centre',
   work_gpaddress: '28 Laycock Street',
   work_gptown: 'London',
@@ -131,7 +137,7 @@ clinician4.save!
 clinician5 = User.new(
   email: 'csmith@gmail.com',
   password: 'test12345',
-  title: 'Nurse',
+  title: 'Mrs',
   first_name: 'Carol',
   last_name: 'Smith',
   date_of_birth: '12/11/1975',
@@ -142,7 +148,9 @@ clinician5 = User.new(
   home_town: 'London',
   home_postcode: 'E1 4QT',
   clinician: true,
-  job_title: 'Nurse',
+  job_title: 'Physician Associate',
+  specialty: 'Senior Physician Associate'
+  years_of_experience: 14,
   work_gpname: 'The Spitalfields Practice',
   work_gpaddress: '20 Old Montague Street',
   work_gptown: 'London',
@@ -156,416 +164,70 @@ clinician5 = User.new(
 clinician5.save!
 
 clinician6 = User.new(
-  email: 'djones@gmail.com',
+  email: 'lsanders@gmail.com',
   password: 'test12345',
   title: 'Doctor',
-  first_name: 'David',
-  last_name: 'Jones',
-  date_of_birth: '20/02/1982',
+  first_name: 'Liam',
+  last_name: 'Sanders',
+  date_of_birth: '04/02/1978',
   gender_at_birth: 'Man',
-  phone_number: '07283467788',
-  nhs_number: '6283928379',
-  home_address: '78 Cedar Road',
+  phone_number: '07283467798',
+  nhs_number: '6283928380',
+  home_address: '80 Grove Street',
   home_town: 'London',
-  home_postcode: 'W12 8TH',
+  home_postcode: 'SE15 3GW',
   clinician: true,
   job_title: 'Doctor',
-  work_gpname: 'Brook Green Medical Centre',
-  work_gpaddress: '12 Shepherds Bush Road',
+  specialty: 'General Practitioner',
+  years_of_experience: 15,
+  work_gpname: 'Peckham Family Practice',
+  work_gpaddress: '5 Peckham Park Road',
   work_gptown: 'London',
-  work_gppostcode: 'W6 7PJ',
-  practice_doctorname: 'Doctor Robert Koch',
-  practice_name: 'Brook Green Medical Centre',
-  practice_address: '12 Shepherds Bush Road',
+  work_gppostcode: 'SE15 6TR',
+  practice_doctorname: 'Doctor Helen Taussig',
+  practice_name: 'Peckham Family Practice',
+  practice_address: '5 Peckham Park Road',
   practice_town: 'London',
-  practice_postcode: 'W6 7PJ'
+  practice_postcode: 'SE15 6TR'
 )
 clinician6.save!
 
 clinician7 = User.new(
-  email: 'ewilson@gmail.com',
+  email: 'anewton@gmail.com',
   password: 'test12345',
-  title: 'Nurse',
-  first_name: 'Emily',
-  last_name: 'Wilson',
-  date_of_birth: '05/06/1990',
+  title: 'Doctor',
+  first_name: 'Alice',
+  last_name: 'Newton',
+  date_of_birth: '29/08/1982',
   gender_at_birth: 'Woman',
-  phone_number: '07283467789',
-  nhs_number: '6283928380',
-  home_address: '90 Elm Street',
+  phone_number: '07283467899',
+  nhs_number: '6283928381',
+  home_address: '15 River Road',
   home_town: 'London',
-  home_postcode: 'N19 5TH',
+  home_postcode: 'NW4 3SG',
   clinician: true,
-  job_title: 'Nurse',
-  work_gpname: 'Archway Medical Centre',
-  work_gpaddress: '652 Holloway Road',
+  job_title: 'Doctor',
+  specialty: 'General Practitioner',
+  years_of_experience: 12,
+  work_gpname: 'Hendon Heart Centre',
+  work_gpaddress: '22 Queen Road',
   work_gptown: 'London',
-  work_gppostcode: 'N19 3NU',
-  practice_doctorname: 'Doctor Louis Pasteur',
-  practice_name: 'Archway Medical Centre',
-  practice_address: '652 Holloway Road',
+  work_gppostcode: 'NW4 2TN',
+  practice_doctorname: 'Doctor Christiaan Barnard',
+  practice_name: 'Hendon Heart Centre',
+  practice_address: '22 Queen Road',
   practice_town: 'London',
-  practice_postcode: 'N19 3NU'
+  practice_postcode: 'NW4 2TN'
 )
 clinician7.save!
 
-clinician8 = User.new(
-  email: 'fmiller@gmail.com',
-  password: 'test12345',
-  title: 'Doctor',
-  first_name: 'Frank',
-  last_name: 'Miller',
-  date_of_birth: '14/07/1978',
-  gender_at_birth: 'Man',
-  phone_number: '07283467790',
-  nhs_number: '6283928381',
-  home_address: '102 Pine Road',
-  home_town: 'London',
-  home_postcode: 'SE10 9LB',
-  clinician: true,
-  job_title: 'Doctor',
-  work_gpname: 'Greenwich Peninsula Practice',
-  work_gpaddress: '4 Horn Lane',
-  work_gptown: 'London',
-  work_gppostcode: 'SE10 0RT',
-  practice_doctorname: 'Doctor Edward Jenner',
-  practice_name: 'Greenwich Peninsula Practice',
-  practice_address: '4 Horn Lane',
-  practice_town: 'London',
-  practice_postcode: 'SE10 0RT'
-)
-clinician8.save!
-
-clinician9 = User.new(
-  email: 'gsmith@gmail.com',
-  password: 'test12345',
-  title: 'Nurse',
-  first_name: 'Grace',
-  last_name: 'Smith',
-  date_of_birth: '30/01/1984',
-  gender_at_birth: 'Woman',
-  phone_number: '07283467791',
-  nhs_number: '6283928382',
-  home_address: '23 Spruce Road',
-  home_town: 'London',
-  home_postcode: 'SW3 4TH',
-  clinician: true,
-  job_title: 'Nurse',
-  work_gpname: 'Chelsea Practice',
-  work_gpaddress: '10 Sydney Street',
-  work_gptown: 'London',
-  work_gppostcode: 'SW3 6NP',
-  practice_doctorname: 'Doctor Florence Nightingale',
-  practice_name: 'Chelsea Practice',
-  practice_address: '10 Sydney Street',
-  practice_town: 'London',
-  practice_postcode: 'SW3 6NP'
-)
-clinician9.save!
-
-clinician10 = User.new(
-  email: 'hjohnson@gmail.com',
-  password: 'test12345',
-  title: 'Doctor',
-  first_name: 'Henry',
-  last_name: 'Johnson',
-  date_of_birth: '07/09/1973',
-  gender_at_birth: 'Man',
-  phone_number: '07283467792',
-  nhs_number: '6283928383',
-  home_address: '55 Cherry Lane',
-  home_town: 'London',
-  home_postcode: 'NW1 3HS',
-  clinician: true,
-  job_title: 'Doctor',
-  work_gpname: 'Camden Medical Centre',
-  work_gpaddress: '10 Pratt Street',
-  work_gptown: 'London',
-  work_gppostcode: 'NW1 0UP',
-  practice_doctorname: 'Doctor Ignaz Semmelweis',
-  practice_name: 'Camden Medical Centre',
-  practice_address: '10 Pratt Street',
-  practice_town: 'London',
-  practice_postcode: 'NW1 0UP'
-)
-clinician10.save!
-
-clinician11 = User.new(
-  email: 'imartin@gmail.com',
-  password: 'test12345',
-  title: 'Nurse',
-  first_name: 'Isla',
-  last_name: 'Martin',
-  date_of_birth: '13/05/1988',
-  gender_at_birth: 'Woman',
-  phone_number: '07283467793',
-  nhs_number: '6283928384',
-  home_address: '16 Fir Road',
-  home_town: 'London',
-  home_postcode: 'E3 2JA',
-  clinician: true,
-  job_title: 'Nurse',
-  work_gpname: 'Bow Health Centre',
-  work_gpaddress: '17 William Place',
-  work_gptown: 'London',
-  work_gppostcode: 'E3 5ED',
-  practice_doctorname: 'Doctor Joseph Lister',
-  practice_name: 'Bow Health Centre',
-  practice_address: '17 William Place',
-  practice_town: 'London',
-  practice_postcode: 'E3 5ED'
-)
-clinician11.save!
-
-clinician12 = User.new(
-  email: 'jkhan@gmail.com',
-  password: 'test12345',
-  title: 'Doctor',
-  first_name: 'Jack',
-  last_name: 'Khan',
-  date_of_birth: '21/10/1976',
-  gender_at_birth: 'Man',
-  phone_number: '07283467794',
-  nhs_number: '6283928385',
-  home_address: '77 Ash Road',
-  home_town: 'London',
-  home_postcode: 'SW18 4RL',
-  clinician: true,
-  job_title: 'Doctor',
-  work_gpname: 'Southfields Group Practice',
-  work_gpaddress: '603 Merton Road',
-  work_gptown: 'London',
-  work_gppostcode: 'SW18 5JG',
-  practice_doctorname: 'Doctor Paul Ehrlich',
-  practice_name: 'Southfields Group Practice',
-  practice_address: '603 Merton Road',
-  practice_town: 'London',
-  practice_postcode: 'SW18 5JG'
-)
-clinician12.save!
-
-clinician13 = User.new(
-  email: 'jroberts@gmail.com',
-  password: 'test12345',
-  title: 'Nurse',
-  first_name: 'Jenny',
-  last_name: 'Roberts',
-  date_of_birth: '18/04/1981',
-  gender_at_birth: 'Woman',
-  phone_number: '07283467795',
-  nhs_number: '6283928386',
-  home_address: '44 Willow Road',
-  home_town: 'London',
-  home_postcode: 'N10 2QU',
-  clinician: true,
-  job_title: 'Nurse',
-  work_gpname: 'Muswell Hill Practice',
-  work_gpaddress: '54 Colney Hatch Lane',
-  work_gptown: 'London',
-  work_gppostcode: 'N10 1DU',
-  practice_doctorname: 'Doctor Jonas Salk',
-  practice_name: 'Muswell Hill Practice',
-  practice_address: '54 Colney Hatch Lane',
-  practice_town: 'London',
-  practice_postcode: 'N10 1DU'
-)
-clinician13.save!
-
-clinician14 = User.new(
-  email: 'klee@gmail.com',
-  password: 'test12345',
-  title: 'Doctor',
-  first_name: 'Kevin',
-  last_name: 'Lee',
-  date_of_birth: '17/12/1986',
-  gender_at_birth: 'Man',
-  phone_number: '07283467796',
-  nhs_number: '6283928387',
-  home_address: '89 Sycamore Road',
-  home_town: 'London',
-  home_postcode: 'W5 2TH',
-  clinician: true,
-  job_title: 'Doctor',
-  work_gpname: 'Ealing Broadway Practice',
-  work_gpaddress: '20 The Broadway',
-  work_gptown: 'London',
-  work_gppostcode: 'W5 2NH',
-  practice_doctorname: 'Doctor Alexander Fleming',
-  practice_name: 'Ealing Broadway Practice',
-  practice_address: '20 The Broadway',
-  practice_town: 'London',
-  practice_postcode: 'W5 2NH'
-)
-clinician14.save!
-
-clinician15 = User.new(
-  email: 'lmiller@gmail.com',
-  password: 'test12345',
-  title: 'Nurse',
-  first_name: 'Laura',
-  last_name: 'Miller',
-  date_of_birth: '03/02/1974',
-  gender_at_birth: 'Woman',
-  phone_number: '07283467797',
-  nhs_number: '6283928388',
-  home_address: '123 Beech Road',
-  home_town: 'London',
-  home_postcode: 'N1 1TH',
-  clinician: true,
-  job_title: 'Nurse',
-  work_gpname: 'Angel Medical Practice',
-  work_gpaddress: '30 Ritchie Street',
-  work_gptown: 'London',
-  work_gppostcode: 'N1 0DG',
-  practice_doctorname: 'Doctor Elizabeth Blackwell',
-  practice_name: 'Angel Medical Practice',
-  practice_address: '30 Ritchie Street',
-  practice_town: 'London',
-  practice_postcode: 'N1 0DG'
-)
-clinician15.save!
-
-clinician16 = User.new(
-  email: 'nbrown@gmail.com',
-  password: 'test12345',
-  title: 'Doctor',
-  first_name: 'Nathan',
-  last_name: 'Brown',
-  date_of_birth: '09/11/1983',
-  gender_at_birth: 'Man',
-  phone_number: '07283467798',
-  nhs_number: '6283928389',
-  home_address: '14 Poplar Road',
-  home_town: 'London',
-  home_postcode: 'E2 7LQ',
-  clinician: true,
-  job_title: 'Doctor',
-  work_gpname: 'Bethnal Green Health Centre',
-  work_gpaddress: '1 Wolverley Street',
-  work_gptown: 'London',
-  work_gppostcode: 'E2 6LP',
-  practice_doctorname: 'Doctor Alexander Graham Bell',
-  practice_name: 'Bethnal Green Health Centre',
-  practice_address: '1 Wolverley Street',
-  practice_town: 'London',
-  practice_postcode: 'E2 6LP'
-)
-clinician16.save!
-
-clinician17 = User.new(
-  email: 'osmith@gmail.com',
-  password: 'test12345',
-  title: 'Nurse',
-  first_name: 'Olivia',
-  last_name: 'Smith',
-  date_of_birth: '11/08/1987',
-  gender_at_birth: 'Woman',
-  phone_number: '07283467799',
-  nhs_number: '6283928390',
-  home_address: '67 Acacia Road',
-  home_town: 'London',
-  home_postcode: 'W10 5QY',
-  clinician: true,
-  job_title: 'Nurse',
-  work_gpname: 'Portobello Medical Centre',
-  work_gpaddress: '14 Bassett Road',
-  work_gptown: 'London',
-  work_gppostcode: 'W10 6JJ',
-  practice_doctorname: 'Doctor Florence Nightingale',
-  practice_name: 'Portobello Medical Centre',
-  practice_address: '14 Bassett Road',
-  practice_town: 'London',
-  practice_postcode: 'W10 6JJ'
-)
-clinician17.save!
-
-clinician18 = User.new(
-  email: 'pwhite@gmail.com',
-  password: 'test12345',
-  title: 'Doctor',
-  first_name: 'Peter',
-  last_name: 'White',
-  date_of_birth: '22/06/1972',
-  gender_at_birth: 'Man',
-  phone_number: '07283467800',
-  nhs_number: '6283928391',
-  home_address: '23 Willow Road',
-  home_town: 'London',
-  home_postcode: 'E5 8TH',
-  clinician: true,
-  job_title: 'Doctor',
-  work_gpname: 'Hackney Downs Practice',
-  work_gpaddress: '31 Amhurst Road',
-  work_gptown: 'London',
-  work_gppostcode: 'E8 1LL',
-  practice_doctorname: 'Doctor Edward Jenner',
-  practice_name: 'Hackney Downs Practice',
-  practice_address: '31 Amhurst Road',
-  practice_town: 'London',
-  practice_postcode: 'E8 1LL'
-)
-clinician18.save!
-
-clinician19 = User.new(
-  email: 'rclark@gmail.com',
-  password: 'test12345',
-  title: 'Nurse',
-  first_name: 'Rachel',
-  last_name: 'Clark',
-  date_of_birth: '28/03/1989',
-  gender_at_birth: 'Woman',
-  phone_number: '07283467801',
-  nhs_number: '6283928392',
-  home_address: '45 Pine Street',
-  home_town: 'London',
-  home_postcode: 'SW4 8BG',
-  clinician: true,
-  job_title: 'Nurse',
-  work_gpname: 'Clapham Family Practice',
-  work_gpaddress: '51 Clapham High Street',
-  work_gptown: 'London',
-  work_gppostcode: 'SW4 7TL',
-  practice_doctorname: 'Doctor Paul Ehrlich',
-  practice_name: 'Clapham Family Practice',
-  practice_address: '51 Clapham High Street',
-  practice_town: 'London',
-  practice_postcode: 'SW4 7TL'
-)
-clinician19.save!
-
-clinician20 = User.new(
-  email: 'sclarke@gmail.com',
-  password: 'test12345',
-  title: 'Doctor',
-  first_name: 'Samuel',
-  last_name: 'Clarke',
-  date_of_birth: '19/07/1980',
-  gender_at_birth: 'Man',
-  phone_number: '07283467802',
-  nhs_number: '6283928393',
-  home_address: '36 Oak Road',
-  home_town: 'London',
-  home_postcode: 'NW6 5HD',
-  clinician: true,
-  job_title: 'Doctor',
-  work_gpname: 'Kilburn Park Medical Centre',
-  work_gpaddress: '12 Kilburn Park Road',
-  work_gptown: 'London',
-  work_gppostcode: 'NW6 5UY',
-  practice_doctorname: 'Doctor Louis Pasteur',
-  practice_name: 'Kilburn Park Medical Centre',
-  practice_address: '12 Kilburn Park Road',
-  practice_town: 'London',
-  practice_postcode: 'NW6 5UY'
-)
-clinician20.save!
 
 patient1 = User.new(
   email: 'patient@gmail.com',
   password: 'test12345',
   title: 'Mr',
   first_name: 'John',
-  last_name: 'Patient',
+  last_name: 'Doe',
   date_of_birth: '10/07/1961',
   gender_at_birth: 'Woman',
   phone_number: '07283467783',
@@ -582,13 +244,270 @@ patient1 = User.new(
 )
 patient1.save!
 
+patient2 = User.new(
+  email: 'sarahjane@example.com',
+  password: 'test12345',
+  title: 'Ms',
+  first_name: 'Sarah',
+  last_name: 'Jane',
+  date_of_birth: '12/04/1982',
+  gender_at_birth: 'Woman',
+  phone_number: '07283467901',
+  nhs_number: '7283918347',
+  home_address: '12 Oak Street',
+  home_town: 'London',
+  home_postcode: 'SE25 4EQ',
+  clinician: false,
+  practice_doctorname: 'Doctor Alexander Fleming',
+  practice_name: 'Silverlock Medical Centre',
+  practice_address: '2 Verney Way',
+  practice_town: 'London',
+  practice_postcode: 'SE16 3HA'
+)
+patient2.save!
+
+patient3 = User.new(
+  email: 'mikeb@example.com',
+  password: 'test12345',
+  title: 'Mr',
+  first_name: 'Michael',
+  last_name: 'Brown',
+  date_of_birth: '01/05/1970',
+  gender_at_birth: 'Man',
+  phone_number: '07283467902',
+  nhs_number: '7283918399',
+  home_address: '32 Maple Drive',
+  home_town: 'London',
+  home_postcode: 'NW10 1AB',
+  clinician: false,
+  practice_doctorname: 'Doctor Alexander Fleming',
+  practice_name: 'Silverlock Medical Centre',
+  practice_address: '2 Verney Way',
+  practice_town: 'London',
+  practice_postcode: 'SE16 3HA'
+)
+patient3.save!
+
+patient4 = User.new(
+  email: 'linda_green@example.com',
+  password: 'test12345',
+  title: 'Mrs',
+  first_name: 'Linda',
+  last_name: 'Green',
+  date_of_birth: '22/07/1988',
+  gender_at_birth: 'Woman',
+  phone_number: '07283467903',
+  nhs_number: '6283928388',
+  home_address: '14 Pine Road',
+  home_town: 'London',
+  home_postcode: 'E2 7LQ',
+  clinician: false,
+  practice_doctorname: 'Doctor Alexander Fleming',
+  practice_name: 'Silverlock Medical Centre',
+  practice_address: '2 Verney Way',
+  practice_town: 'London',
+  practice_postcode: 'SE16 3HA'
+)
+patient4.save!
+
+patient5 = User.new(
+  email: 'tommy_lee@example.com',
+  password: 'test12345',
+  title: 'Mr',
+  first_name: 'Tommy',
+  last_name: 'Lee',
+  date_of_birth: '08/03/1975',
+  gender_at_birth: 'Man',
+  phone_number: '07283467904',
+  nhs_number: '6283928389',
+  home_address: '8 High Street',
+  home_town: 'London',
+  home_postcode: 'SW16 1RN',
+  clinician: false,
+  practice_doctorname: 'Doctor Alexander Fleming',
+  practice_name: 'Silverlock Medical Centre',
+  practice_address: '2 Verney Way',
+  practice_town: 'London',
+  practice_postcode: 'SE16 3HA'
+)
+patient5.save!
+
+patient6 = User.new(
+  email: 'emily_white@example.com',
+  password: 'test12345',
+  title: 'Ms',
+  first_name: 'Emily',
+  last_name: 'White',
+  date_of_birth: '17/10/1993',
+  gender_at_birth: 'Woman',
+  phone_number: '07283467905',
+  nhs_number: '6283928390',
+  home_address: '24 Elm Street',
+  home_town: 'London',
+  home_postcode: 'NW5 3AP',
+  clinician: false,
+  practice_doctorname: 'Doctor Alexander Fleming',
+  practice_name: 'Silverlock Medical Centre',
+  practice_address: '2 Verney Way',
+  practice_town: 'London',
+  practice_postcode: 'SE16 3HA'
+)
+patient6.save!
+
+patient7 = User.new(
+  email: 'gregory_peck@example.com',
+  password: 'test12345',
+  title: 'Mr',
+  first_name: 'Gregory',
+  last_name: 'Peck',
+  date_of_birth: '11/11/1981',
+  gender_at_birth: 'Man',
+  phone_number: '07283467906',
+  nhs_number: '6283928391',
+  home_address: '56 Cedar Lane',
+  home_town: 'London',
+  home_postcode: 'E3 2JA',
+  clinician: false,
+  practice_doctorname: 'Doctor Alexander Fleming',
+  practice_name: 'Silverlock Medical Centre',
+  practice_address: '2 Verney Way',
+  practice_town: 'London',
+  practice_postcode: 'SE16 3HA'
+)
+patient7.save!
+
 puts "Total number of Users created: #{User.count}"
 
-appointment = Appointment.create!(
+appointment1 = Appointment.create!(
   patient: patient1,
   clinician: clinician1,
-  appointment_date: Date.current,
-  appointment_type: 'dermatology',
-  status: 'confirmed',
-  severity: 'high'
+  appointment_date: Time.new(2024, 5, 7, 9, 00),
+  appointment_type: 'Video',
+  status: 'Accepted',
+  severity: 'Low'
 )
+
+appointment2 = Appointment.create!(
+  patient: patient1,
+  clinician: clinician2,
+  appointment_date: Time.new(2024, 1, 3, 16, 30),
+  appointment_type: 'In-Person',
+  status: 'Accepted',
+  severity: 'Low'
+)
+
+appointment3 = Appointment.create!(
+  patient: patient1,
+  clinician: clinician3,
+  appointment_date: Time.new(2023, 12, 19, 10, 30),
+  appointment_type: 'Video',
+  status: 'Accepted',
+  severity: 'Low'
+)
+
+appointment4 = Appointment.create!(
+  patient: patient1,
+  clinician: clinician4,
+  appointment_date: Time.new(2023, 6, 11, 15, 00),
+  appointment_type: 'Phone',
+  status: 'Accepted',
+  severity: 'High'
+)
+
+appointment5 = Appointment.create!(
+  patient: patient1,
+  clinician: clinician5,
+  appointment_date: Time.new(2023, 3, 24, 11, 00),
+  appointment_type: 'In-Person',
+  status: 'Closed',
+  severity: 'Low'
+)
+
+appointment6 = Appointment.create!(
+  patient: patient1,
+  clinician: clinician6,
+  appointment_date: Time.new(2022, 9, 5, 13, 30),
+  appointment_type: 'In-Person',
+  status: 'Accepted',
+  severity: 'High'
+)
+
+appointment7 = Appointment.create!(
+  patient: patient1,
+  clinician: clinician7,
+  appointment_date: Time.new(2022, 5, 30, 14, 30),
+  appointment_type: 'Video',
+  status: 'Closed',
+  severity: 'Low'
+)
+
+puts "Total number of Appointments created: #{Appointment.count}"
+
+symptom1 = Symptom.create!(
+  category: 'Muscle and Joints',
+  description: "I've been experiencing some mild discomfort and stiffness in my joints, especially when I wake up. The stiffness seems worse when it's cold, and there's a bit of swelling sometimes. I've been trying to stay active, which seems to help a little."
+)
+
+symptom2 = Symptom.create!(
+  category: 'Cold, Cough, Flu, Sore Throat and Earaches',
+  description: "I have a mild sore throat and a dry cough that's been bothering me for over a week now. I don't have a fever, but the discomfort is annoying. I've been using some over-the-counter remedies, which provide temporary relief."
+)
+
+symptom3 = Symptom.create!(
+  category: 'Skin Problems',
+  description: "I noticed a rash on my arms and neck that's sometimes itchy but not painful. I think it might be from the new laundry detergent I started using. I've switched back to the old one and am taking antihistamines to help with the itching."
+)
+
+symptom4 = Symptom.create!(
+  category: 'Stomach Issues',
+  description: "I’ve been experiencing severe stomach pains and frequent nausea, especially after meals. The pain sometimes becomes unbearable, affecting my daily activities. I suspect it might be related to something I’m eating, but I can’t pinpoint the cause. The discomfort has started to impact my sleep and overall well-being significantly."
+)
+
+symptom5 = Symptom.create!(
+  category: 'Prescriptions'
+  description: "I'm here to get a refill on my blood pressure medication. There haven't been any changes in my condition or the medication dosage, and my blood pressure has been stable whenever I check it at home."
+)
+
+symptom6 = Symptom.create!(
+  category: 'Breathing Conditions & Allergies',
+  description: "I've been having a really tough time breathing lately, especially when the pollen count is high. My wheezing has gotten worse, and sometimes I feel like I can't catch my breath. It seems like my usual medication isn't working as well anymore."
+)
+
+symptom7 = Symptom.create!(
+  category: 'Cold, Cough, Flu, Sore Throat and Earaches',
+  description: "I've had a persistent cough and sore throat for a few weeks now, along with some headaches and occasional earaches. Over-the-counter meds help a bit, but the symptoms keep coming back. I'm wondering if I might need something stronger."
+)
+
+puts "Total number of Appointments created: #{Symptom.count}"
+
+AppointmentSymptom.create!(
+  appointment_id: appointment1.id,
+  symptom_id: symptom1.id
+)
+
+AppointmentSymptom.create!(
+  appointment_id: appointment2.id,
+  symptom_id: symptom2.id
+)
+
+AppointmentSymptom.create!(
+  appointment_id: appointment3.id,
+  symptom_id: symptom3.id
+)
+
+AppointmentSymptom.create!(
+  appointment_id: appointment4.id,
+  symptom_id: symptom4.id
+)
+
+AppointmentSymptom.create!(
+  appointment_id: appointment5.id,
+  symptom_id: symptom5.id
+)
+
+AppointmentSymptom.create!(
+  appointment_id: appointment6.id,
+  symptom_id: symptom6.id
+)
+
+puts "Total number of Appointment Symptom links created: #{AppointmentSymptom.count}"
