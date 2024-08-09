@@ -1,6 +1,3 @@
-import "bootstrap"
-import "@popperjs/core"
-
 document.addEventListener('DOMContentLoaded', function() {
   const categoryList = document.getElementById('category-list');
   const triageQuestions = document.getElementById('triage-questions');
@@ -146,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
     'phone': [
-        { name: '', times: ['8:00am', '10:00am', '1:00pm'] },
+        { name: 'clinician', times: ['8:00am', '10:00am', '1:00pm'] },
         { name: '', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
     'video': [
@@ -371,8 +368,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function handleConfirmBooking() {
     alert(`Booking confirmed with ${selectedClinician} on ${selectedDate} at ${selectedTime}`);
-    // Handle the booking confirmation logic here
-    showForm(appointmentPending);
+
+    fetch("/appointments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF token is included
+      },
+      body: JSON.stringify({
+        clinician_id: selectedClinicianId, // Ensure you get the clinician ID
+        appointment_date: selectedDateTime,
+        appointment_type: selectedAppointmentType, // Ensure you have this variable set earlier in your script
+        severity: severity,
+        status: "Pending"
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        window.location.href = "/appointments"; // Redirect to appointments page
+      } else {
+        alert('Error confirming booking. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error confirming booking. Please try again.');
+    });
   }
 
   function updateCharCounter() {

@@ -21,12 +21,22 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
+
     if @appointment.save
-      redirect_to @appointment, notice: 'Appointment booked.'
+      if request.format.json?
+        render json: { success: true }
+      else
+        redirect_to @appointment, notice: 'Appointment booked.'
+      end
     else
-      render :new
+      if request.format.json?
+        render json: { success: false, errors: @appointment.errors.full_messages }
+      else
+        render :new
+      end
     end
   end
+
 
   def edit
   end
