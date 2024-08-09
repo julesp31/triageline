@@ -1,5 +1,8 @@
 class Message < ApplicationRecord
-  belongs_to :appointment
+  #belongs_to :appointment
+  belongs_to :chatroom
+  belongs_to :user
 
   validates :text, presence: true
+
 end
