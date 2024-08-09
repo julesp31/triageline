@@ -1,3 +1,6 @@
+import "bootstrap"
+import "@popperjs/core"
+
 document.addEventListener('DOMContentLoaded', function() {
   const categoryList = document.getElementById('category-list');
   const triageQuestions = document.getElementById('triage-questions');
