@@ -1,0 +1,49 @@
+/* Card and Button Styling */
+.news-feed-card {
+  border-radius: 15px;
+  // background-color: #E1E5F2;
+}
+
+.news-feed-card .card-header {
+  background-color: $white;
+  border-radius: 15px;
+  cursor: pointer;
+  // padding: 15px 20px;
+}
+
+.news-feed-card .card-header h5 {
+  margin: 0;
+  color: #1F7A8C;
+}
+
+.news-feed-card .btn-toggle {
+  background-color: #35C5CE;
+  color: #FFFFFF;
+  border: none;
+  // border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.news-feed-card .btn-toggle:hover {
+  background-color: #35C5CE;
+}
+
+.news-feed-card .card-body {
+  background-color: white;
+  color: #1F7A8C;
+  padding: 20px;
+}
+
+/* Spacing and Responsiveness */
+.news-feed-card {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .news-feed-card .card-body {
+    padding: 20px 40px;
+  }
+}

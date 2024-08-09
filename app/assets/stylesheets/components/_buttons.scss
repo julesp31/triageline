@@ -3,12 +3,13 @@
   display: inline-block;
   width: auto;
   padding: 10px 20px;
-  background-color: $green;
+  background-color: $midgreen;
   color: $white;
   border: none;
   border-radius: 4px;
   text-decoration: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .back-button {
@@ -18,7 +19,7 @@
 }
 
 .btn-primary {
-  background-color: $midgreen;
+  background-color: $darkgreen;
   border: none;
   border-radius: 20px;
   color: white;
