@@ -3,9 +3,10 @@ Rails.application.routes.draw do
 
   resources :appointments do
     resources :chatrooms, only: :show do
-    resources :messages, only: [:new, :create]
+      resources :messages, only: :create
     end
   end
+
   resources :symptoms
 
 
