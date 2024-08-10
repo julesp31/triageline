@@ -12,6 +12,17 @@
     </a>
 </nav>
 
+<%= simple_form_for @appointment do |f| %>
+  <%= f.input :clinician %>
+  <%= f.input :appointment_date %>
+  <%= f.input :appointment_type  %>
+  <%= f.input :status %>
+  <%= f.input :severity %>
+  <%= f.button :submit %>
+<% end %>
+
+<button id='test-button'>click me</button>
+
 <div class="content-container">
     <div class="side-bottom-margin-container">
         <div class="appointmentbooking">
@@ -239,7 +250,6 @@
                     <h1>Booking Details</h1>
                 </div>
                 <div id="details-container" class="mt-3">
-                    <!-- Booking details will be inserted here -->
                 </div>
                 <button id="confirm-booking" class="btn btn-primary mt-3">Confirm Booking</button>
             </div>
