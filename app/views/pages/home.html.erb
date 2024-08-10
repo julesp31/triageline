@@ -1,20 +1,45 @@
-<div class="welcome-card">
-
-  <div class="background-image">
-    <img src="https://wallpapercave.com/wp/wp6938358.jpg" alt="Background Image">
+<div class="homepage-background">
+  <div class="welcome-card">
+    <div class="background-image">
+      <img src="https://wallpapercave.com/wp/wp6938358.jpg" alt="Background Image">
+    </div>
+    <div class="profile-image">
+      <img src="https://d26jy9fbi4q9wx.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNXpLQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--517cc3d97a3f14b7197848ffe1904a19b6b2423b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2hwQWNocEFjaDdCam9KWTNKdmNEb09ZWFIwWlc1MGFXOXUiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b67d9ded4d28d0969fbb98b4c21b79257705a99a/Aightee.jpg" alt="Profile Image">
+    </div>
+    <div class="welcome-text">
+      <h1>Welcome <%= @patient %> to Triageline</h1>
+    </div>
   </div>
 
-  <div class="profile-image">
-    <img src="https://d26jy9fbi4q9wx.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNXpLQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--517cc3d97a3f14b7197848ffe1904a19b6b2423b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2hwQWNocEFjaDdCam9KWTNKdmNEb09ZWFIwWlc1MGFXOXUiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b67d9ded4d28d0969fbb98b4c21b79257705a99a/Aightee.jpg" alt="Profile Image">
+  <div class="bookbutton-container">
+    <a class="btn-bookappointment" href="/appointments/new">Book Appointment</a>
   </div>
 
-  <div class="welcome-text">
+  <div class="container mt-5">
+    <div class="card news-feed-card mb-3" id="newsCard1">
+      <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseContent1">
+        <h5 class="mb-0">Administrative Issues?</h5>
+        <button class="btn btn-toggle" type="button" aria-expanded="false" aria-controls="collapseContent1">+</button>
+      </div>
+      <div class="collapse" id="collapseContent1">
+        <div class="card-body">
+          <p>Here is the content for News Topic 1. You can edit this content from the backend.</p>
+        </div>
+      </div>
+    </div>
 
-    <h1>Welcome 👋 <%= @patient %> to Triageline </h1>
+    <div class="card news-feed-card mb-3" id="newsCard2">
+      <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseContent2">
+        <h5 class="mb-0">Test Results?</h5>
+        <button class="btn btn-toggle" type="button" aria-expanded="false" aria-controls="collapseContent2">+</button>
+      </div>
+      <div class="collapse" id="collapseContent2">
+        <div class="card-body">
+          <p>Here is the content for News Topic 2. You can edit this content from the backend.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat this block for each news topic -->
   </div>
-
-</div>
-
-<div class="bookbutton-container">
-  <a class="btn-bookappointment" href="/appointments/new">Book Appointment</a>
 </div>

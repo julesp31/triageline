@@ -1,0 +1,92 @@
+=> 
+[[32m#<Appointment:0x00007f438decc0e8[0m
+  id: [34m[1m2[0m,
+  patient_id: [34m[1m39[0m,
+  clinician_id: [34m[1m32[0m,
+  appointment_date:
+   Tue, 07 May 2024 08:00:00.000000000 UTC +00:00,
+  appointment_type: [31m[1m"[0m[31mVideo[0m[31m[1m"[0m,
+  status: [31m[1m"[0m[31mAccepted[0m[31m[1m"[0m,
+  severity: [31m[1m"[0m[31mLow[0m[31m[1m"[0m,
+  created_at:
+   Tue, 06 Aug 2024 20:48:01.436135000 UTC +00:00,
+  updated_at:
+   Tue, 06 Aug 2024 20:48:01.436135000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007f438decbfd0[0m
+  id: [34m[1m3[0m,
+  patient_id: [34m[1m39[0m,
+  clinician_id: [34m[1m33[0m,
+  appointment_date:
+   Wed, 03 Jan 2024 16:30:00.000000000 UTC +00:00,
+  appointment_type: [31m[1m"[0m[31mIn-Person[0m[31m[1m"[0m,
+  status: [31m[1m"[0m[31mAccepted[0m[31m[1m"[0m,
+  severity: [31m[1m"[0m[31mLow[0m[31m[1m"[0m,
+  created_at:
+   Tue, 06 Aug 2024 20:48:01.441764000 UTC +00:00,
+  updated_at:
+   Tue, 06 Aug 2024 20:48:01.441764000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007f438decbf08[0m
+  id: [34m[1m4[0m,
+  patient_id: [34m[1m39[0m,
+  clinician_id: [34m[1m34[0m,
+  appointment_date:
+   Tue, 19 Dec 2023 10:30:00.000000000 UTC +00:00,
+  appointment_type: [31m[1m"[0m[31mVideo[0m[31m[1m"[0m,
+  status: [31m[1m"[0m[31mAccepted[0m[31m[1m"[0m,
+  severity: [31m[1m"[0m[31mLow[0m[31m[1m"[0m,
+  created_at:
+   Tue, 06 Aug 2024 20:48:01.445425000 UTC +00:00,
+  updated_at:
+   Tue, 06 Aug 2024 20:48:01.445425000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007f438decbe40[0m
+  id: [34m[1m5[0m,
+  patient_id: [34m[1m39[0m,
+  clinician_id: [34m[1m35[0m,
+  appointment_date:
+   Sun, 11 Jun 2023 14:00:00.000000000 UTC +00:00,
+  appointment_type: [31m[1m"[0m[31mPhone[0m[31m[1m"[0m,
+  status: [31m[1m"[0m[31mAccepted[0m[31m[1m"[0m,
+  severity: [31m[1m"[0m[31mHigh[0m[31m[1m"[0m,
+  created_at:
+   Tue, 06 Aug 2024 20:48:01.449510000 UTC +00:00,
+  updated_at:
+   Tue, 06 Aug 2024 20:48:01.449510000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007f438decbd78[0m
+  id: [34m[1m6[0m,
+  patient_id: [34m[1m39[0m,
+  clinician_id: [34m[1m36[0m,
+  appointment_date:
+   Fri, 24 Mar 2023 11:00:00.000000000 UTC +00:00,
+  appointment_type: [31m[1m"[0m[31mIn-Person[0m[31m[1m"[0m,
+  status: [31m[1m"[0m[31mClosed[0m[31m[1m"[0m,
+  severity: [31m[1m"[0m[31mLow[0m[31m[1m"[0m,
+  created_at:
+   Tue, 06 Aug 2024 20:48:01.453727000 UTC +00:00,
+  updated_at:
+   Tue, 06 Aug 2024 20:48:01.453727000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007f438decbcb0[0m
+  id: [34m[1m7[0m,
+  patient_id: [34m[1m39[0m,
+  clinician_id: [34m[1m37[0m,
+  appointment_date:
+   Mon, 05 Sep 2022 12:30:00.000000000 UTC +00:00,
+  appointment_type: [31m[1m"[0m[31mIn-Person[0m[31m[1m"[0m,
+  status: [31m[1m"[0m[31mAccepted[0m[31m[1m"[0m,
+  severity: [31m[1m"[0m[31mHigh[0m[31m[1m"[0m,
+  created_at:
+   Tue, 06 Aug 2024 20:48:01.458623000 UTC +00:00,
+  updated_at:
+   Tue, 06 Aug 2024 20:48:01.458623000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007f438decbbe8[0m
+  id: [34m[1m8[0m,
+  patient_id: [34m[1m39[0m,
+  clinician_id: [34m[1m38[0m,
+  appointment_date:
+   Mon, 30 May 2022 13:30:00.000000000 UTC +00:00,
+  appointment_type: [31m[1m"[0m[31mVideo[0m[31m[1m"[0m,
+  status: [31m[1m"[0m[31mClosed[0m[31m[1m"[0m,
+  severity: [31m[1m"[0m[31mLow[0m[31m[1m"[0m,
+  created_at:
+   Tue, 06 Aug 2024 20:48:01.462623000 UTC +00:00,
+  updated_at:
+   Tue, 06 Aug 2024 20:48:01.462623000 UTC +00:00[32m>[0m]

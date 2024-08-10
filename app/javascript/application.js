@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let selectedDate = '';
   let selectedTime = '';
   let historyStack = [];
+  let severity = 'Low'; // Default severity
 
   const triageData = {
     'admin': [
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ],
     'contraception': [
         'Are you experiencing severe side effects or allergic reactions to a contraceptive method?',
-        'Have you had a contraceptive failure with immediate health concerns (e.g., unplanned pregnancy)?',
+        'Have you had a contraceptive failure with immediate health concerns (e.g. unplanned pregnancy)?',
         'Are you considering a change in your contraceptive method and need more information?',
         'Would you like a follow-up to review the effectiveness and satisfaction with your current contraception?',
         'Are you experiencing moderate side effects from your contraceptive method that need attention?',
@@ -141,233 +142,264 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   const cliniciansData = {
-      'phone': [
-          { name: 'Dr. Itoro Umana', times: ['8:00am', '10:00am', '1:00pm'] },
-          { name: 'Dr. Basia Brzoza', times: ['9:00am', '11:00am', '2:00pm'] },
-      ],
-      'video': [
-          { name: 'Dr. Jules Pinto', times: ['8:30am', '10:30am', '1:30pm'] },
-          { name: 'Dr. Jones Day', times: ['9:30am', '11:30am', '2:30pm'] },
-      ],
-      'in-person': [
-          { name: 'Dr. Emma Patel', times: ['8:45am', '10:45am', '1:45pm'] },
-          { name: 'Dr. Meagan Good', times: ['9:45am', '11:45am', '2:45pm'] },
-      ],
-  };
+    'phone': [
+        { name: 'clinician', times: ['8:00am', '10:00am', '1:00pm'] },
+        { name: '', times: ['9:00am', '11:00am', '2:00pm'] },
+    ],
+    'video': [
+        { name: '', times: ['8:30am', '10:30am', '1:30pm'] },
+        { name: '', times: ['9:30am', '11:30am', '2:30pm'] },
+    ],
+    'in-person': [
+        { name: '', times: ['8:45am', '10:45am', '1:45pm'] },
+        { name: '', times: ['9:45am', '11:45am', '2:45pm'] },
+    ],
+};
 
   function showForm(form) {
-      const forms = [categoryList, triageQuestions, reasonForAppointment, appointmentTypeList, availableClinicians, calendarView, bookingDetails, appointmentPending];
-      forms.forEach(f => f.style.display = 'none');
-      form.style.display = 'flex';
+    const forms = [categoryList, triageQuestions, reasonForAppointment, appointmentTypeList, availableClinicians, calendarView, bookingDetails, appointmentPending];
+    forms.forEach(f => f.style.display = 'none');
+    form.style.display = 'flex';
 
-      if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== form) {
-          historyStack.push(form);
-      }
+    if (historyStack.length === 0 || historyStack[historyStack.length - 1] !== form) {
+      historyStack.push(form);
+    }
 
-      if (historyStack.length >= 1) {
-          backButton.style.display = 'inline-block';
-      } else {
-          backButton.style.display = 'none';
-      }
+    if (historyStack.length >= 1) {
+      backButton.style.display = 'inline-block';
+    } else {
+      backButton.style.display = 'none';
+    }
 
-      // Initialize the calendar when the calendar view is shown
-      if (form === calendarView) {
-          initializeCalendar();
-      }
+    // Initialize the calendar when the calendar view is shown
+    if (form === calendarView) {
+      initializeCalendar();
+    }
   }
 
   function initializeCalendar() {
-      flatpickr(calendarContainer, {
-          inline: true, // Ensures the calendar is always visible
-          onChange: function(selectedDates, dateStr, instance) {
-              const availableTimesData = getAvailableTimesForClinicianOnDate(selectedClinician, dateStr);
-              displayAvailableTimes(availableTimesData, selectedClinician, dateStr);
-          }
-      });
+    flatpickr(calendarContainer, {
+      inline: true,
+      onChange: function(selectedDates, dateStr, instance) {
+        const availableTimesData = getAvailableTimesForClinicianOnDate(selectedClinician, dateStr);
+        displayAvailableTimes(availableTimesData, selectedClinician, dateStr);
+      }
+    });
   }
 
   function handleBackButtonClick() {
-      const homePath = document.querySelector('.custom-navbar').dataset.homePath;
-      if (historyStack.length > 1) {
-          historyStack.pop(); // Remove current form
-          const previousForm = historyStack[historyStack.length - 1];
-          showForm(previousForm);
-      } else {
-          // Redirect to the home page or close the tab
-          window.location.href = homePath; // Use the URL from the data attribute
-          // or use window.close(); to close the tab
-      }
+    const homePath = document.querySelector('.custom-navbar').dataset.homePath;
+    if (historyStack.length > 1) {
+      historyStack.pop(); // Remove current form
+      const previousForm = historyStack[historyStack.length - 1];
+      showForm(previousForm);
+    } else {
+      // Redirect to the home page or close the tab
+      window.location.href = homePath; // Use the URL from the data attribute
+      // or use window.close(); to close the tab
+    }
   }
 
   function handleCategoryCardClick(event) {
-      const categoryCard = event.target.closest('.category-card');
-      if (categoryCard) {
-          const category = categoryCard.getAttribute('data-category');
-          const questions = triageData[category];
+    const categoryCard = event.target.closest('.category-card');
+    if (categoryCard) {
+      const category = categoryCard.getAttribute('data-category');
+      const questions = triageData[category];
 
-          triageTitle.textContent = categoryCard.querySelector('h3').textContent;
-          questionsContainer.innerHTML = '';
+      triageTitle.textContent = categoryCard.querySelector('h3').textContent;
+      questionsContainer.innerHTML = '';
 
-          questions.forEach((question, index) => {
-              const questionElement = document.createElement('div');
-              questionElement.className = 'question-card';
+      questions.forEach((question, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'question-card';
 
-              const questionText = document.createElement('p');
-              questionText.textContent = question;
-              questionElement.appendChild(questionText);
+        const questionText = document.createElement('p');
+        questionText.textContent = question;
+        questionElement.appendChild(questionText);
 
-              const buttonsContainer = document.createElement('div');
-              buttonsContainer.className = 'question-buttons';
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.className = 'question-buttons';
 
-              const yesButton = document.createElement('button');
-              yesButton.textContent = 'Yes';
-              yesButton.setAttribute('data-answer', 'yes');
-              yesButton.classList.add('btn', 'btn-outline-primary', 'mr-2');
+        const yesButton = document.createElement('button');
+        yesButton.textContent = 'Yes';
+        yesButton.setAttribute('data-answer', 'yes');
+        yesButton.classList.add('btn', 'btn-outline-primary', 'mr-2');
 
-              const noButton = document.createElement('button');
-              noButton.textContent = 'No';
-              noButton.setAttribute('data-answer', 'no');
-              noButton.classList.add('btn', 'btn-outline-secondary');
+        const noButton = document.createElement('button');
+        noButton.textContent = 'No';
+        noButton.setAttribute('data-answer', 'no');
+        noButton.classList.add('btn', 'btn-outline-secondary');
 
-              yesButton.addEventListener('click', () => {
-                  questionElement.setAttribute('data-answered', 'true');
-                  yesButton.classList.add('selected');
-                  noButton.classList.remove('selected');
-              });
+        yesButton.addEventListener('click', () => {
+          questionElement.setAttribute('data-answered', 'true');
+          yesButton.classList.add('selected');
+          noButton.classList.remove('selected');
+        });
 
-              noButton.addEventListener('click', () => {
-                  questionElement.setAttribute('data-answered', 'true');
-                  noButton.classList.add('selected');
-                  yesButton.classList.remove('selected');
-              });
+        noButton.addEventListener('click', () => {
+          questionElement.setAttribute('data-answered', 'true');
+          noButton.classList.add('selected');
+          yesButton.classList.remove('selected');
+        });
 
-              buttonsContainer.appendChild(yesButton);
-              buttonsContainer.appendChild(noButton);
+        buttonsContainer.appendChild(yesButton);
+        buttonsContainer.appendChild(noButton);
 
-              questionElement.appendChild(buttonsContainer);
-              questionsContainer.appendChild(questionElement);
-          });
+        questionElement.appendChild(buttonsContainer);
+        questionsContainer.appendChild(questionElement);
+      });
 
-          showForm(triageQuestions);
-      }
+      showForm(triageQuestions);
+    }
   }
 
   function handleSubmitTriage() {
-      const allAnswered = [...questionsContainer.querySelectorAll('.question-card')].every(question => question.getAttribute('data-answered') === 'true');
+    const allAnswered = [...questionsContainer.querySelectorAll('.question-card')].every(question => question.getAttribute('data-answered') === 'true');
+    const firstFourYes = [...questionsContainer.querySelectorAll('.question-card')].slice(0, 3).some(question => {
+      const yesButton = question.querySelector('button[data-answer="yes"]');
+      return yesButton && yesButton.classList.contains('selected');
+    });
 
-      if (allAnswered) {
-          showForm(reasonForAppointment);
-      } else {
-          alert('Please answer all triage questions before proceeding.');
-      }
+    if (allAnswered) {
+      severity = firstFourYes ? 'High' : 'Low'; // Set severity based on answers
+      showForm(reasonForAppointment);
+    } else {
+      alert('Please answer all triage questions before proceeding.');
+    }
   }
 
   function handleSubmitReason() {
-      const appointmentReason = document.getElementById('appointment-reason').value.trim();
-      if (appointmentReason) {
-          showForm(appointmentTypeList);
-      } else {
-          alert('Please provide a reason for your appointment.');
-      }
+    const appointmentReason = document.getElementById('appointment-reason').value.trim();
+    if (appointmentReason) {
+      showForm(appointmentTypeList);
+    } else {
+      alert('Please provide a reason for your appointment.');
+    }
   }
 
   function handleAppointmentTypeCardClick(event) {
-      const appointmentTypeCard = event.target.closest('.appointment-type-card');
-      if (appointmentTypeCard) {
-          const appointmentType = appointmentTypeCard.getAttribute('data-appointment-type');
-          const clinicians = cliniciansData[appointmentType];
+    const appointmentTypeCard = event.target.closest('.appointment-type-card');
+    if (appointmentTypeCard) {
+      const appointmentType = appointmentTypeCard.getAttribute('data-appointment-type');
+      const clinicians = cliniciansData[appointmentType];
 
-          cliniciansContainer.innerHTML = '';
+      cliniciansContainer.innerHTML = '';
 
-          clinicians.forEach(clinician => {
-              const clinicianCard = document.createElement('div');
-              clinicianCard.className = 'clinician-card card mb-3';
+      clinicians.forEach(clinician => {
+        const clinicianCard = document.createElement('div');
+        clinicianCard.className = 'clinician-card card mb-3';
 
-              const clinicianName = document.createElement('div');
-              clinicianName.textContent = clinician.name;
-              clinicianName.className = 'card-header';
-              clinicianCard.appendChild(clinicianName);
+        const clinicianName = document.createElement('div');
+        clinicianName.textContent = clinician.name;
+        clinicianName.className = 'card-header';
+        clinicianCard.appendChild(clinicianName);
 
-              const times = document.createElement('div');
-              times.className = 'card-body';
-              clinician.times.forEach(time => {
-                  const timeSlot = document.createElement('div');
-                  timeSlot.textContent = time;
-                  timeSlot.className = 'time-slot btn btn-light mb-2';
-                  timeSlot.addEventListener('click', () => {
-                      showBookingDetails(clinician.name, '', time);
-                  });
-                  times.appendChild(timeSlot);
-              });
-
-              const moreButton = document.createElement('div');
-              moreButton.addEventListener('click', () => {
-                  showCalendarView(clinician.name);
-              });
-              moreButton.textContent = 'More';
-              moreButton.className = 'more-button btn btn-secondary mt-2';
-              times.appendChild(moreButton);
-
-              clinicianCard.appendChild(times);
-              cliniciansContainer.appendChild(clinicianCard);
-          });
-
-          showForm(availableClinicians);
-      }
-  }
-
-  function showCalendarView(clinicianName) {
-      flatpickr(calendarContainer, {
-          onChange: function(selectedDates, dateStr, instance) {
-              const availableTimesData = getAvailableTimesForClinicianOnDate(clinicianName, dateStr);
-              displayAvailableTimes(availableTimesData, clinicianName, dateStr);
-          }
-      });
-
-      showForm(calendarView);
-  }
-
-  function displayAvailableTimes(times, clinicianName, dateStr) {
-      availableTimes.innerHTML = '';
-      times.forEach(time => {
+        const times = document.createElement('div');
+        times.className = 'card-body';
+        clinician.times.forEach(time => {
           const timeSlot = document.createElement('div');
           timeSlot.textContent = time;
           timeSlot.className = 'time-slot btn btn-light mb-2';
           timeSlot.addEventListener('click', () => {
-              showBookingDetails(clinicianName, dateStr, time);
+            showBookingDetails(clinician.name, '', time);
           });
-          availableTimes.appendChild(timeSlot);
+          times.appendChild(timeSlot);
+        });
+
+        const moreButton = document.createElement('div');
+        moreButton.addEventListener('click', () => {
+          showCalendarView(clinician.name);
+        });
+        moreButton.textContent = 'More';
+        moreButton.className = 'more-button btn btn-secondary mt-2';
+        times.appendChild(moreButton);
+
+        clinicianCard.appendChild(times);
+        cliniciansContainer.appendChild(clinicianCard);
       });
+
+      showForm(availableClinicians);
+    }
+  }
+
+  function showCalendarView(clinicianName) {
+    flatpickr(calendarContainer, {
+      onChange: function(selectedDates, dateStr, instance) {
+        const availableTimesData = getAvailableTimesForClinicianOnDate(clinicianName, dateStr);
+        displayAvailableTimes(availableTimesData, clinicianName, dateStr);
+      }
+    });
+
+    showForm(calendarView);
+  }
+
+  function displayAvailableTimes(times, clinicianName, dateStr) {
+    availableTimes.innerHTML = '';
+    times.forEach(time => {
+      const timeSlot = document.createElement('div');
+      timeSlot.textContent = time;
+      timeSlot.className = 'time-slot btn btn-light mb-2';
+      timeSlot.addEventListener('click', () => {
+        showBookingDetails(clinicianName, dateStr, time);
+      });
+      availableTimes.appendChild(timeSlot);
+    });
   }
 
   function getAvailableTimesForClinicianOnDate(clinicianName, dateStr) {
-      // Mock data, replace with actual fetch from server
-      return ['8:00am', '10:00am', '1:00pm', '3:00pm'];
+    // Mock data, replace with actual fetch from server
+    return ['8:00am', '10:00am', '1:00pm', '3:00pm'];
   }
 
   function showBookingDetails(clinicianName, dateStr, time) {
-      selectedClinician = clinicianName;
-      selectedDate = dateStr;
-      selectedTime = time;
+    selectedClinician = clinicianName;
+    selectedDate = dateStr;
+    selectedTime = time;
 
-      detailsContainer.innerHTML = `
-          <p><strong>Clinician:</strong> ${clinicianName}</p>
-          <p><strong>Date:</strong> ${dateStr || 'Not selected'}</p>
-          <p><strong>Time:</strong> ${time}</p>
-      `;
+    detailsContainer.innerHTML = `
+      <p><strong>Clinician:</strong> ${clinicianName}</p>
+      <p><strong>Date:</strong> ${dateStr || 'Not selected'}</p>
+      <p><strong>Time:</strong> ${time}</p>
+      <p><strong>Severity:</strong> ${severity}</p>
+    `;
 
-      showForm(bookingDetails);
+    showForm(bookingDetails);
   }
 
   function handleConfirmBooking() {
-      alert(`Booking confirmed with ${selectedClinician} on ${selectedDate} at ${selectedTime}`);
-      // Handle the booking confirmation logic here
-      showForm(appointmentPending);
+    alert(`Booking confirmed with ${selectedClinician} on ${selectedDate} at ${selectedTime}`);
+
+    fetch("/appointments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF token is included
+      },
+      body: JSON.stringify({
+        clinician_id: selectedClinicianId, // Ensure you get the clinician ID
+        appointment_date: selectedDateTime,
+        appointment_type: selectedAppointmentType, // Ensure you have this variable set earlier in your script
+        severity: severity,
+        status: "Pending"
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        window.location.href = "/appointments"; // Redirect to appointments page
+      } else {
+        alert('Error confirming booking. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error confirming booking. Please try again.');
+    });
   }
 
   function updateCharCounter() {
-      const currentLength = appointmentReason.value.length;
-      charCounter.textContent = `${currentLength}/200 characters`;
+    const currentLength = appointmentReason.value.length;
+    charCounter.textContent = `${currentLength}/500 characters`;
   }
 
   appointmentReason.addEventListener('input', updateCharCounter);
@@ -381,8 +413,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add the event listener for the close button to redirect to the home page
   closeButton.addEventListener('click', () => {
-      const homePath = document.querySelector('.custom-navbar').dataset.homePath;
-      window.location.href = homePath;
+    const homePath = document.querySelector('.custom-navbar').dataset.homePath;
+    window.location.href = homePath;
   });
 
   showForm(categoryList); // Display the category list form by default

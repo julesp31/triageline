@@ -6,6 +6,13 @@
 $default-padding: 2px;
 $default-margin: 10px;
 
+.homepage-background{
+  background-color: #8cdddd;
+  min-height: 100vh;
+  padding: 60px;
+  margin: 0;
+}
+
 // //* CLASS to be applied on any page to adapt Padding for the whole website *//
 .side-bottom-margin-container {
   padding: $default-padding;
@@ -26,7 +33,6 @@ $default-margin: 10px;
   width: 100%;
   max-width: 500px;
   margin: 20px auto;
-  padding: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -38,12 +44,11 @@ $default-margin: 10px;
   height: auto;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-
 }
 
 .profile-image {
   position: absolute;
-  top: 55%;
+  top: auto;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 5px solid white;
@@ -79,6 +84,6 @@ $default-margin: 10px;
 }
 
 .bookbutton-container button {
-  padding: 10px 20px; /* Optional: add some padding to the button */
-  font-size: 16px; /* Optional: set the font size of the button */
+  // padding: 10px 20px; /* Optional: add some padding to the button */
+  // font-size: 16px; /* Optional: set the font size of the button */
 }

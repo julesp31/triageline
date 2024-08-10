@@ -22,26 +22,6 @@
 
                 <div class="booking-index-headings"></div>
 
-                <!-- Repeat for other categories -->
-                <div class="category-card" data-category="admin">
-                    <div class="image-container">
-                        <%= image_tag 'administrator.png', alt: 'Administrative Issues', class: 'app-icons' %>
-                    </div>
-                    <div class="card-product-infos">
-                        <h3>Administrative Issues</h3>
-                        <p>For any non-clinical or administrative questions or concerns.</p>
-                    </div>
-                </div>
-
-                <div class="category-card" data-category="test_results">
-                  <div class="image-container">
-                    <%= image_tag 'test_result.png', alt: 'Aministrative Issues', class: 'app-icons' %>
-                  </div>
-                  <div class="card-product-infos">
-                    <h3>Test Results</h3>
-                    <p>Discuss your test results and plan the next steps.</p>
-                  </div>
-                </div>
 
                 <div class="category-card" data-category="muscles_and_joints">
                   <div class="image-container">
@@ -153,6 +133,26 @@
                   </div>
                 </div>
 
+                <div class="category-card" data-category="admin">
+                    <div class="image-container">
+                        <%= image_tag 'administrator.png', alt: 'Administrative Issues', class: 'app-icons' %>
+                    </div>
+                    <div class="card-product-infos">
+                        <h3>Administrative Issues</h3>
+                        <p>For any non-clinical or administrative questions or concerns.</p>
+                    </div>
+                </div>
+
+                <div class="category-card" data-category="test_results">
+                  <div class="image-container">
+                    <%= image_tag 'test_result.png', alt: 'Aministrative Issues', class: 'app-icons' %>
+                  </div>
+                  <div class="card-product-infos">
+                    <h3>Test Results</h3>
+                    <p>Discuss your test results and plan the next steps.</p>
+                  </div>
+                </div>
+
                 <div class="category-card" data-category="other">
                   <div class="image-container">
                     <%= image_tag 'others.png', alt: 'Other concerns', class: 'app-icons' %>
@@ -163,7 +163,7 @@
                   </div>
                 </div>
 
-                </div>
+              </div>
             </div>
 
 <div id="triage-questions" class="form-section">
@@ -171,15 +171,12 @@
                     <h1 id="triage-title"></h1>
                 </div>
                 <div id="questions-container">
-                    <!-- Example card for a question -->
                     <div class="question-card">
-                        <p>Are you experiencing severe side effects or allergic reactions to a contraceptive method?</p>
                         <div class="question-buttons">
                             <button class="btn btn-primary">Yes</button>
                             <button class="btn btn-primary">No</button>
                         </div>
                     </div>
-                    <!-- Repeat for other questions -->
                 </div>
                 <button id="submit-triage" class="btn btn-primary">Submit</button>
             </div>

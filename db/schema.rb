@@ -82,6 +82,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_201619) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "news_items", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "symptoms", force: :cascade do |t|
     t.string "category", null: false
     t.text "description", null: false
@@ -118,6 +125,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_201619) do
     t.string "practice_town"
     t.string "practice_postcode"
     t.string "title", null: false
+    t.string "specialty"
+    t.string "years_of_experience"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
