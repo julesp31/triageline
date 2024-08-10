@@ -9,9 +9,15 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user_id = current_user.id
     @message.chatroom_id = params[:chatroom_id]
+    @chatroom = @message.chatroom
 
     if @message.save
-      redirect_to appointment_chatroom_path(@message.chatroom.appointment, @message.chatroom)
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        render_to_string(partial: "message", locals: {message: @message})
+      )
+      @message = Message.new
+      render "chatrooms/show", status: :ok
     else
       render "chatrooms/show", status: :unprocessable_entity
     end

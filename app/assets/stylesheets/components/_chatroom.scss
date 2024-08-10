@@ -19,12 +19,26 @@
     padding: 1rem;
   }
 
+  textarea {
+    height: 42px;
+    margin: 0;
+  }
+
   #new_message {
     border-top: 1px solid $gray-200;
-    padding: 1rem;
 
     .form-group {
       margin-bottom: 0;
     }
   }
+}
+
+.chat-form {
+  height: 80px;
+}
+
+.submit-button {
+  margin: 0;
+  height: 42px;
+  margin-left: 16px;
 }
