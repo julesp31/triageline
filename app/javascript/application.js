@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
   let historyStack = [];
   let severity = 'Low'; // Default severity
 
-  let appointmentSeverity = document.getElementById('appointment_severity');
-
   // Appointment Type
   let appointmentFormType = document.getElementById('appointment_appointment_type');
   let appointmentTypes = document.querySelectorAll('.appointment-type-card')
@@ -274,8 +272,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (allAnswered) {
+      let appointmentSeverity = document.getElementById('appointment_severity');
       severity = firstFourYes ? 'High' : 'Low';
-      appointmentSeverity.value = severity;
+      appointmentSeverity.value = severity
       showForm(reasonForAppointment);
     } else {
       alert('Please answer all triage questions before proceeding.');
