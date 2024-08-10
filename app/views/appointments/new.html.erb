@@ -14,14 +14,11 @@
 
 <%= simple_form_for @appointment do |f| %>
   <%= f.input :clinician %>
-  <%= f.input :appointment_date %>
+  <%= f.input :date %>
   <%= f.input :appointment_type  %>
-  <%= f.input :status %>
   <%= f.input :severity %>
   <%= f.button :submit %>
 <% end %>
-
-<button id='test-button'>click me</button>
 
 <div class="content-container">
     <div class="side-bottom-margin-container">

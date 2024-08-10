@@ -2,7 +2,7 @@ class AppointmentsController < ApplicationController
   before_action :set_show_navbar, only: [:show, :new, :index]
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :confirmation]
   before_action :hide_footer, only: [:new]
- 
+
 
   def index
     if current_user.clinician
@@ -22,21 +22,18 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
-    if @appointment.save
-      if request.format.json?
-        render json: { success: true }
-      else
+    @appointment.patient_id = current_user.id
+    @appointment.clinician_id = User.where(clinician: true).first.id
+    @appointment.status = 'pending'
+    @appointment.appointment_date = DateTime.parse(params[:appointment][:date])
+    @appointment.created_at = Time.now
+    @appointment.save!
+    if @appointment.save!
         redirect_to @appointment, notice: 'Appointment booked.'
-      end
     else
-      if request.format.json?
-        render json: { success: false, errors: @appointment.errors.full_messages }
-      else
         render :new
-      end
     end
   end
-
 
   def edit
   end
@@ -68,7 +65,7 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:patient_id, :clinician_id, :appointment_date, :appointment_type, :status, :severity)
+      params.require(:appointment).permit(:patient_id, :clinician_id, :date, :appointment_type, :status, :severity)
     end
 
     def hide_footer
