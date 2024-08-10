@@ -27,8 +27,8 @@ class AppointmentsController < ApplicationController
     @appointment.status = 'pending'
     @appointment.appointment_date = DateTime.parse(params[:appointment][:date])
     @appointment.created_at = Time.now
-    @appointment.save!
     if @appointment.save!
+        create_chatroom(@appointment.id)
         redirect_to @appointment, notice: 'Appointment booked.'
     else
         render :new
@@ -68,9 +68,15 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(:patient_id, :clinician_id, :date, :appointment_type, :status, :severity)
     end
 
+    def create_chatroom(id)
+      chatroom = Chatroom.new
+      chatroom.appointment_id = id
+      chatroom.created_at = Time.now
+      chatroom.name = "room #{Chatroom.count}"
+      chatroom.save!
+    end
+
     def hide_footer
       @hide_footer = true
     end
-
-
 end

@@ -40,53 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
   let historyStack = [];
   let severity = 'Low'; // Default severity
 
-<<<<<<< HEAD
   const testButton = document.querySelector('#test-button');
   const appointmentType = document.getElementById('appointment_appointment_type');
   const appointmentStatus = document.getElementById('appointment_status');
-  const appointmentSeverity = document.getElementById('appointment_severity');
-
-  let buttonText = '';
-  let appointmentTypeText = '';
-  let appointmentStatusText = '';
-  let appointmentSeverityText = '';
-
-  if (testButton) {
-    testButton.addEventListener('click', (event) => {
-      buttonText = event.currentTarget.textContent;
-      console.log('Button text:', buttonText);
-    });
-  }
-
-
-  if (appointmentType) {
-    appointmentType.addEventListener('input', (event) => {
-      appointmentTypeText = event.currentTarget.value;
-      console.log('Appointment type text:', appointmentTypeText);
-    });
-  }
-
-  if (appointmentStatus) {
-    appointmentStatus.addEventListener('input', (event) => {
-      appointmentStatusText = event.currentTarget.value;
-      console.log('Appointment status text:', appointmentStatusText);
-    });
-  }
-
-  if (appointmentSeverity) {
-    appointmentSeverity.addEventListener('input', (event) => {
-      appointmentSeverityText = event.currentTarget.value;
-      console.log('Appointment severity text:', appointmentSeverityText);
-    });
-  }
-
-=======
-  let appointmentSeverity = document.getElementById('appointment_severity');
 
   // Appointment Type
   let appointmentFormType = document.getElementById('appointment_appointment_type');
   let appointmentTypes = document.querySelectorAll('.appointment-type-card')
->>>>>>> master
 
   appointmentTypes.forEach((type) => {
     type.addEventListener('click', () => {
@@ -329,8 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (allAnswered) {
+      let appointmentSeverity = document.getElementById('appointment_severity');
       severity = firstFourYes ? 'High' : 'Low';
-      appointmentSeverity.value = severity;
+      appointmentSeverity.value = severity
       showForm(reasonForAppointment);
     } else {
       alert('Please answer all triage questions before proceeding.');
@@ -438,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function handleConfirmBooking() {
-    document.querySelector('.new_appointment').submit()
+    document.querySelector('#new_appointment').submit();
   }
 
   function updateCharCounter() {

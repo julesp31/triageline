@@ -14,13 +14,7 @@ class Appointment < ApplicationRecord
 
   validates :appointment_date, :appointment_type, :status, :severity, presence: true
 
-  # after_create :create_chatroom
-
   private
 
-  def create_chatroom
-    chatroom = Chatroom.new
-    chatroom.appointment.id = self
-    chatroom.save
-  end
+
 end
