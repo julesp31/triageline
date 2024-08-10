@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :appointments do
+    resources :chatrooms, only: :show do
     resources :messages, only: [:new, :create]
+    end
   end
   resources :symptoms
+
 
   root to: "pages#home"
 

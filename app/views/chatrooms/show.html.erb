@@ -1,7 +1,5 @@
-
-hello
 <div class="container chatroom">
-   <h1>#<%= @chatroom.name %></h1>
+  <h1>#<%= @chatroom.name %></h1>
 
   <div class="messages">
     <% @chatroom.messages.each do |message| %>
@@ -14,4 +12,15 @@ hello
       </div>
     <% end %>
   </div>
+
+  <%= simple_form_for [@chatroom.appointment, @chatroom, @message],
+    html: {class: "d-flex"} do |f|
+  %>
+    <%= f.input :text,
+      label: false,
+      placeholder: "Message ##{@chatroom.name}",
+      wrapper_html: {class: "flex-grow-1"}
+    %>
+    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+  <% end %>
 </div>
