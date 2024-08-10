@@ -21,10 +21,45 @@ document.addEventListener('DOMContentLoaded', function() {
   const charCounter = document.getElementById('char-counter');
 
   let selectedClinician = '';
+  let selectedAppointmentType = '';
   let selectedDate = '';
   let selectedTime = '';
   let historyStack = [];
   let severity = 'Low'; // Default severity
+
+
+  const testButton = document.querySelector('#test-button');
+  const appointmentType = document.getElementById('appointment_appointment_type');
+  const appointmentStatus = document.getElementById('appointment_status');
+  const appointmentSeverity = document.getElementById('appointment_severity');
+
+  let buttonText = '';
+  let appointmentTypeText = '';
+  let appointmentStatusText = '';
+  let appointmentSeverityText = '';
+
+  console.log(testButton.textContent);
+
+  testButton.addEventListener('click', (event) => {
+    buttonText = event.currentTarget.textContent;
+    console.log('Button text:', buttonText);
+  });
+
+  appointmentType.addEventListener('input', (event) => {
+    appointmentTypeText = event.currentTarget.value;
+    console.log('Appointment type text:', appointmentTypeText);
+  });
+
+  appointmentStatus.addEventListener('input', (event) => {
+    appointmentStatusText = event.currentTarget.value;
+    console.log('Appointment status text:', appointmentStatusText);
+  });
+
+  appointmentSeverity.addEventListener('input', (event) => {
+    appointmentSeverityText = event.currentTarget.value;
+    console.log('Appointment severity text:', appointmentSeverityText);
+  });
+
 
   const triageData = {
     'admin': [
@@ -367,8 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function handleConfirmBooking() {
-    alert(`Booking confirmed with ${selectedClinician} on ${selectedDate} at ${selectedTime}`);
-
+    alert(`Booking confirmed on ${selectedDate} at ${selectedTime} in ${selectedAppointmentType}`);
     fetch("/appointments", {
       method: "POST",
       headers: {
@@ -376,9 +410,8 @@ document.addEventListener('DOMContentLoaded', function() {
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF token is included
       },
       body: JSON.stringify({
-        clinician_id: selectedClinicianId, // Ensure you get the clinician ID
         appointment_date: selectedDateTime,
-        appointment_type: selectedAppointmentType, // Ensure you have this variable set earlier in your script
+        appointment_type: selectedAppointmentType,
         severity: severity,
         status: "Pending"
       })

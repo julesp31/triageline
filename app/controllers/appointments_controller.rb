@@ -21,7 +21,6 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
-
     if @appointment.save
       if request.format.json?
         render json: { success: true }
