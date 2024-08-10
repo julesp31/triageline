@@ -1,4 +1,7 @@
 class Appointment < ApplicationRecord
+
+  attr_accessor :date
+
   belongs_to :patient, class_name: 'User'
   belongs_to :clinician, class_name: 'User'
 
@@ -11,7 +14,7 @@ class Appointment < ApplicationRecord
 
   validates :appointment_date, :appointment_type, :status, :severity, presence: true
 
-  after_create :create_chatroom
+  # after_create :create_chatroom
 
   private
 

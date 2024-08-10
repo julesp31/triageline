@@ -27,39 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
   let historyStack = [];
   let severity = 'Low'; // Default severity
 
+  let appointmentSeverity = document.getElementById('appointment_severity');
 
-  const testButton = document.querySelector('#test-button');
-  const appointmentType = document.getElementById('appointment_appointment_type');
-  const appointmentStatus = document.getElementById('appointment_status');
-  const appointmentSeverity = document.getElementById('appointment_severity');
+  // Appointment Type
+  let appointmentFormType = document.getElementById('appointment_appointment_type');
+  let appointmentTypes = document.querySelectorAll('.appointment-type-card')
 
-  let buttonText = '';
-  let appointmentTypeText = '';
-  let appointmentStatusText = '';
-  let appointmentSeverityText = '';
-
-  console.log(testButton.textContent);
-
-  testButton.addEventListener('click', (event) => {
-    buttonText = event.currentTarget.textContent;
-    console.log('Button text:', buttonText);
-  });
-
-  appointmentType.addEventListener('input', (event) => {
-    appointmentTypeText = event.currentTarget.value;
-    console.log('Appointment type text:', appointmentTypeText);
-  });
-
-  appointmentStatus.addEventListener('input', (event) => {
-    appointmentStatusText = event.currentTarget.value;
-    console.log('Appointment status text:', appointmentStatusText);
-  });
-
-  appointmentSeverity.addEventListener('input', (event) => {
-    appointmentSeverityText = event.currentTarget.value;
-    console.log('Appointment severity text:', appointmentSeverityText);
-  });
-
+  appointmentTypes.forEach((type) => {
+    type.addEventListener('click', () => {
+      appointmentFormType.value = type.querySelector('span').innerHTML
+    })
+  })
 
   const triageData = {
     'admin': [
@@ -296,7 +274,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (allAnswered) {
-      severity = firstFourYes ? 'High' : 'Low'; // Set severity based on answers
+      severity = firstFourYes ? 'High' : 'Low';
+      appointmentSeverity.value = severity;
       showForm(reasonForAppointment);
     } else {
       alert('Please answer all triage questions before proceeding.');
@@ -387,9 +366,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function showBookingDetails(clinicianName, dateStr, time) {
+    let appointmentFormDate = document.getElementById('appointment_date');
     selectedClinician = clinicianName;
     selectedDate = dateStr;
     selectedTime = time;
+    appointmentFormDate.value = dateStr + ' ' + time
 
     detailsContainer.innerHTML = `
       <p><strong>Clinician:</strong> ${clinicianName}</p>
@@ -402,32 +383,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function handleConfirmBooking() {
-    alert(`Booking confirmed on ${selectedDate} at ${selectedTime} in ${selectedAppointmentType}`);
-    fetch("/appointments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF token is included
-      },
-      body: JSON.stringify({
-        appointment_date: selectedDateTime,
-        appointment_type: selectedAppointmentType,
-        severity: severity,
-        status: "Pending"
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        window.location.href = "/appointments"; // Redirect to appointments page
-      } else {
-        alert('Error confirming booking. Please try again.');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Error confirming booking. Please try again.');
-    });
+    document.querySelector('.new_appointment').submit()
   }
 
   function updateCharCounter() {
