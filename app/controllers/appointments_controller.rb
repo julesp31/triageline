@@ -27,8 +27,8 @@ class AppointmentsController < ApplicationController
     @appointment.status = 'pending'
     @appointment.appointment_date = DateTime.parse(params[:appointment][:date])
     @appointment.created_at = Time.now
-    @appointment.save!
     if @appointment.save!
+      Chatroom.create!(appointment_id: @appointment.id, name: "chatroom")
         redirect_to @appointment, notice: 'Appointment booked.'
     else
         render :new

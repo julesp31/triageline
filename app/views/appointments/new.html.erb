@@ -12,10 +12,10 @@
     </a>
 </nav>
 
-<%= simple_form_for @appointment do |f| %>
+<%= simple_form_for @appointment, html: { class: 'd-none', id: 'appointment-form' } do |f| %>
   <%= f.input :clinician %>
   <%= f.input :date %>
-  <%= f.input :appointment_type  %>
+  <%= f.input :appointment_type %>
   <%= f.input :severity %>
   <%= f.button :submit %>
 <% end %>

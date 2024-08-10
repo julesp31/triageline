@@ -40,53 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
   let historyStack = [];
   let severity = 'Low'; // Default severity
 
-<<<<<<< HEAD
-  const testButton = document.querySelector('#test-button');
-  const appointmentType = document.getElementById('appointment_appointment_type');
-  const appointmentStatus = document.getElementById('appointment_status');
-  const appointmentSeverity = document.getElementById('appointment_severity');
-
-  let buttonText = '';
-  let appointmentTypeText = '';
-  let appointmentStatusText = '';
-  let appointmentSeverityText = '';
-
-  if (testButton) {
-    testButton.addEventListener('click', (event) => {
-      buttonText = event.currentTarget.textContent;
-      console.log('Button text:', buttonText);
-    });
-  }
-
-
-  if (appointmentType) {
-    appointmentType.addEventListener('input', (event) => {
-      appointmentTypeText = event.currentTarget.value;
-      console.log('Appointment type text:', appointmentTypeText);
-    });
-  }
-
-  if (appointmentStatus) {
-    appointmentStatus.addEventListener('input', (event) => {
-      appointmentStatusText = event.currentTarget.value;
-      console.log('Appointment status text:', appointmentStatusText);
-    });
-  }
-
-  if (appointmentSeverity) {
-    appointmentSeverity.addEventListener('input', (event) => {
-      appointmentSeverityText = event.currentTarget.value;
-      console.log('Appointment severity text:', appointmentSeverityText);
-    });
-  }
-
-=======
   let appointmentSeverity = document.getElementById('appointment_severity');
 
   // Appointment Type
   let appointmentFormType = document.getElementById('appointment_appointment_type');
   let appointmentTypes = document.querySelectorAll('.appointment-type-card')
->>>>>>> master
 
   appointmentTypes.forEach((type) => {
     type.addEventListener('click', () => {
@@ -211,16 +169,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
     'phone': [
-        { name: 'clinician', times: ['8:00am', '10:00am', '1:00pm'] },
-        { name: '', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Dr. Marie Cure', times: ['8:00am', '10:00am', '1:00pm'] },
+        { name: 'Dr. Albert Johnson', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
     'video': [
-        { name: '', times: ['8:30am', '10:30am', '1:30pm'] },
-        { name: '', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Miss Jane Doe', times: ['8:30am', '10:30am', '1:30pm'] },
+        { name: 'Dr. Ben Williams', times: ['9:30am', '11:30am', '2:30pm'] },
     ],
     'in-person': [
-        { name: '', times: ['8:45am', '10:45am', '1:45pm'] },
-        { name: '', times: ['9:45am', '11:45am', '2:45pm'] },
+        { name: 'Mrs Carol Smith', times: ['8:45am', '10:45am', '1:45pm'] },
+        { name: 'Dr. Liam Sanders', times: ['9:45am', '11:45am', '2:45pm'] },
     ],
 };
 
