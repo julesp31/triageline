@@ -1,3 +1,16 @@
+import "@rails/actioncable"
+import { Application } from "@hotwired/stimulus"
+import ChatroomSubscriptionController from "./controllers/chatroom_subscription_controller.js"
+
+const application = Application.start()
+
+// Configure Stimulus development experience
+application.debug = false
+window.Stimulus   = application
+
+Stimulus.register("chatroom-subscription", ChatroomSubscriptionController)
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const categoryList = document.getElementById('category-list');
   const triageQuestions = document.getElementById('triage-questions');
@@ -26,6 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
   let selectedTime = '';
   let historyStack = [];
   let severity = 'Low'; // Default severity
+
+  const testButton = document.querySelector('#test-button');
+  const appointmentType = document.getElementById('appointment_appointment_type');
+  const appointmentStatus = document.getElementById('appointment_status');
 
   // Appointment Type
   let appointmentFormType = document.getElementById('appointment_appointment_type');
@@ -382,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function handleConfirmBooking() {
-    document.querySelector('.new_appointment').submit()
+    document.querySelector('#new_appointment').submit();
   }
 
   function updateCharCounter() {
@@ -390,20 +407,29 @@ document.addEventListener('DOMContentLoaded', function() {
     charCounter.textContent = `${currentLength}/500 characters`;
   }
 
-  appointmentReason.addEventListener('input', updateCharCounter);
+  if (appointmentReason) {
 
-  categoryList.addEventListener('click', handleCategoryCardClick);
-  submitTriageButton.addEventListener('click', handleSubmitTriage);
-  document.getElementById('submit-reason').addEventListener('click', handleSubmitReason);
-  appointmentTypeList.addEventListener('click', handleAppointmentTypeCardClick);
-  confirmBookingButton.addEventListener('click', handleConfirmBooking);
-  backButton.addEventListener('click', handleBackButtonClick);
+    appointmentReason.addEventListener('input', updateCharCounter);
 
-  // Add the event listener for the close button to redirect to the home page
-  closeButton.addEventListener('click', () => {
-    const homePath = document.querySelector('.custom-navbar').dataset.homePath;
-    window.location.href = homePath;
-  });
+    categoryList.addEventListener('click', handleCategoryCardClick);
+    submitTriageButton.addEventListener('click', handleSubmitTriage);
+    document.getElementById('submit-reason').addEventListener('click', handleSubmitReason);
+    appointmentTypeList.addEventListener('click', handleAppointmentTypeCardClick);
+    confirmBookingButton.addEventListener('click', handleConfirmBooking);
+    backButton.addEventListener('click', handleBackButtonClick);
 
-  showForm(categoryList); // Display the category list form by default
+    // Add the event listener for the close button to redirect to the home page
+    closeButton.addEventListener('click', () => {
+      const homePath = document.querySelector('.custom-navbar').dataset.homePath;
+      window.location.href = homePath;
+    });
+
+    showForm(categoryList); // Display the category list form by default
+  }
+
+
+
 });
+
+
+export { application }
