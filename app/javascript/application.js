@@ -397,3 +397,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
   showForm(categoryList); // Display the category list form by default
 });
+
