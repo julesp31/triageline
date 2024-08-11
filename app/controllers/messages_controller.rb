@@ -6,11 +6,20 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @appointment.messages.new(message_params)
+    @message = Message.new(message_params)
+    @message.user_id = current_user.id
+    @message.chatroom_id = params[:chatroom_id]
+    @chatroom = @message.chatroom
+
     if @message.save
-      redirect_to @appointment, notice: 'Message sent.'
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        render_to_string(partial: "message", locals: {message: @message})
+      )
+      @message = Message.new
+      render "chatrooms/show", status: :ok
     else
-      render :new
+      render "chatrooms/show", status: :unprocessable_entity
     end
   end
 

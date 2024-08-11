@@ -3,6 +3,7 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :confirmation]
   before_action :hide_footer, only: [:new]
 
+
   def index
     if current_user.clinician
       @appointments = current_user.appointments_as_clinician
@@ -21,10 +22,16 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
-    if @appointment.save
-      redirect_to @appointment, notice: 'Appointment booked.'
+    @appointment.patient_id = current_user.id
+    @appointment.clinician_id = User.where(clinician: true).first.id
+    @appointment.status = 'pending'
+    @appointment.appointment_date = DateTime.parse(params[:appointment][:date])
+    @appointment.created_at = Time.now
+    if @appointment.save!
+        create_chatroom(@appointment.id)
+        redirect_to @appointment, notice: 'Appointment booked.'
     else
-      render :new
+        render :new
     end
   end
 
@@ -58,7 +65,15 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:patient_id, :clinician_id, :appointment_date, :appointment_type, :status, :severity)
+      params.require(:appointment).permit(:patient_id, :clinician_id, :date, :appointment_type, :status, :severity)
+    end
+
+    def create_chatroom(id)
+      chatroom = Chatroom.new
+      chatroom.appointment_id = id
+      chatroom.created_at = Time.now
+      chatroom.name = "room #{Chatroom.count}"
+      chatroom.save!
     end
 
     def hide_footer

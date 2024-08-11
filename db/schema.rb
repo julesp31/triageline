@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_03_145724) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_09_201619) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,12 +64,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_145724) do
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "chatrooms", force: :cascade do |t|
     t.bigint "appointment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["appointment_id"], name: "index_chatrooms_on_appointment_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
     t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["appointment_id"], name: "index_messages_on_appointment_id"
+    t.bigint "user_id", null: false
+    t.bigint "chatroom_id", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "news_items", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "symptoms", force: :cascade do |t|
@@ -120,5 +137,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_145724) do
   add_foreign_key "appointment_symptoms", "symptoms"
   add_foreign_key "appointments", "users", column: "clinician_id"
   add_foreign_key "appointments", "users", column: "patient_id"
-  add_foreign_key "messages", "appointments"
+  add_foreign_key "chatrooms", "appointments"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
 end

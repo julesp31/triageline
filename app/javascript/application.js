@@ -1,5 +1,15 @@
-import "bootstrap"
-import "@popperjs/core"
+import "@rails/actioncable"
+import { Application } from "@hotwired/stimulus"
+import ChatroomSubscriptionController from "./controllers/chatroom_subscription_controller.js"
+
+const application = Application.start()
+
+// Configure Stimulus development experience
+application.debug = false
+window.Stimulus   = application
+
+Stimulus.register("chatroom-subscription", ChatroomSubscriptionController)
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const categoryList = document.getElementById('category-list');
@@ -24,10 +34,25 @@ document.addEventListener('DOMContentLoaded', function() {
   const charCounter = document.getElementById('char-counter');
 
   let selectedClinician = '';
+  let selectedAppointmentType = '';
   let selectedDate = '';
   let selectedTime = '';
   let historyStack = [];
   let severity = 'Low'; // Default severity
+
+  const testButton = document.querySelector('#test-button');
+  const appointmentType = document.getElementById('appointment_appointment_type');
+  const appointmentStatus = document.getElementById('appointment_status');
+
+  // Appointment Type
+  let appointmentFormType = document.getElementById('appointment_appointment_type');
+  let appointmentTypes = document.querySelectorAll('.appointment-type-card')
+
+  appointmentTypes.forEach((type) => {
+    type.addEventListener('click', () => {
+      appointmentFormType.value = type.querySelector('span').innerHTML
+    })
+  })
 
   const triageData = {
     'admin': [
@@ -146,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
     'phone': [
-        { name: '', times: ['8:00am', '10:00am', '1:00pm'] },
+        { name: 'clinician', times: ['8:00am', '10:00am', '1:00pm'] },
         { name: '', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
     'video': [
@@ -264,7 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (allAnswered) {
-      severity = firstFourYes ? 'High' : 'Low'; // Set severity based on answers
+      let appointmentSeverity = document.getElementById('appointment_severity');
+      severity = firstFourYes ? 'High' : 'Low';
+      appointmentSeverity.value = severity
       showForm(reasonForAppointment);
     } else {
       alert('Please answer all triage questions before proceeding.');
@@ -355,9 +382,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function showBookingDetails(clinicianName, dateStr, time) {
+    let appointmentFormDate = document.getElementById('appointment_date');
     selectedClinician = clinicianName;
     selectedDate = dateStr;
     selectedTime = time;
+    appointmentFormDate.value = dateStr + ' ' + time
 
     detailsContainer.innerHTML = `
       <p><strong>Clinician:</strong> ${clinicianName}</p>
@@ -370,9 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function handleConfirmBooking() {
-    alert(`Booking confirmed with ${selectedClinician} on ${selectedDate} at ${selectedTime}`);
-    // Handle the booking confirmation logic here
-    showForm(appointmentPending);
+    document.querySelector('#new_appointment').submit();
   }
 
   function updateCharCounter() {
@@ -380,21 +407,27 @@ document.addEventListener('DOMContentLoaded', function() {
     charCounter.textContent = `${currentLength}/500 characters`;
   }
 
-  appointmentReason.addEventListener('input', updateCharCounter);
+  if (appointmentReason) {
 
-  categoryList.addEventListener('click', handleCategoryCardClick);
-  submitTriageButton.addEventListener('click', handleSubmitTriage);
-  document.getElementById('submit-reason').addEventListener('click', handleSubmitReason);
-  appointmentTypeList.addEventListener('click', handleAppointmentTypeCardClick);
-  confirmBookingButton.addEventListener('click', handleConfirmBooking);
-  backButton.addEventListener('click', handleBackButtonClick);
+    appointmentReason.addEventListener('input', updateCharCounter);
 
-  // Add the event listener for the close button to redirect to the home page
-  closeButton.addEventListener('click', () => {
-    const homePath = document.querySelector('.custom-navbar').dataset.homePath;
-    window.location.href = homePath;
-  });
+    categoryList.addEventListener('click', handleCategoryCardClick);
+    submitTriageButton.addEventListener('click', handleSubmitTriage);
+    document.getElementById('submit-reason').addEventListener('click', handleSubmitReason);
+    appointmentTypeList.addEventListener('click', handleAppointmentTypeCardClick);
+    confirmBookingButton.addEventListener('click', handleConfirmBooking);
+    backButton.addEventListener('click', handleBackButtonClick);
 
-  showForm(categoryList); // Display the category list form by default
+    // Add the event listener for the close button to redirect to the home page
+    closeButton.addEventListener('click', () => {
+      const homePath = document.querySelector('.custom-navbar').dataset.homePath;
+      window.location.href = homePath;
+    });
+
+    showForm(categoryList); // Display the category list form by default
+  }
+
+
+
 });
 
