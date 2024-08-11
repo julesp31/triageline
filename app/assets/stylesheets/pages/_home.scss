@@ -17,7 +17,7 @@ $default-margin: 10px;
 .side-bottom-margin-container {
   padding: $default-padding;
   margin: $default-margin;
-  padding-bottom: 10px; /* Adjust according to the footer height */
+  padding-bottom: 40px; /* Adjust according to the footer height */
   // // box-sizing: border-box;
   // // margin: 6px;
   //  position: relative;
@@ -83,7 +83,30 @@ $default-margin: 10px;
   // height: 100vh; /* Full viewport height to center vertically */
 }
 
-.bookbutton-container button {
-  // padding: 10px 20px; /* Optional: add some padding to the button */
-  // font-size: 16px; /* Optional: set the font size of the button */
+
+.home-image-container {
+  position: relative;
+  width: 100%;
+}
+
+.home-image {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.overlay-text {
+  h2 {
+    color: white;
+  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  text-align: center;
 }

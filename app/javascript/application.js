@@ -431,5 +431,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-
-export { application }
