@@ -5,12 +5,9 @@
 }
 
 .news-feed-card .card-header {
-  // background-color: $white;
   border-radius: 10px;
   cursor: pointer;
-  border-color: #35C5CE;
-  border-width: 2px;
-  // padding: 15px 20px;
+  border-width: 3px;
 }
 
 .news-feed-card .card-header h5 {
@@ -19,7 +16,7 @@
 }
 
 .news-feed-card .btn-toggle {
-  background-color: #35C5CE;
+  background-color: $midgreen;
   color: #FFFFFF;
   border: none;
   border-radius: 70%;
@@ -30,7 +27,7 @@
 }
 
 .news-feed-card .btn-toggle:hover {
-  background-color: #35C5CE;
+  background-color: $darkgreen;
 }
 
 .news-feed-card .card-body {
@@ -57,10 +54,13 @@
   text-align: center;
 }
 
-.home-image {
-  max-width: 100%;
-  height: auto;
-  // margin-bottom: 15px;
-  // border-radius: 5px;
 
+.overlay-text h1 {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
