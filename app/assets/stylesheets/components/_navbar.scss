@@ -86,3 +86,16 @@ h1 {
   font-family: 'Open Sans', sans-serif;
   border-radius: 20px;
 }
+
+  /* New style to control the width of the navbar-toggler button */
+  .navbar-toggler {
+    width: 40px; /* Adjust the width as necessary */
+    padding: 0.25rem 0.5rem; /* Reduce padding to make it more compact */
+  }
+
+  /* Ensuring the toggler and brand stay on the same row */
+  .navbar-container .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }

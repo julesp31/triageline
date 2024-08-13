@@ -13,7 +13,7 @@ h1, .form-section h1 {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
   font-size: 30px;
-  color: #004d4d;
+  color: $midgreen;
   text-align: center;
   padding: 16px;
 }
@@ -21,11 +21,11 @@ h1, .form-section h1 {
 h2, h3, .form-section h2, .form-section h3 {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  color: #004d4d; /* Unified color */
+  color: $midgreen; /* Unified color */
 }
 
 p, .form-section p {
-  color: #004d4d; /* Unified color */
+  color: $midgreen; /* Unified color */
   text-align: left;
 }
 
@@ -69,7 +69,7 @@ p, .form-section p {
   height: 100px;
   margin: 50px;
   border-radius: 50%;
-  background-color: #004d4d; /* Example hex value for $midgreen */
+  background-color: $midgreen; /* Example hex value for $midgreen */
   color: white;
   font-size: 14px;
   text-align: center;
