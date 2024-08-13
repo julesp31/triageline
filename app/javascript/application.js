@@ -172,16 +172,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
     'phone': [
-        { name: 'clinician', times: ['8:00am', '10:00am', '1:00pm'] },
-        { name: '', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Doctor Marie Cure', times: ['8:00am', '10:00am', '1:00pm'] },
+        { name: 'Doctor Albert Johnson', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Senior Nurse Jane Doe', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Physician Associate Albert Johnson', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
     'video': [
-        { name: '', times: ['8:30am', '10:30am', '1:30pm'] },
-        { name: '', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Doctor Liam Saunders', times: ['8:30am', '10:30am', '1:30pm'] },
+        { name: 'Doctor Alice Newton', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Senior Nurse Jane Doe', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Senior Physician Associate Carol Smith', times: ['9:30am', '11:30am', '2:30pm'] },
     ],
     'in-person': [
-        { name: '', times: ['8:45am', '10:45am', '1:45pm'] },
-        { name: '', times: ['9:45am', '11:45am', '2:45pm'] },
+        { name: 'Doctor Alice Newton', times: ['8:45am', '10:45am', '1:45pm'] },
+        { name: 'Doctor Marie Cure', times: ['9:45am', '11:45am', '2:45pm'] },
+        { name: 'Doctor Albert Johnson', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Senior Nurse Jane Doe', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
 };
 
