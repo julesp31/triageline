@@ -1,8 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_show_navbar, only: [:show, :new, :index]
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :confirmation]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :confirmation, :toggle_status]
   before_action :hide_footer, only: [:new]
-
 
   def index
     if current_user.clinician
@@ -52,6 +51,24 @@ class AppointmentsController < ApplicationController
   end
 
   def confirmation
+  end
+
+  def toggle_status
+    case params[:status]
+    when 'Pending'
+      @appointment.update(status: 'Pending')
+    when 'Accepted'
+      @appointment.update(status: 'Accepted')
+    when 'Closed'
+      @appointment.update(status: 'Closed')
+    when 'Cancelled'
+      @appointment.update(status: 'Cancelled')
+    end
+
+    respond_to do |format|
+      format.html { redirect_to appointments_path, notice: 'Appointment status was successfully updated.' }
+      format.json { head :no_content }
+    end
   end
 
     private

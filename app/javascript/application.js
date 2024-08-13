@@ -333,12 +333,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const times = document.createElement('div');
         times.className = 'card-body';
+
+        // Calculate tomorrow's date
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        // Format tomorrow's date (e.g., YYYY-MM-DD)
+        const formattedTomorrow = tomorrow.toISOString().split('T')[0]; // Example: "2024-08-14"
+
         clinician.times.forEach(time => {
           const timeSlot = document.createElement('div');
           timeSlot.textContent = time;
           timeSlot.className = 'time-slot btn btn-light mb-2';
           timeSlot.addEventListener('click', () => {
-            showBookingDetails(clinician.name, '', time);
+            showBookingDetails(clinician.name, formattedTomorrow, time);
           });
           times.appendChild(timeSlot);
         });

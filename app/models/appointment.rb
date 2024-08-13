@@ -1,5 +1,8 @@
 class Appointment < ApplicationRecord
 
+  enum status: { pending: 'Pending', accepted: 'Accepted', cancelled: 'Cancelled', closed: 'Closed' }
+  validates :status, inclusion: { in: statuses.keys }
+
   attr_accessor :date
 
   belongs_to :patient, class_name: 'User'
