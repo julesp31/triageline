@@ -2,6 +2,9 @@
 import "@rails/actioncable"
 import { Application } from "@hotwired/stimulus"
 import ChatroomSubscriptionController from "./controllers/chatroom_subscription_controller.js"
+import "@popperjs/core"
+import "bootstrap"
+
 
 const application = Application.start()
 
