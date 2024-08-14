@@ -1,15 +1,41 @@
-/* Padding for the whole website */
+/* Default Padding and Margin for the website */
 $default-padding: 2px;
 $default-margin: 10px;
 
-/* CLASS to be applied on any page to adapt Padding for the whole website */
+/* Class to be applied on any page to adapt Padding for the whole website */
 .side-bottom-margin-container {
   padding: $default-padding;
   margin: $default-margin;
   padding-bottom: 40px;
 }
 
-/* home page */
+
+.bookbutton-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-inner {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-inner h1 {
+  color: white;
+  background-color: rgba(31, 124, 142, 0.6);
+  display: inline-block;
+  line-height: 1;
+  padding: 5px;
+}
+
+
+.home-image-container {
+  position: relative;
+  width: 100%;
+}
+
+
 .welcome-card {
   position: relative;
   width: 100%;
@@ -20,21 +46,30 @@ $default-margin: 10px;
   border-radius: 10px;
   text-align: left;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
 }
 
 .background-image img {
   width: 100%;
   height: auto;
   border-radius: 10px;
-  opacity: .5;
+  opacity: 0.3;
+}
 
+.welcome-content {
+  position: absolute;
+  top: 10%;
+  left: 20px;  /* Aligns text to the left */
+  right: 20px; /* Ensures the profile image stays aligned to the right */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;  /* Aligns the profile image to the top of the text */
+}
+
+.welcome-text h1 {
+  font-size: 24px;
 }
 
 .profile-image {
-  position: absolute;
-  top: 10%;
-  right: 20px; /* Adjust the position to your liking */
   border: 1px solid white;
   border-radius: 50%;
   overflow: hidden;
@@ -47,56 +82,3 @@ $default-margin: 10px;
   border: 4px solid #fff; /* White border around the profile picture */
   object-fit: cover;
 }
-
-.welcome-content {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: absolute;
-  top: 10%;
-  left: 20px; /* Position the content closer to the left */
-  width: calc(100% - 40px); /* Adjust width to account for padding */
-  padding: 0 20px;
-  text-align: left;
-}
-
-.welcome-text {
-  flex: 1;
-}
-
-.welcome-text h1, .welcome-text p {
-  margin: 0;
-  text-align: left; /* Ensure the text is left-aligned */
-}
-
-.welcome-text h1 {
-  font-size: 24px;
-  margin-bottom: 10px; /* Add some space between the heading and paragraph */
-}
-
-.bookbutton-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.home-image-container {
-  position: relative;
-  width: 100%;
-}
-
-.home-image {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.carousel-inner {
-  border-radius: 10px;
-  margin-top: 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 80px;
-  }
-
-

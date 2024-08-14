@@ -1,89 +1,85 @@
-
-<div class="side-bottom-margin-container">
-  <%# <div class="welcome-card">
-    <div class="background-image">
-      <img src="https://wallpapercave.com/wp/wp6938358.jpg" alt="Background Image">
-    </div>
-
-    <div class="welcome-content">
-      <div class="welcome-text">
-        <h1>Welcome 👋 <%= @patient to Triageline</h1> %>
-        <%# <p>We're glad to have you here. How can we help you today?.</p>
-      </div>
-      <div class="profile-image">
-        <img src="https://d26jy9fbi4q9wx.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNXpLQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--517cc3d97a3f14b7197848ffe1904a19b6b2423b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2hwQWNocEFjaDdCam9KWTNKdmNEb09ZWFIwWlc1MGFXOXUiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b67d9ded4d28d0969fbb98b4c21b79257705a99a/Aightee.jpg" alt="Profile Image">
-      </div>
-    </div>
-  </div> %>
-
-
-
-  <!-- Bootstrap Carousel -->
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-
-    <!-- Indicators/Dots -->
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-
-    <!-- The Slideshow/Carousel -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="https://aginginplace.org/wp-content/uploads/Home_health.jpg" alt="Los Angeles" class="d-block w-100">
-        <div class="carousel-caption">
-          <h1>We ae here to make you smile!</h1>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://wallpapercave.com/wp/wp6938358.jpg" alt="Chicago" class="d-block w-100">
-        <div class="carousel-caption d-none d-md-block">
-          <h1>Ranked number one in the UK!</h1>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://www.healthworkscollective.com/wp-content/uploads/2017/08/healthcare-tech.jpg" alt="New York" class="d-block w-100">
-        <div class="carousel-caption d-none d-md-block">
-          <h1>We value your time!</h1>
-        </div>
-      </div>
-    </div>
-
-    <!-- Left and Right Controls/Icons -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+<div class="welcome-card">
+  <div class="background-image">
+    <img src="https://wallpapercave.com/wp/wp6938358.jpg" alt="Background Image">
   </div>
 
-  <div class="bookbutton-container">
-    <a class="btn-bookappointment" href="/appointments/new">Book Appointment</a>
+  <div class="welcome-content">
+    <div class="welcome-text">
+      <p>Good afternoon</p>
+      <h2>Itoro Umana</h2>
+    </div>
+    <div class="profile-image">
+      <img src="https://d26jy9fbi4q9wx.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNXpLQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--517cc3d97a3f14b7197848ffe1904a19b6b2423b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2hwQWNocEFjaDdCam9KWTNKdmNEb09ZWFIwWlc1MGFXOXUiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b67d9ded4d28d0969fbb98b4c21b79257705a99a/Aightee.jpg" alt="Profile Image">
+    </div>
   </div>
+</div>
 
-  <%# card with drop down %>
-  <div class="container mt-5">
-    <div class="card news-feed-card mb-3" id="newsCard1">
-      <div class="home-image-container">
-        <%= image_tag 'homeimage.jpg', alt: 'Logo', class: 'home-image' %>
-        <div class="overlay-text">
-          <h1>How can we help you today?</h1>
+
+<div class="welcomequestion">
+  <h4>How can we help you today?</h4>
+</div>
+
+<div class="bookbutton-container">
+  <a class="btn-bookappointment" href="/appointments/new" data-turbo="false">Book Appointment</a>
+</div>
+
+<!-- Card with dropdown -->
+<div class="container mt-5">
+  <div class="card news-feed-card mb-3" id="newsCard1">
+
+    <!-- Bootstrap Carousel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+      <!-- Indicators/Dots -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+
+      <!-- The Slideshow/Carousel -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag 'Hero_image1.jpg', alt: 'Hero_image1', class: 'd-block w-100' %>
+          <div class="carousel-caption">
+            <h1>Welcome to Triageline!</h1>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <%= image_tag 'Hero_image2.jpg', alt: 'Hero_image2', class: 'd-block w-100' %>
+          <div class="carousel-caption">
+            <h1>Your Health, One Tap Away</h1>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <%= image_tag 'Hero_image3.jpg', alt: 'Hero_image3', class: 'd-block w-100' %>
+          <div class="carousel-caption">
+            <h1>Your Health, Our Priority</h1>
+          </div>
         </div>
       </div>
 
-      <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseContent1" aria-expanded="false" aria-controls="collapseContent1">
-        <h5 class="mb-0">Administrative Issues?</h5>
-        <button class="btn btn-toggle" type="button">+</button>
-      </div>
+      <!-- Left and Right Controls/Icons -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
-      <div class="collapse" id="collapseContent1">
-        <div class="card-body">
-          <p>Here is the content for News Topic 1. You can edit this content from the backend.</p>
-        </div>
+    <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseContent1" aria-expanded="false" aria-controls="collapseContent1">
+      <h5 class="mb-0">Administrative Issues?</h5>
+      <button class="btn btn-toggle" type="button">+</button>
+    </div>
+
+    <div class="collapse" id="collapseContent1">
+      <div class="card-body">
+        <p>Here is the content for News Topic 1. You can edit this content from the backend.</p>
       </div>
     </div>
   </div>
