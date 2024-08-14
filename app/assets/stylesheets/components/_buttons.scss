@@ -1,16 +1,23 @@
 // Book appointment button styling //
 .btn-bookappointment {
   display: inline-block;
-  width: auto;
+  width: 100%; /* Full width to make it responsive */
+  max-width: 100%; /* Ensures it does not exceed the container width */
+  min-width: 330px; /* Set the minimum width */
   padding: 10px 20px;
-  background-color: $midgreen;
-  color: $white;
-  border: none;
-  border-radius: 4px;
+  background-color: $white;
+  color: $midgreen;
+  border-radius: 20px;
+  border-color: $midgreen;
+  border-width: 1px;
+  border-style: solid; /* Add this line */
   text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 48px;
+  text-align: center;
+  // margin-top: 48px;
+  box-sizing: border-box; /* Ensures padding is included in the width */
 }
+
+
 
 .back-button {
   background: white; /* Example hex value for $green */
