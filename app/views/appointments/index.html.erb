@@ -33,7 +33,7 @@
             <div class="d-flex align-items-center mb-2">
               <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
               <strong>Status:</strong>
-              <%= button_tag type: 'button', class: 'btn btn-secondary dropdown-toggle', id: "statusDropdown#{appointment.id}", data: { toggle: 'dropdown' } do %>
+              <%= button_tag type: 'button', id: "statusDropdown#{appointment.id}", data: { toggle: 'dropdown' } do %>
                 <%= appointment.status %>
               <% end %>
               <div class="dropdown-menu" aria-labelledby="statusDropdown#{appointment.id}">
@@ -49,7 +49,7 @@
             </div>
 
             <div>
-            <%= button_to "accept", toggle_status_appointment_path(appointment), method: :post, params: {status: "Accepted"} %>
+            <%= button_to "Closed", toggle_status_appointment_path(appointment), method: :post, params: {status: "Closed"} %>
             </div>
 
             <% if current_user.clinician? %>
