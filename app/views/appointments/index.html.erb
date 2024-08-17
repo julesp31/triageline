@@ -33,9 +33,7 @@
             <div class="d-flex align-items-center mb-2">
               <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
               <strong>Status: <%= appointment.status %></strong>
-              <%= button_tag type: 'button', id: "statusDropdown#{appointment.id}", data: { toggle: 'dropdown' } do %>
 
-              <% end %>
               <div class="dropdown-menu" aria-labelledby="statusDropdown#{appointment.id}">
                 <%= link_to 'Pending', '#', class: 'dropdown-item change-status', data: { status: 'Pending', id: appointment.id } %>
                 <%= link_to 'Accepted', '#', class: 'dropdown-item change-status', data: { status: 'Accepted', id: appointment.id } %>
