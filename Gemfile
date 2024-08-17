@@ -28,6 +28,8 @@ gem "jbuilder"
 
 gem 'flatpickr'
 
+gem 'redis'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
