@@ -12,9 +12,9 @@ require "open-uri"
 
 puts "Purging database..."
 
+Message.destroy_all
 Chatroom.destroy_all
 AppointmentSymptom.destroy_all
-Message.destroy_all
 Appointment.destroy_all
 Symptom.destroy_all
 User.destroy_all
