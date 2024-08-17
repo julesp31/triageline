@@ -7,6 +7,7 @@
   border-radius: 10px;
   cursor: pointer;
   border-width: 3px;
+  padding: 18px;
 }
 
 .news-feed-card .card-header h5 {
@@ -17,12 +18,22 @@
 .news-feed-card .btn-toggle {
   background-color: $midgreen;
   color: #FFFFFF;
-  border: none;
-  border-radius: 70%;
-  width: 30px;
-  height: 30px;
   font-size: 18px;
-  line-height: 20px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 50%;
+}
+
+.home-button {
+  background-color: $midgreen;
+  color: #FFFFFF;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 6px solid white;
 }
 
 .news-feed-card .btn-toggle:hover {

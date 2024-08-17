@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="text-center mb-4">
-    <h1>Appointments</h1>
+    <h1 style='font-size: 30px;'>Appointments</h1>
   </div>
 
   <div class="row">
@@ -9,7 +9,7 @@
         <div class="card shadow-sm">
           <div class="card-body">
             <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
-              <h5 class="card-title lobster-regular <%= 'text-danger' if appointment.severity == 'High' %>">
+              <h5 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
                 <%= appointment.appointment_date.strftime('%B %e, %Y') %> - <%= appointment.appointment_type %> - <%= appointment.status %>
               </h5>
             <% end %>
@@ -56,7 +56,7 @@
           </div>
 
           <% if appointment.chatroom %>
-            <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom) %>
+            <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom), class: 'done-button m-3 mt-1' %>
           <% end %>
         </div>
       </div>
