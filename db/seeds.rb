@@ -228,9 +228,9 @@ clinician7.save!
 patient1 = User.new(
   email: 'patient@gmail.com',
   password: 'test12345',
-  title: 'Mr',
-  first_name: 'John',
-  last_name: 'Doe',
+  title: 'Miss',
+  first_name: 'Basia',
+  last_name: 'Brzeziecka',
   date_of_birth: '10/07/1961',
   gender_at_birth: 'Woman',
   phone_number: '07283467783',
