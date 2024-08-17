@@ -54,6 +54,10 @@
               </div>
             <% end %>
           </div>
+
+          <% if appointment.chatroom %>
+            <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom) %>
+          <% end %>
         </div>
       </div>
     <% end %>
