@@ -1,20 +1,8 @@
-
-import "@rails/actioncable"
 import "@hotwired/turbo-rails"
-import { Application } from "@hotwired/stimulus"
-import ChatroomSubscriptionController from "./controllers/chatroom_subscription_controller.js"
+import 'controllers'
 import "@popperjs/core"
 import "bootstrap"
-
-
-const application = Application.start()
-
-// Configure Stimulus development experience
-application.debug = false
-window.Stimulus   = application
-
-Stimulus.register("chatroom-subscription", ChatroomSubscriptionController)
-
+import "@rails/actioncable"
 
 document.addEventListener('DOMContentLoaded', function() {
   const categoryList = document.getElementById('category-list');
