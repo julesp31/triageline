@@ -49,12 +49,10 @@
             </div>
 
 
-
             <% if current_user.clinician? %>
               <div class="d-flex justify-content-end mt-3">
                 <%= button_to "Close", toggle_status_appointment_path(appointment), method: :post, params: {status: "Closed"} %>
                 <%= button_to "Accept", toggle_status_appointment_path(appointment), method: :post, params: {status: "Accepted"} %>
-
               </div>
             <% end %>
           </div>

@@ -5,9 +5,9 @@ class AppointmentsController < ApplicationController
 
   def index
     if current_user.clinician
-      @appointments = current_user.appointments_as_clinician.order(created_at: :desc)
+      @appointments = current_user.appointments_as_clinician.order(appointment_date: :desc)
     else
-      @appointments = current_user.appointments_as_patient.order(created_at: :desc)
+      @appointments = current_user.appointments_as_patient.order(appointment_date: :desc)
     end
 
   end
