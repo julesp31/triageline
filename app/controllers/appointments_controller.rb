@@ -9,10 +9,12 @@ class AppointmentsController < ApplicationController
     else
       @appointments = current_user.appointments_as_patient.order(appointment_date: :desc)
     end
+
   end
 
   def show
     @appointment = Appointment.find(params[:id])
+    @clinician = User.find(@appointment.clinician_id)
   end
 
   def new
@@ -29,12 +31,8 @@ class AppointmentsController < ApplicationController
 
     if @appointment.save!
         create_chatroom(@appointment.id)
-        if current_user.clinician
-          @appointments = current_user.appointments_as_clinician.order(appointment_date: :desc)
-        else
-          @appointments = current_user.appointments_as_patient.order(appointment_date: :desc)
-        end
-        render :index
+        @clinician = @appointment.clinician
+        render :show
     else
         render :new
     end

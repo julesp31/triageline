@@ -1,19 +1,50 @@
-<div>
+<div class= "background-content">
+
+  <div class="d-flex justify-content-around">
+    <div class="confirmation-icon">
+      <%= image_tag 'confirmation_icon_blue.png', alt: 'date_icon', class: 'confirmation-icons' %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class= "confirmation-message">
+      <h1>Booking pending </h1>
+      <p>Congratulation e-mail and SMS has been sent to your registered details </p>
+    </div>
+  </div>
+
+  <div class="">
+    <div class= "appointment-confirmation-card d-flex">
+        <% if current_user.clinician %>
+          <p>I'm a clinician</p>
+          <p><%= @appointment.appointment_date %></p>
+        <% else %>
+
+          <div class="w-50">
+            <%= image_tag 'nurse_female.png', alt: 'clincian_icon', class: 'nurse_female-icon' %>
+          </div>
+
+          <div class="p-3">
+            <h1>Dr <%= @clinician.first_name %> <%= @clinician.last_name %></h1>
+            <p>General Pratitioner</p>
+            <p><%= @appointment.appointment_date.strftime("%B %d, %Y %I:%M %p") %></p>
+          </div>
+
+        <% end %>
+    </div>
+      <div class='d-flex justify-content-around mt-4'>
+    <div>
+      <%= link_to 'Done', root_path, class: 'done-button' %>
+    </div>
+      <% if @appointment.chatroom %>
+    <div>
+      <%= link_to 'Chat', appointment_chatroom_path(@appointment, @appointment.chatroom), class: 'chat-button'  %>
+    </div>
+    <% end %>
+  </div>
+  </div>
 
 
-<% if current_user.clinician %>
-  <p>I'm a clinician</p>
-  <p><%= @appointment.appointment_date %></p>
-<% else %>
-  <p>I'm a patient</p>
-  <p><%= @appointment.appointment_date %></p>
-<% end %>
 
-<% if @appointment.chatroom %>
-  <%= link_to 'Chat', appointment_chatroom_path(@appointment, @appointment.chatroom) %>
-<% end %>
-
-<%= link_to 'Back', appointments_path %>
 
 </div>
-<%# NEED TO ENABLE AND DISABLE CERTAIN CONTROLS DEPENDING ON IF IT IS A PATIENT OR A CLINICIAN %>
