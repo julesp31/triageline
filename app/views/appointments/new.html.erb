@@ -13,7 +13,9 @@
 </nav>
 
 <%= simple_form_for @appointment, html: {class: "d-none" } do |f| %>
-  <%= f.input :clinician %>
+  <%= f.input :clinician_email do %>
+    <%= text_field_tag 'clinician_email' %>
+  <% end %>
   <%= f.input :date %>
   <%= f.input :appointment_type  %>
   <%= f.input :severity %>

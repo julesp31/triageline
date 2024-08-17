@@ -164,26 +164,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
     'phone': [
-        { name: 'Doctor Marie Cure', times: ['8:00am', '10:00am', '1:00pm'] },
-        { name: 'Doctor Albert Johnson', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Senior Nurse Jane Doe', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Physician Associate Albert Johnson', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Doctor Marie Cure', email: 'clinician@gmail.com', times: ['8:00am', '10:00am', '1:00pm'] },
+        { name: 'Doctor Albert Johnson',  email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Senior Nurse Jane Doe', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Physician Associate Albert Johnson', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
     'video': [
-        { name: 'Doctor Liam Saunders', times: ['8:30am', '10:30am', '1:30pm'] },
-        { name: 'Doctor Alice Newton', times: ['9:30am', '11:30am', '2:30pm'] },
-        { name: 'Senior Nurse Jane Doe', times: ['9:30am', '11:30am', '2:30pm'] },
-        { name: 'Senior Physician Associate Carol Smith', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Doctor Liam Saunders', email: 'lsanders@gmail.com', times: ['8:30am', '10:30am', '1:30pm'] },
+        { name: 'Doctor Alice Newton', email: 'anewton@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Senior Nurse Jane Doe', email: 'jdoe@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Senior Physician Associate Carol Smith',email: 'csmith@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
     ],
     'in-person': [
-        { name: 'Doctor Alice Newton', times: ['8:45am', '10:45am', '1:45pm'] },
-        { name: 'Doctor Marie Cure', times: ['9:45am', '11:45am', '2:45pm'] },
-        { name: 'Doctor Albert Johnson', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Senior Nurse Jane Doe', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Doctor Alice Newton', email: 'anewton@gmail.com', times: ['8:45am', '10:45am', '1:45pm'] },
+        { name: 'Doctor Marie Cure', email: 'clinician@gmail.com', times: ['9:45am', '11:45am', '2:45pm'] },
+        { name: 'Doctor Albert Johnson', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Senior Nurse Jane Doe', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
 };
 
-  function showForm(form) {
+  function showForm(form, appointmentType=null, selectedClinician=null) {
     const forms = [categoryList, triageQuestions, reasonForAppointment, appointmentTypeList, availableClinicians, calendarView, bookingDetails, appointmentPending];
     forms.forEach(f => f.style.display = 'none');
     form.style.display = 'flex';
@@ -200,16 +200,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize the calendar when the calendar view is shown
     if (form === calendarView) {
-      initializeCalendar();
+      initializeCalendar(selectedClinician, appointmentType);
     }
   }
 
-  function initializeCalendar() {
+  function initializeCalendar(selectedClinician, appointmentType) {
     flatpickr(calendarContainer, {
       inline: true,
       onChange: function(selectedDates, dateStr, instance) {
         const availableTimesData = getAvailableTimesForClinicianOnDate(selectedClinician, dateStr);
-        displayAvailableTimes(availableTimesData, selectedClinician, dateStr);
+        displayAvailableTimes(availableTimesData, selectedClinician, dateStr, appointmentType);
       }
     });
   }
@@ -338,14 +338,14 @@ document.addEventListener('DOMContentLoaded', function() {
           timeSlot.textContent = time;
           timeSlot.className = 'time-slot btn btn-light mb-2';
           timeSlot.addEventListener('click', () => {
-            showBookingDetails(clinician.name, formattedTomorrow, time);
+            showBookingDetails(clinician.name, appointmentType, formattedTomorrow, time);
           });
           times.appendChild(timeSlot);
         });
 
         const moreButton = document.createElement('div');
         moreButton.addEventListener('click', () => {
-          showCalendarView(clinician.name);
+          showCalendarView(clinician.name, appointmentType);
         });
         moreButton.textContent = 'More';
         moreButton.className = 'more-button btn btn-secondary mt-2';
@@ -359,25 +359,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function showCalendarView(clinicianName) {
+  function showCalendarView(clinicianName, appointmentType) {
     flatpickr(calendarContainer, {
       onChange: function(selectedDates, dateStr, instance) {
         const availableTimesData = getAvailableTimesForClinicianOnDate(clinicianName, dateStr);
-        displayAvailableTimes(availableTimesData, clinicianName, dateStr);
+        displayAvailableTimes(availableTimesData, clinicianName,dateStr, appointmentType);
       }
     });
 
-    showForm(calendarView);
+    showForm(calendarView, appointmentType, clinicianName);
   }
 
-  function displayAvailableTimes(times, clinicianName, dateStr) {
+  function displayAvailableTimes(times, clinicianName, dateStr, appointmentType) {
     availableTimes.innerHTML = '';
     times.forEach(time => {
       const timeSlot = document.createElement('div');
       timeSlot.textContent = time;
       timeSlot.className = 'time-slot btn btn-light mb-2';
       timeSlot.addEventListener('click', () => {
-        showBookingDetails(clinicianName, dateStr, time);
+        showBookingDetails(clinicianName, appointmentType, dateStr, time);
       });
       availableTimes.appendChild(timeSlot);
     });
@@ -388,12 +388,15 @@ document.addEventListener('DOMContentLoaded', function() {
     return ['8:00am', '10:00am', '1:00pm', '3:00pm'];
   }
 
-  function showBookingDetails(clinicianName, dateStr, time) {
+  function showBookingDetails(clinicianName, appointmentType, dateStr, time) {
     let appointmentFormDate = document.getElementById('appointment_date');
-    selectedClinician = clinicianName;
+    let appointmentClinicianEmail = document.getElementById('clinician_email');
     selectedDate = dateStr;
     selectedTime = time;
     appointmentFormDate.value = dateStr + ' ' + time
+    console.log(cliniciansData[appointmentType])
+    const clinicianEmail = cliniciansData[appointmentType].find((clinician) => clinician.name === clinicianName).email
+    appointmentClinicianEmail.value = clinicianEmail
 
     detailsContainer.innerHTML = `
       <p><strong>Clinician:</strong> ${clinicianName}</p>

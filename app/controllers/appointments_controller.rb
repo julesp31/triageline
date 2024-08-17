@@ -24,13 +24,19 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.new(appointment_params)
     @appointment.patient_id = current_user.id
-    @appointment.clinician_id = User.where(clinician: true).first.id
+    @appointment.clinician_id = User.find_by(email: params[:clinician_email]).id
     @appointment.status = 'pending'
     @appointment.appointment_date = DateTime.parse(params[:appointment][:date])
     @appointment.created_at = Time.now
+
     if @appointment.save!
         create_chatroom(@appointment.id)
-        redirect_to @appointment, notice: 'Appointment booked.'
+        if current_user.clinician
+          @appointments = current_user.appointments_as_clinician.order(appointment_date: :desc)
+        else
+          @appointments = current_user.appointments_as_patient.order(appointment_date: :desc)
+        end
+        render :index
     else
         render :new
     end
@@ -84,7 +90,7 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:patient_id, :clinician_id, :date, :appointment_type, :status, :severity)
+      params.require(:appointment).permit(:patient_id, :clinician_email, :date, :appointment_type, :status, :severity)
     end
 
     def create_chatroom(id)

@@ -12,6 +12,7 @@ require "open-uri"
 
 puts "Purging database..."
 
+Chatroom.destroy_all
 AppointmentSymptom.destroy_all
 Message.destroy_all
 Appointment.destroy_all
@@ -388,6 +389,7 @@ appointment1 = Appointment.create!(
   status: 'Accepted',
   severity: 'Low'
 )
+Chatroom.create!(name: "Chatroom #{appointment1.id}", appointment_id: appointment1.id)
 
 appointment2 = Appointment.create!(
   patient: patient1,
@@ -397,6 +399,7 @@ appointment2 = Appointment.create!(
   status: 'Accepted',
   severity: 'Low'
 )
+Chatroom.create!(name: "Chatroom #{appointment2.id}", appointment_id: appointment2.id)
 
 appointment3 = Appointment.create!(
   patient: patient1,
@@ -406,6 +409,7 @@ appointment3 = Appointment.create!(
   status: 'Accepted',
   severity: 'Low'
 )
+Chatroom.create!(name: "Chatroom #{appointment3.id}", appointment_id: appointment3.id)
 
 appointment4 = Appointment.create!(
   patient: patient1,
@@ -415,6 +419,7 @@ appointment4 = Appointment.create!(
   status: 'Accepted',
   severity: 'High'
 )
+Chatroom.create!(name: "Chatroom #{appointment4.id}", appointment_id: appointment4.id)
 
 appointment5 = Appointment.create!(
   patient: patient1,
@@ -424,6 +429,7 @@ appointment5 = Appointment.create!(
   status: 'Closed',
   severity: 'Low'
 )
+Chatroom.create!(name: "Chatroom #{appointment5.id}", appointment_id: appointment5.id)
 
 appointment6 = Appointment.create!(
   patient: patient1,
@@ -433,6 +439,7 @@ appointment6 = Appointment.create!(
   status: 'Accepted',
   severity: 'High'
 )
+Chatroom.create!(name: "Chatroom #{appointment6.id}", appointment_id: appointment6.id)
 
 appointment7 = Appointment.create!(
   patient: patient1,
@@ -442,6 +449,7 @@ appointment7 = Appointment.create!(
   status: 'Closed',
   severity: 'Low'
 )
+Chatroom.create!(name: "Chatroom #{appointment7.id}", appointment_id: appointment7.id)
 
 puts "Total number of Appointments created: #{Appointment.count}"
 
