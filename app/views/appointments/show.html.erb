@@ -1,19 +1,32 @@
-<div>
+<div class= "background-content" >
+  <div class="confirmation-icon">
+    <%= image_tag 'confirmation_icon_blue.png', alt: 'date_icon', class: 'confirmation-icons' %>
+  </div>
+  <div class= "confirmation-message">
+    <h1>Booking pending </h1>
+    <p>Congratulation e-mail and SMS has been sent to your registered details </p>
+  </div>
+  <div class= "confirmation-card" >
+    <% if current_user.clinician %>
+      <p>I'm a clinician</p>
+      <p><%= @appointment.appointment_date %></p>
+    <% else %>
+    <div class= "nurse_female-icon">
+      <%= image_tag 'nurse_female.png', alt: 'clincian_icon', class: 'nurse_female-icon' %>
+    </div>
+    <p> ID: 099985453637</p>
+    <h1>Dr. Emily Patel</h1>
+    <p>General Pratitioner</p>
+    <p><%= @appointment.appointment_date %></p>
+    <% end %>
 
+    <% if @appointment.chatroom %>
+    <%= link_to 'Chat', appointment_chatroom_path(@appointment, @appointment.chatroom), class: 'chat-button'  %>
+    <% end %>
 
-<% if current_user.clinician %>
-  <p>I'm a clinician</p>
-  <p><%= @appointment.appointment_date %></p>
-<% else %>
-  <p>I'm a patient</p>
-  <p><%= @appointment.appointment_date %></p>
-<% end %>
+</div>
 
-<% if @appointment.chatroom %>
-  <%= link_to 'Chat', appointment_chatroom_path(@appointment, @appointment.chatroom) %>
-<% end %>
-
-<%= link_to 'Back', appointments_path %>
+  <%= link_to 'Done', root_path, class: 'done-button' %>
 
 </div>
 <%# NEED TO ENABLE AND DISABLE CERTAIN CONTROLS DEPENDING ON IF IT IS A PATIENT OR A CLINICIAN %>

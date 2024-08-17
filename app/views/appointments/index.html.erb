@@ -32,9 +32,9 @@
             </div>
             <div class="d-flex align-items-center mb-2">
               <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
-              <strong>Status:</strong>
+              <strong>Status: <%= appointment.status %></strong>
               <%= button_tag type: 'button', id: "statusDropdown#{appointment.id}", data: { toggle: 'dropdown' } do %>
-                <%= appointment.status %>
+
               <% end %>
               <div class="dropdown-menu" aria-labelledby="statusDropdown#{appointment.id}">
                 <%= link_to 'Pending', '#', class: 'dropdown-item change-status', data: { status: 'Pending', id: appointment.id } %>
@@ -48,14 +48,13 @@
               <strong>Clinician: <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %></strong>
             </div>
 
-            <div>
-            <%= button_to "Closed", toggle_status_appointment_path(appointment), method: :post, params: {status: "Closed"} %>
-            </div>
+
 
             <% if current_user.clinician? %>
               <div class="d-flex justify-content-end mt-3">
-                <%= link_to 'Edit', edit_appointment_path(appointment), class: 'btn btn-warning btn-sm text-white mr-2' %>
-                <%= link_to 'Cancel', appointment_path(appointment), method: :delete, class: 'btn btn-danger btn-sm text-white', data: { turbo_confirm: 'Are you sure?' } %>
+                <%= button_to "Close", toggle_status_appointment_path(appointment), method: :post, params: {status: "Closed"} %>
+                <%= button_to "Accept", toggle_status_appointment_path(appointment), method: :post, params: {status: "Accepted"} %>
+
               </div>
             <% end %>
           </div>
