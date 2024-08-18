@@ -164,22 +164,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
     'phone': [
-        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['8:00am', '10:00am', '1:00pm'] },
-        { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Senior Physician Associate Carol Smith', image: '/assets/carol.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['8:00am', '10:00am', '1:00pm'], favorite: true },
+        { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: false },
+        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: true },
+        { name: 'Physician Carol Smith', image: '/assets/carol.jpg', email: 'csmith@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: false },
     ],
     'video': [
-        { name: 'Doctor Liam Sanders', image: '/assets/liam.jpg', email: 'lsanders@gmail.com', times: ['8:30am', '10:30am', '1:30pm'] },
-        { name: 'Doctor Alice Newton', image: '/assets/alice.jpg', email: 'anewton@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
-        { name: 'Senior Nurse Jane Doe', image: 'jdoe@gmail.com', email: 'jdoe@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
-        { name: 'Senior Physician Associate Carol Smith', image: '/assets/carol.jpg', email: 'csmith@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Doctor Liam Sanders', image: '/assets/liam.jpg', email: 'lsanders@gmail.com', times: ['8:30am', '10:30am', '1:30pm'], favorite: true },
+        { name: 'Doctor Alice Newton', image: '/assets/alice.jpg', email: 'anewton@gmail.com', times: ['9:30am', '11:30am', '2:30pm'], favorite: true },
+        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:30am', '11:30am', '2:30pm'], favorite: false },
     ],
     'in-person': [
-        { name: 'Doctor Alice Newton', image: '/assets/alice.jpg', email: 'anewton@gmail.com', times: ['8:45am', '10:45am', '1:45pm'] },
-        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['9:45am', '11:45am', '2:45pm'] },
-        { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Doctor Alice Newton', image: '/assets/alice.jpg', email: 'anewton@gmail.com', times: ['8:45am', '10:45am', '1:45pm'], favorite: false },
+        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['9:45am', '11:45am', '2:45pm'], favorite: false },
+        { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: true },
+        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: false },
     ],
 };
 
@@ -320,7 +319,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Heart icon in the top right corner
             const heartIcon = document.createElement('i');
-            heartIcon.className = 'fa fa-heart heart-icon';
+            heartIcon.className = 'fa fa-sharp fa-thin fa-heart heart-icon';
+
+            // Toggle heart icon if the clinician is marked as a favorite
+            if (clinician.favorite) {
+                heartIcon.classList.add('toggled');
+            }
+
             heartIcon.addEventListener('click', () => {
                 heartIcon.classList.toggle('toggled');
             });
