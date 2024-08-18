@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
     times.forEach(time => {
       const timeSlot = document.createElement('div');
       timeSlot.textContent = time;
-      timeSlot.className = 'time-slot btn btn-light';
+      timeSlot.className = 'time-slot';
       timeSlot.addEventListener('click', () => {
         showBookingDetails(clinicianName, appointmentType, dateStr, time);
       });
