@@ -164,22 +164,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
     'phone': [
-        { name: 'Doctor Marie Cure', email: 'clinician@gmail.com', times: ['8:00am', '10:00am', '1:00pm'] },
-        { name: 'Doctor Albert Johnson',  email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Senior Nurse Jane Doe', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Physician Associate Albert Johnson', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['8:00am', '10:00am', '1:00pm'] },
+        { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Senior Physician Associate Carol Smith', image: '/assets/carol.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
     'video': [
-        { name: 'Doctor Liam Saunders', email: 'lsanders@gmail.com', times: ['8:30am', '10:30am', '1:30pm'] },
-        { name: 'Doctor Alice Newton', email: 'anewton@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
-        { name: 'Senior Nurse Jane Doe', email: 'jdoe@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
-        { name: 'Senior Physician Associate Carol Smith',email: 'csmith@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Doctor Liam Sanders', image: '/assets/liam.jpg', email: 'lsanders@gmail.com', times: ['8:30am', '10:30am', '1:30pm'] },
+        { name: 'Doctor Alice Newton', image: '/assets/alice.jpg', email: 'anewton@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Senior Nurse Jane Doe', image: 'jdoe@gmail.com', email: 'jdoe@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
+        { name: 'Senior Physician Associate Carol Smith', image: '/assets/carol.jpg', email: 'csmith@gmail.com', times: ['9:30am', '11:30am', '2:30pm'] },
     ],
     'in-person': [
-        { name: 'Doctor Alice Newton', email: 'anewton@gmail.com', times: ['8:45am', '10:45am', '1:45pm'] },
-        { name: 'Doctor Marie Cure', email: 'clinician@gmail.com', times: ['9:45am', '11:45am', '2:45pm'] },
-        { name: 'Doctor Albert Johnson', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
-        { name: 'Senior Nurse Jane Doe', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Doctor Alice Newton', image: '/assets/alice.jpg', email: 'anewton@gmail.com', times: ['8:45am', '10:45am', '1:45pm'] },
+        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['9:45am', '11:45am', '2:45pm'] },
+        { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
+        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'] },
     ],
 };
 
@@ -309,55 +309,82 @@ document.addEventListener('DOMContentLoaded', function() {
   function handleAppointmentTypeCardClick(event) {
     const appointmentTypeCard = event.target.closest('.appointment-type-card');
     if (appointmentTypeCard) {
-      const appointmentType = appointmentTypeCard.getAttribute('data-appointment-type');
-      const clinicians = cliniciansData[appointmentType];
+        const appointmentType = appointmentTypeCard.getAttribute('data-appointment-type');
+        const clinicians = cliniciansData[appointmentType];
 
-      cliniciansContainer.innerHTML = '';
+        cliniciansContainer.innerHTML = '';
 
-      clinicians.forEach(clinician => {
-        const clinicianCard = document.createElement('div');
-        clinicianCard.className = 'clinician-card card mb-3';
+        clinicians.forEach(clinician => {
+            const clinicianCard = document.createElement('div');
+            clinicianCard.className = 'clinician-card card mb-3';
 
-        const clinicianName = document.createElement('div');
-        clinicianName.textContent = clinician.name;
-        clinicianName.className = 'card-header';
-        clinicianCard.appendChild(clinicianName);
+            // Heart icon in the top right corner
+            const heartIcon = document.createElement('i');
+            heartIcon.className = 'fa fa-heart heart-icon';
+            heartIcon.addEventListener('click', () => {
+                heartIcon.classList.toggle('toggled');
+            });
+            clinicianCard.appendChild(heartIcon);
 
-        const times = document.createElement('div');
-        times.className = 'card-body';
+            // Clinician image and name container
+            const clinicianDetails = document.createElement('div');
+            clinicianDetails.className = 'clinician-details';
 
-        // Calculate tomorrow's date
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
+            // Clinician image
+            const clinicianImage = document.createElement('img');
+            clinicianImage.src = clinician.image; // Placeholder image URL or actual clinician image URL
+            clinicianImage.alt = `${clinician.name}'s photo`;
+            clinicianImage.className = 'clinician-image';
+            clinicianDetails.appendChild(clinicianImage);
 
-        // Format tomorrow's date (e.g., YYYY-MM-DD)
-        const formattedTomorrow = tomorrow.toISOString().split('T')[0]; // Example: "2024-08-14"
+            // Clinician name
+            const clinicianName = document.createElement('div');
+            clinicianName.textContent = clinician.name;
+            clinicianName.className = 'clinician-name';
+            clinicianDetails.appendChild(clinicianName);
 
-        clinician.times.forEach(time => {
-          const timeSlot = document.createElement('div');
-          timeSlot.textContent = time;
-          timeSlot.className = 'time-slot btn btn-light mb-2';
-          timeSlot.addEventListener('click', () => {
-            showBookingDetails(clinician.name, appointmentType, formattedTomorrow, time);
-          });
-          times.appendChild(timeSlot);
+            // Add clinician details to the card
+            clinicianCard.appendChild(clinicianDetails);
+
+            // Add label for available times
+            const timesLabel = document.createElement('div');
+            timesLabel.className = 'times-label';
+            timesLabel.textContent = "Today's Available Times";
+            clinicianCard.appendChild(timesLabel);
+
+            // Time slots
+            const times = document.createElement('div');
+            times.className = 'card-body';
+
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const formattedTomorrow = tomorrow.toISOString().split('T')[0];
+
+            clinician.times.forEach(time => {
+                const timeSlot = document.createElement('div');
+                timeSlot.textContent = time;
+                timeSlot.className = 'time-slot btn btn-light';
+                timeSlot.addEventListener('click', () => {
+                    showBookingDetails(clinician.name, appointmentType, formattedTomorrow, time);
+                });
+                times.appendChild(timeSlot);
+            });
+
+            const moreButton = document.createElement('div');
+            moreButton.addEventListener('click', () => {
+                showCalendarView(clinician.name, appointmentType);
+            });
+            moreButton.textContent = 'More';
+            moreButton.className = 'more-button btn btn-secondary';
+            times.appendChild(moreButton);
+
+            clinicianCard.appendChild(times);
+            cliniciansContainer.appendChild(clinicianCard);
         });
 
-        const moreButton = document.createElement('div');
-        moreButton.addEventListener('click', () => {
-          showCalendarView(clinician.name, appointmentType);
-        });
-        moreButton.textContent = 'More';
-        moreButton.className = 'more-button btn btn-secondary mt-2';
-        times.appendChild(moreButton);
-
-        clinicianCard.appendChild(times);
-        cliniciansContainer.appendChild(clinicianCard);
-      });
-
-      showForm(availableClinicians);
+        showForm(availableClinicians);
     }
-  }
+}
 
   function showCalendarView(clinicianName, appointmentType) {
     flatpickr(calendarContainer, {
@@ -375,7 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
     times.forEach(time => {
       const timeSlot = document.createElement('div');
       timeSlot.textContent = time;
-      timeSlot.className = 'time-slot btn btn-light mb-2';
+      timeSlot.className = 'time-slot btn btn-light';
       timeSlot.addEventListener('click', () => {
         showBookingDetails(clinicianName, appointmentType, dateStr, time);
       });

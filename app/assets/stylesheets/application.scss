@@ -6,10 +6,6 @@
 @import "components/index";
 @import "pages/index";
 
-/*
- *= require flatpickr
- */
-
 body {
   font-family: 'Roboto', sans-serif;
   background-color: white;
@@ -48,7 +44,7 @@ button {
 .more-button,
 .clinician-card,
 .time-slot {
-  padding: 10px;
+  padding: 8px;
   // margin: 8px 0;
   border-radius: 10px;
   cursor: pointer;
@@ -58,12 +54,34 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // display: inline-block;
+  display: table-cell;
+  text-align: center;
 }
+
+.card-body {
+  display: flex;
+}
+
+.card-header {
+  background-color: white !important; /* Force the background to white */
+}
+
+.time-slot:last-child {
+  margin-right: 0; /* Remove the margin on the last time-slot if it is followed by no other elements */
+}
+
+.more-button {
+  margin-right: 0;
+  background-color: white;
+  color: #1f7c8e;
+  border: 1px solid;
+}
+
 
 .time-slot {
   background-color: $midgreen;
   color: #fff;
+  padding: 8px;
 }
 
 .clinician-card {

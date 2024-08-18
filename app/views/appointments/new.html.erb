@@ -113,7 +113,7 @@
                   </div>
                 </div>
 
-                 <div class="category-card" data-category="stomach_problems">
+                <div class="category-card" data-category="stomach_problems">
                   <div class="image-container">
                     <%= image_tag 'stomach.png', alt: 'Cold,FLu', class: 'app-icons' %>
                   </div>
@@ -178,7 +178,7 @@
 
 <div id="triage-questions" class="form-section">
                 <div class="booking-index-headings">
-                    <h1 id="triage-title"></h1>
+                    <h1 id="triage-title" style="padding-bottom: 12px;"></h1>
                 </div>
                 <div id="questions-container">
                     <div class="question-card">
@@ -195,9 +195,11 @@
                 <div class="booking-index-headings">
                     <h1>Why would you like an appointment?</h1>
                 </div>
-                <p>Tell us about your symptoms, condition, or reason for booking</p>
+                <div class="symptoms_text">
+                <h4>Tell us about your symptoms, condition, or reason for booking</h4>
+                </div>
                 <textarea id="appointment-reason" maxlength="200" rows="4" class="form-control"></textarea>
-                <div id="char-counter">0/200 characters</div>
+                <div id="char-counter">0/500 characters</div>
                 <button id="submit-reason" class="btn btn-primary">Submit</button>
             </div>
 
@@ -222,15 +224,15 @@
                     </div>
                 </div>
             </div>
+              <div id="available-clinicians" class="form-section">
+                  <div class="text-center">
+                      <h1 style="padding-bottom: 20px;">Available Clinicians</h1>
+                  </div>
+                  <div id="clinicians-container" class="d-flex flex-wrap justify-content-around">
+                      <!-- Clinician cards will be inserted here -->
+                  </div>
+              </div>
 
-            <div id="available-clinicians" class="form-section">
-                <div class="text-center">
-                    <h1>Available Clinicians</h1>
-                </div>
-                <div id="clinicians-container" class="d-flex flex-wrap justify-content-around">
-                    <!-- Clinician cards will be inserted here -->
-                </div>
-            </div>
 
             <div id="calendar-view" class="form-section">
                 <div class="text-center">

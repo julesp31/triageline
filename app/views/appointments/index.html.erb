@@ -1,65 +1,66 @@
 <div class="container mt-5">
-  <div class="text-center mb-4">
-    <h1 style='font-size: 30px;'>Appointments</h1>
-  </div>
+  <div class="appointment-body">
+    <div class="text-center mb-4">
+      <h1 style='font-size: 30px;'>Appointments</h1>
+    </div>
 
-  <div class="row">
-    <% @appointments.each do |appointment| %>
-      <div class="col-md-6 mb-4">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
-              <h5 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
-                <%= appointment.appointment_date.strftime('%B %e, %Y') %> - <%= appointment.appointment_type %> - <%= appointment.status %>
-              </h5>
-            <% end %>
+    <div class="row">
+      <% @appointments.each do |appointment| %>
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
+                <h5 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
+                  <%= appointment.appointment_date.strftime('%B %e, %Y') %> - <%= appointment.appointment_type %> - <%= appointment.status %>
+                </h5>
+              <% end %>
 
-            <% if current_user.clinician? %>
-              <p class="card-text roboto">Severity: <%= appointment.severity %></p>
-            <% end %>
+              <% if current_user.clinician? %>
+                <p class="card-text roboto">Severity: <%= appointment.severity %></p>
+              <% end %>
 
-            <div class="d-flex align-items-center mb-2">
-              <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
-              <strong>Date: <%= appointment.appointment_date.strftime('%B %e, %Y') %></strong>
-            </div>
-            <div class="d-flex align-items-center mb-2">
-              <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
-              <strong>Time: <%= appointment.appointment_date.strftime('%I:%M %p') %></strong>
-            </div>
-            <div class="d-flex align-items-center mb-2">
-              <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
-              <strong>Type: <%= appointment.appointment_type %></strong>
-            </div>
-            <div class="d-flex align-items-center mb-2">
-              <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
-              <strong>Status: <%= appointment.status %></strong>
-
-              <div class="dropdown-menu" aria-labelledby="statusDropdown#{appointment.id}">
-                <%= link_to 'Pending', '#', class: 'dropdown-item change-status', data: { status: 'Pending', id: appointment.id } %>
-                <%= link_to 'Accepted', '#', class: 'dropdown-item change-status', data: { status: 'Accepted', id: appointment.id } %>
-                <%= link_to 'Cancelled', '#', class: 'dropdown-item change-status', data: { status: 'Cancelled', id: appointment.id } %>
-                <%= link_to 'Closed', '#', class: 'dropdown-item change-status', data: { status: 'Closed', id: appointment.id } %>
+              <div class="d-flex align-items-center mb-2">
+                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <strong>Date: <%= appointment.appointment_date.strftime('%B %e, %Y') %></strong>
               </div>
-            </div>
-            <div class="d-flex align-items-center mb-2">
-              <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
-              <strong>Clinician: <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %></strong>
-            </div>
-
-
-            <% if current_user.clinician? %>
-              <div class="d-flex justify-content-end mt-3">
-                <%= button_to "Close", toggle_status_appointment_path(appointment), method: :post, params: {status: "Closed"} %>
-                <%= button_to "Accept", toggle_status_appointment_path(appointment), method: :post, params: {status: "Accepted"} %>
+              <div class="d-flex align-items-center mb-2">
+                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <strong>Time: <%= appointment.appointment_date.strftime('%I:%M %p') %></strong>
               </div>
+              <div class="d-flex align-items-center mb-2">
+                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <strong>Type: <%= appointment.appointment_type %></strong>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <strong>Status: <%= appointment.status %></strong>
+
+                <div class="dropdown-menu" aria-labelledby="statusDropdown#{appointment.id}">
+                  <%= link_to 'Pending', '#', class: 'dropdown-item change-status', data: { status: 'Pending', id: appointment.id } %>
+                  <%= link_to 'Accepted', '#', class: 'dropdown-item change-status', data: { status: 'Accepted', id: appointment.id } %>
+                  <%= link_to 'Cancelled', '#', class: 'dropdown-item change-status', data: { status: 'Cancelled', id: appointment.id } %>
+                  <%= link_to 'Closed', '#', class: 'dropdown-item change-status', data: { status: 'Closed', id: appointment.id } %>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <strong>Clinician: <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %></strong>
+              </div>
+
+              <% if current_user.clinician? %>
+                <div class="d-flex justify-content-end mt-3">
+                  <%= button_to "Close", toggle_status_appointment_path(appointment), method: :post, params: {status: "Closed"} %>
+                  <%= button_to "Accept", toggle_status_appointment_path(appointment), method: :post, params: {status: "Accepted"} %>
+                </div>
+              <% end %>
+            </div>
+
+            <% if appointment.chatroom %>
+              <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom), class: 'done-button m-3 mt-1' %>
             <% end %>
           </div>
-
-          <% if appointment.chatroom %>
-            <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom), class: 'done-button m-3 mt-1' %>
-          <% end %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

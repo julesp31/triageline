@@ -1,3 +1,51 @@
+.appointment-body {
+  background-color: #8cdddd; /* Set the background color to white */
+  padding: 20px; /* Add some padding around the content */
+  border-radius: 8px; /* Optionally add some border-radius for rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optionally add a subtle shadow */
+}
+
+.clinician-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+}
+
+.clinician-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.rating-heart-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.heart-icon.toggled {
+  color: red;
+}
+
+.clinician-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
 .appointmentbooking {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -15,7 +63,19 @@ h1, .form-section h1 {
   font-size: 30px;
   color: $midgreen;
   text-align: center;
-  padding: 16px;
+  padding-top: 12px;
+}
+
+.booking-index-headings {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: $midgreen;
+  text-align: center;
+  padding-bottom: 10px;
 }
 
 h2, h3, h4, .form-section h2, .form-section h3 {
@@ -27,6 +87,11 @@ h2, h3, h4, .form-section h2, .form-section h3 {
 p, .form-section p {
   color: $midgreen; /* Unified color */
   text-align: left;
+  // margin: 6px;
+}
+
+.symptoms_text {
+  padding: 16px;
 }
 
 .category-card,
@@ -39,11 +104,22 @@ p, .form-section p {
   max-width: 500px;
 }
 
+.category-card {
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  overflow: hidden; /* Hide any content that overflows the card */
+}
+
 .category-card .card-product-infos {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-left: 10px;
+  box-sizing: border-box; /* Include padding in width calculation */
+  width: 100%; /* Ensure it doesn't overflow the parent */
+}
+
+#char-counter {
+  margin-top: 20px;
 }
 
 .category-card h3, .category-card p {
@@ -81,11 +157,7 @@ p, .form-section p {
   margin-bottom: 0px;
 }
 
-.booking-index-headings {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
+
 
 .form-section {
   display: none;
@@ -100,11 +172,10 @@ p, .form-section p {
   gap: 25px;
 }
 
-.clinician-card div {
-  margin-bottom: 10px;
-}
 
 .clinician-card .times {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Change from column to row */
+  flex-wrap: wrap; /* This allows the times to wrap to the next line if they don't fit in one line */
+  gap: 10px; /* Optional: add some spacing between the time slots */
 }
