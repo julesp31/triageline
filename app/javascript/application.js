@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         clinicians.forEach(clinician => {
             const clinicianCard = document.createElement('div');
-            clinicianCard.className = 'clinician-card card mb-3';
+            clinicianCard.className = 'clinician-card card';
 
             // Heart icon in the top right corner
             const heartIcon = document.createElement('i');
@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
             clinician.times.forEach(time => {
                 const timeSlot = document.createElement('div');
                 timeSlot.textContent = time;
-                timeSlot.className = 'time-slot btn btn-light';
+                timeSlot.className = 'time-slot';
                 timeSlot.addEventListener('click', () => {
                     showBookingDetails(clinician.name, appointmentType, formattedTomorrow, time);
                 });
@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <p><strong>Clinician:</strong> ${clinicianName}</p>
       <p><strong>Date:</strong> ${dateStr || 'Not selected'}</p>
       <p><strong>Time:</strong> ${time}</p>
-      <p><strong>Severity:</strong> ${severity}</p>
+      <p style="display: none;"><strong>Severity:</strong> ${severity}</p>
     `;
 
     showForm(bookingDetails);

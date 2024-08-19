@@ -8,8 +8,7 @@
 .clinician-details {
   display: flex;
   align-items: center;
-  gap: 22px;
-  padding: 10px;
+  padding: 14px;
 }
 
 .clinician-image {
@@ -17,7 +16,9 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 15px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
 }
 
 .rating-heart-container {
@@ -43,6 +44,8 @@
 .clinician-name {
   font-size: 18px;
   font-weight: bold;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -91,7 +94,8 @@ p, .form-section p {
 }
 
 .symptoms_text {
-  padding: 16px;
+  padding: 20px 14px 0px 14px;
+  font-size: 16px;
 }
 
 .category-card,
@@ -99,7 +103,7 @@ p, .form-section p {
 .more-button {
   display: flex;
   padding: 5px;
-  margin: 10px 0;
+  margin: 10px 2px;
   width: calc(100% - 6px);
   max-width: 500px;
 }
@@ -119,7 +123,13 @@ p, .form-section p {
 }
 
 #char-counter {
-  margin-top: 20px;
+  margin-top: 15px;
+}
+
+#details-container p
+{
+  color: black;
+  margin-right: 14px;
 }
 
 .category-card h3, .category-card p {
