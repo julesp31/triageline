@@ -67,7 +67,7 @@ body {
   width: 100%;
   border-radius: 50px 50px 0 0;
   margin-top: 60px; /* Adjust this value to fit below the fixed navbar */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1; /* Ensure content container is above the navbar */
   height: calc(100vh - 60px); /* Adjust height to fit within the viewport */
@@ -91,6 +91,7 @@ body {
   .navbar-toggler {
     width: 40px; /* Adjust the width as necessary */
     padding: 0.25rem 0.25rem; /* Reduce padding to make it more compact */
+    border: none;
   }
 
   /* Ensuring the toggler and brand stay on the same row */

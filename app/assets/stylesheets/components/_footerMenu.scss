@@ -4,18 +4,20 @@
   left: 0;
   width: 100%;
   height: 60px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0);
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 10px 0;
   z-index: 999;
+  bottom: 5px;
 }
 
 .nav-item {
   color: white;
   text-align: center;
   text-decoration: none;
+
 }
 
 .nav-item i {
@@ -24,17 +26,18 @@
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background-color: white;
+  // background-color: white;
   color: $midgreen; /* Example color */
   border-radius: 50%;
   text-align: center;
   margin: 0 auto;
   text-decoration: none;
+
 }
 
 .plus-button {
   position: fixed;
-  bottom: 4px;
+  bottom: 8px;
   left: 94%;
   transform: translateX(-93%);
   background-color: $midgreen;
@@ -56,17 +59,22 @@ font-size: 24px;
 .dropdown-menu {
   position: absolute;
   top: -100px; /* Adjust as necessary */
-  left: -50%;
+  left: 50%; /* Centers the dropdown horizontally */
   transform: translateX(-50%);
   width: 150px; /* Adjust the width as needed */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1050; /* Ensure it appears above other elements */
+  border-radius: 10px;
+  overflow: hidden; /* Ensures content stays within the dropdown */
 }
 
 .dropdown-item {
   text-align: center;
   padding: 10px;
   color: $midgreen; /* Dark green for the options text */
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides any overflow text */
+  text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
 }
 
 .dropdown-item:hover {
@@ -74,17 +82,21 @@ font-size: 24px;
   color: $darkgreen; /* Darker green on hover */
 }
 
+
 .footer1::before {
   content: '';
   position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: $midgreen;
-  border-top-left-radius: 60px;
-  border-top-right-radius: 60px;
+  bottom: 8px;
+  width: 65%;
+  height: 55px;
+  background-color: white;
+  border-style: none; /* Set border style to solid */
+  border-color: $midgreen; /* Use your color variable or a specific color */
+  border-width: 1px; /* Set the border width */
+  border-radius: 30px; /* Keep the rounded corners */
   display: flex;
-  left: -75%;
-  transform: translateX(52%);
+  left: 2%;
+  transform: translateX(3%);
   z-index: -1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
