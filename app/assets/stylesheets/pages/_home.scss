@@ -64,8 +64,10 @@ $default-margin: 10px;
   background-color: $green;
   // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden; /* Ensures content stays within the bounds of the card */
-.h1, h2, h3, p {
-  color: white;
+
+  .h1, h2, h3, p {
+  color: $midgreen;
+
 }
 
 }
@@ -88,8 +90,9 @@ $default-margin: 10px;
   align-items: flex-start;  /* Aligns the profile image to the top of the text */
 }
 
-.welcome-text h1 {
+.welcome-text h2 {
   font-size: 24px;
+  // font-weight: 600;
 }
 
 
@@ -97,11 +100,6 @@ $default-margin: 10px;
   margin: 0px;
 }
 
-.profile-image {
-  border: 1px solid white;
-  border-radius: 50%;
-  overflow: hidden;
-}
 
 .profile-image img {
   width: 80px;
@@ -109,4 +107,5 @@ $default-margin: 10px;
   border-radius: 50%;
   border: 2px solid #fff; /* White border around the profile picture */
   object-fit: cover;
+  overflow: hidden;
 }

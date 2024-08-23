@@ -21,16 +21,19 @@ h1{
   z-index: -1;  /* Bring the pseudo-element above other content */
 }
 
-.appointment-confirmation-card{
-  margin: auto;
+  .appointment-confirmation-card {
+    margin: auto;
     text-align: center;
     padding: 10px 20px;
+    padding-top: 50px; /* Adjust this value to increase the space at the top */
     background-color: white;
-    border-radius: 4px;
+    border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
     width: 90%;
+    height: 200px;
   }
+
 
 
 
@@ -54,7 +57,7 @@ h1{
     padding: 10px 20px;
     background-color: $midgreen; /* Button background color */
     color: white; /* Button text color */
-    border-radius: 5px; /* Optional: Add rounded corners to the button */
+    border-radius: 50px; /* Optional: Add rounded corners to the button */
 }
 
 .confirmation-icon {
@@ -75,4 +78,46 @@ h1{
     padding-top: 0;
     font-size: 30px;
   }
+
+  p {
+    text-align: center;
+  }
+
+}
+
+
+.profile2-image img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid $midgreen; /* White border around the profile picture */
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.clinician-info-show {
+  padding-left: 5px;
+  text-align: left;
+
+  h2 {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  h5 {
+    font-size: 15px;
+    font-weight: lighter;
+    color: $midgreen;
+  }
+
+  p {
+color: $midgreen;
+  }
+}
+
+
+.line {
+  border-top: 2px solid $green; /* Thickness and color of the line */
+  width: 100%; /* Width of the line */
+  margin: 20px 0; /* Space above and below the line */
 }

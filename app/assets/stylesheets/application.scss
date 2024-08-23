@@ -28,9 +28,9 @@ body {
   margin: 6px;
 }
 
-h1, h2, h3 {
-  font-weight: 700;
-}
+// h1, h2, h3 {
+//   font-weight: 700;
+// }
 
 button {
   font-weight: 500;
@@ -62,19 +62,10 @@ button {
   display: flex;
   justify-content: center;
   margin-top: -4px;
+
 }
 
-.appointment-card-body {
-  display: flex;
-  justify-content: center;
-  margin-top: -4px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 10px;
-  box-sizing: border-box;
-  width: 100%;
-}
+
 
 .card-header {
   background-color: white !important; /* Force the background to white */
@@ -193,4 +184,16 @@ button {
 /* Samsung Galaxy S7 Edge ----------- */
 @media only screen and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 192dpi) and (max-width: 640px) {
   /* Styles */
+}
+
+
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: none;
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
 }
