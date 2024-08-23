@@ -8,7 +8,7 @@
       <% @appointments.each do |appointment| %>
         <div class="col-md-6 mb-4">
           <div class="card shadow-sm">
-            <div class="card-body">
+            <div class="appointment-card-body">
               <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
                 <h5 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
                   <%= appointment.appointment_date.strftime('%B %e, %Y') %> - <%= appointment.appointment_type %> - <%= appointment.status %>

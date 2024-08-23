@@ -49,21 +49,12 @@ h1{
 
   }
 
-  .done-button:hover {
-    background-color: #2f5d8d; /* Darken the button on hover */
-  }
-
   .chat-button {
     text-decoration: none;
     padding: 10px 20px;
     background-color: $midgreen; /* Button background color */
     color: white; /* Button text color */
     border-radius: 5px; /* Optional: Add rounded corners to the button */
-    cursor: pointer; /* Change cursor to pointer on hover */
-}
-
-.chat-button:hover {
-  background-color: #0056b3; /* Darken the button on hover */
 }
 
 .confirmation-icon {
