@@ -2,14 +2,14 @@
 
   <div class="d-flex justify-content-around" style="padding-top: 60px;">
     <div class="confirmation-icon">
-      <%= image_tag 'confirmation_icon_blue.png', alt: 'date_icon', class: 'confirmation-icons' %>
+      <%= image_tag 'Tick.png', alt: 'date_icon', class: 'confirmation-icons' %>
     </div>
   </div>
 
   <div class="d-flex justify-content-center">
     <div class= "confirmation-message">
       <h1>Booking pending </h1>
-      <p>Congratulation e-mail and SMS has been sent to your registered details </p>
+      <p>Congratulations, an e-mail and SMS has been sent to your registered details. </p>
     </div>
   </div>
 
@@ -20,28 +20,34 @@
           <p><%= @appointment.appointment_date %></p>
         <% else %>
 
-          <div class="w-50">
-            <%= image_tag 'nurse_female.png', alt: 'clincian_icon', class: 'nurse_female-icon' %>
+          <div class="profile2-image">
+            <%= image_tag 'nurse_female_head.png' %>
           </div>
 
-          <div class="p-3">
-            <h1>Dr <%= @clinician.first_name %> <%= @clinician.last_name %></h1>
-            <p>General Pratitioner</p>
-            <p><%= @appointment.appointment_date.strftime("%B %d, %Y %I:%M %p") %></p>
+          <div class="clinician-info-show">
+            <h2>Dr <%= @clinician.first_name %> <%= @clinician.last_name %></h2>
+            <h5>General Pratitioner</h5>
+
+           <div class="line"></div>
+
+            <div class="datentime">
+              <p><%= @appointment.appointment_date.strftime("%B %d, %Y %I:%M %p") %></p>
+            </div>
           </div>
 
         <% end %>
     </div>
+
       <div class='d-flex justify-content-around mt-4'>
-    <div>
-      <%= link_to 'Done', root_path, class: 'done-button' %>
+      <div>
+        <%= link_to 'Done', root_path, class: 'done-button' %>
+      </div>
+        <% if @appointment.chatroom %>
+      <div>
+        <%= link_to 'Chat', appointment_chatroom_path(@appointment, @appointment.chatroom), class: 'chat-button'  %>
+      </div>
+      <% end %>
     </div>
-      <% if @appointment.chatroom %>
-    <div>
-      <%= link_to 'Chat', appointment_chatroom_path(@appointment, @appointment.chatroom), class: 'chat-button'  %>
-    </div>
-    <% end %>
-  </div>
   </div>
 
 

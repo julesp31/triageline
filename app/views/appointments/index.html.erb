@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="">
   <div class="appointment-body">
     <div class="text-center mb-4">
       <h1 style='font-size: 30px;'>Appointments</h1>
@@ -7,7 +7,7 @@
     <div class="row">
       <% @appointments.each do |appointment| %>
         <div class="col-md-6 mb-4">
-          <div class="card shadow-sm">
+          <div class="card-for-content">
             <div class="appointment-card-body">
               <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
                 <h5 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
@@ -20,19 +20,19 @@
               <% end %>
 
               <div class="d-flex align-items-center mb-2">
-                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 <strong>Date: <%= appointment.appointment_date.strftime('%B %e, %Y') %></strong>
               </div>
               <div class="d-flex align-items-center mb-2">
-                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <%= image_tag 'Timeapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 <strong>Time: <%= appointment.appointment_date.strftime('%I:%M %p') %></strong>
               </div>
               <div class="d-flex align-items-center mb-2">
-                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <%= image_tag 'Typeapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 <strong>Type: <%= appointment.appointment_type %></strong>
               </div>
               <div class="d-flex align-items-center mb-2">
-                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <%= image_tag 'Statusapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 <strong>Status: <%= appointment.status %></strong>
 
                 <div class="dropdown-menu" aria-labelledby="statusDropdown#{appointment.id}">
@@ -43,12 +43,12 @@
                 </div>
               </div>
               <div class="d-flex align-items-center mb-2">
-                <%= image_tag 'doctor.png', style: 'width: 24px; height: 24px; margin-right: 8px;' %>
+                <%= image_tag 'Clinicianapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 <strong>Clinician: <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %></strong>
               </div>
 
               <% if current_user.clinician? %>
-                <div class="d-flex justify-content-end mt-3">
+                <div class="appointment-button-decision">
                   <%= button_to "Close", toggle_status_appointment_path(appointment), method: :post, params: {status: "Closed"} %>
                   <%= button_to "Accept", toggle_status_appointment_path(appointment), method: :post, params: {status: "Accepted"} %>
                 </div>
