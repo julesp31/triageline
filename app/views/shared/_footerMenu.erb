@@ -1,28 +1,31 @@
 <div class="footer-bar">
-  <a href="<%= root_path %>" class="nav-item">
-    <i class="fas fa-clinic-medical"></i>
+  <a href="<%= root_path %>" class="nav-item <%= 'active' if current_page?(root_path) %>" data-name="Home">
+    <i class="fas fa-home"></i>
+    <span class="nav-text">Home</span>
   </a>
 
-  <a href="<%= appointments_path %>" class="nav-item">
-    <i class="fas fa-notes-medical"></i>
+  <a href="<%= appointments_path %>" class="nav-item <%= 'active' if current_page?(appointments_path) %>" data-name="Appointments" style="right:20px;">
+    <i class="fas fa-calendar-alt"></i>
+    <span class="nav-text">Appointments</span>
   </a>
 
-  <a href="" class="nav-item">
-    <i class="fas fa-comment-medical"></i>
-  </a>
-
-  <a href="" class="nav-item">
-    <%# <i class="fas fa-user"></i> %>
-  </a>
-
-<div class="footer1">
   <!-- Plus Button as a dropdown toggle -->
-  <div class="dropdown">
+  <div class="dropdown plus-button-container">
     <div class="plus-button dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-     +
+      <i class="fas fa-plus"></i>
     </div>
     <ul class="dropdown-menu dropdown-menu-end">
-      <li><a class="dropdown-item" href="/appointments/new" data-turbo="false">Book Appointment</a></li>
+      <li><a class="dropdown-item" href="/appointments/new">Book Appointment</a></li>
     </ul>
   </div>
+
+  <a href="#" class="nav-item" data-name="Messages" style="left:12px;">
+    <i class="fas fa-comment-alt"></i>
+    <span class="nav-text">Messages</span>
+  </a>
+
+  <a href="#" class="nav-item" data-name="Profile">
+    <i class="fas fa-user-alt"></i>
+    <span class="nav-text">Profile</span>
+  </a>
 </div>

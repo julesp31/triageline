@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     type.addEventListener('click', () => {
       appointmentFormType.value = type.querySelector('span').innerHTML
     })
-  })
+  });
 
   const triageData = {
     'admin': [
@@ -469,6 +469,40 @@ document.addEventListener('DOMContentLoaded', function() {
     showForm(categoryList); // Display the category list form by default
   }
 
+  // Nav item click event listener
+  document.addEventListener('DOMContentLoaded', function() {
+    const navItems = document.querySelectorAll('.nav-item');
 
+    // Load the active nav item from localStorage if it exists
+    const savedActiveNav = localStorage.getItem('activeNav');
+    if (savedActiveNav) {
+      const activeNavItem = document.querySelector(`[data-name="${savedActiveNav}"]`);
+      if (activeNavItem) {
+        activateNavItem(activeNavItem);
+      }
+    }
+
+    navItems.forEach(item => {
+      item.addEventListener('click', function() {
+        // Remove active class from all items
+        navItems.forEach(i => i.classList.remove('active'));
+
+        // Add active class to the clicked item
+        item.classList.add('active');
+
+        // Store the active nav item in localStorage
+        const navName = item.getAttribute('data-name');
+        localStorage.setItem('activeNav', navName);
+      });
+    });
+
+    function activateNavItem(navItem) {
+      // Ensure that all other nav items are inactive
+      navItems.forEach(i => i.classList.remove('active'));
+
+      // Activate the passed-in nav item
+      navItem.classList.add('active');
+    }
+  });
 
 });
