@@ -1,12 +1,14 @@
 <div class="welcome-card">
   <div class="background-image">
-    <img src="https://wallpapercave.com/wp/wp6938358.jpg" alt="Background Image">
+ <%= image_tag 'homebanner.png', alt: 'background image' %>
   </div>
 
   <div class="welcome-content">
     <div class="welcome-text">
       <p>Good afternoon</p>
+      <div class="homepage-name">
       <h2>Basia Brzeziecka</h2>
+      </div>
       <p>NHS Number: 263829102</p>
     </div>
     <div class="profile-image">
@@ -44,9 +46,9 @@
       <!-- The Slideshow/Carousel -->
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <%= image_tag 'Hero_image1.jpg', alt: 'Hero_image1', class: 'd-block w-100' %>
+          <%= image_tag 'covid.jpg', alt: 'covid', class: 'd-block w-100' %>
           <div class="carousel-caption">
-            <h1>Welcome to Triageline!</h1>
+            <h1>Getting a COVID-19 vaccine</h1>
           </div>
         </div>
 

@@ -470,39 +470,67 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Nav item click event listener
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const navItems = document.querySelectorAll('.nav-item');
 
-    // Load the active nav item from localStorage if it exists
+    // Load the focused nav item from localStorage if it exists
     const savedActiveNav = localStorage.getItem('activeNav');
     if (savedActiveNav) {
       const activeNavItem = document.querySelector(`[data-name="${savedActiveNav}"]`);
       if (activeNavItem) {
-        activateNavItem(activeNavItem);
+        activateNavItem(activeNavItem, true); // Highlight the saved nav item with .focus
+      }
+    } else {
+      // Set a default focus to the Home button if no saved state exists
+      const defaultNavItem = document.querySelector('[data-name="Home"]');
+      if (defaultNavItem) {
+        activateNavItem(defaultNavItem, true); // Default highlight with .focus
       }
     }
 
     navItems.forEach(item => {
-      item.addEventListener('click', function() {
-        // Remove active class from all items
-        navItems.forEach(i => i.classList.remove('active'));
+      item.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default action to manage class highlight manually
 
-        // Add active class to the clicked item
-        item.classList.add('active');
-
-        // Store the active nav item in localStorage
         const navName = item.getAttribute('data-name');
-        localStorage.setItem('activeNav', navName);
+
+        // Remove focus and active classes from all items
+        deactivateAllNavItems();
+
+        if (navName === 'Home' || navName === 'Appointments') {
+          // For "Home" and "Appointments", use .focus class and navigate
+          activateNavItem(item, true); // Add .focus to the clicked item
+          localStorage.setItem('activeNav', navName); // Save to localStorage
+
+          // Navigate to the href of the clicked item
+          const href = item.getAttribute('href');
+          if (href) {
+            window.location.href = href;
+          }
+        } else {
+          // For "Messages" and "Profile", use .active class without navigation
+          activateNavItem(item, false); // Add .active to the clicked item
+          localStorage.setItem('activeNav', navName); // Save to localStorage
+        }
       });
     });
 
-    function activateNavItem(navItem) {
-      // Ensure that all other nav items are inactive
-      navItems.forEach(i => i.classList.remove('active'));
+    function deactivateAllNavItems() {
+      navItems.forEach(i => {
+        i.classList.remove('focus', 'active');
+      });
+    }
 
-      // Activate the passed-in nav item
-      navItem.classList.add('active');
+    function activateNavItem(navItem, isFocus) {
+      if (isFocus) {
+        navItem.classList.add('focus');
+      } else {
+        navItem.classList.add('active');
+      }
     }
   });
+
+
+
 
 });

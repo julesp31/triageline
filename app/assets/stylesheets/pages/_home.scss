@@ -18,14 +18,12 @@ $default-margin: 10px;
 
 .carousel-inner {
   border-radius: 10px;
-  // border-top: 10px;
-
+  background-color: black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-inner h1 {
   color: white;
-  background-color: rgba(31, 124, 142, 0.6);
   display: inline-block;
   line-height: 1;
   padding: 5px;
@@ -39,30 +37,16 @@ $default-margin: 10px;
 
 
 .welcome-card {
-  position: relative;
-  width: 94%;
-  max-width: 800px;
-  height: 130px; /* Ensures the card is not taller than 300px */
-  margin-top: 80px;
-  margin-bottom: 40px;
-  border-radius: 10px;
-  text-align: left;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Ensures content stays within the bounds of the card */
-}
-
-.welcome-card {
   content: '';
   position: relative;
-  width: 94%;
+  width: 100%;
   max-width: 800px;
   height: 130px; /* Ensures the card is not taller than 300px */
-  margin-top: 80px;
+  margin-top: 60px;
   margin-bottom: 40px;
-  border-radius: 10px;
   text-align: left;
   background-color: $green;
-  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden; /* Ensures content stays within the bounds of the card */
 
   .h1, h2, h3, p {
@@ -75,9 +59,15 @@ $default-margin: 10px;
 .background-image img {
   width: 100%;
   height: auto;
-  // border-radius: 10px;
-  opacity: 0.1;
+}
 
+.welcomequestion {
+  margin-bottom: 20px;
+}
+
+.homepage-name h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
 }
 
 .welcome-content {
@@ -108,4 +98,14 @@ $default-margin: 10px;
   border: 2px solid #fff; /* White border around the profile picture */
   object-fit: cover;
   overflow: hidden;
+}
+
+.carousel-item img {
+  height: 200px; /* Adjust this based on your design needs */
+  object-fit: cover; /* This will cover the area of the carousel-item, cropping the image if necessary */
+  opacity: 0.9;
+}
+
+.carousel-caption h1 {
+  font-size: 20px;
 }
