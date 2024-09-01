@@ -56,7 +56,7 @@
 
 
 h1, .form-section h1 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins';
   font-weight: 600;
   font-size: 30px;
   color: white;
@@ -109,6 +109,7 @@ p, .form-section p {
   margin: 10px 2px;
   width: calc(100% - 6px);
   max-width: 500px;
+  cursor: pointer;;
 }
 
 .category-card {
@@ -127,6 +128,7 @@ p, .form-section p {
 
 #char-counter {
   margin-top: 15px;
+  color: #022B3A;
 }
 
 #details-container p
@@ -163,12 +165,14 @@ p, .form-section p {
   color: white;
   font-size: 14px;
   text-align: center;
+  cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .appointment-type-card i {
   font-size: 40px;
   margin-bottom: 0px;
+  cursor: pointer;
 }
 
 

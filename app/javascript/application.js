@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cliniciansData = {
     'phone': [
-        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['8:00am', '10:00am', '1:00pm'], favorite: true },
+        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['2:00pm', '3:30pm', '5:00pm'], favorite: true },
         { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: false },
         { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: true },
         { name: 'Physician Carol Smith', image: '/assets/carol.jpg', email: 'csmith@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: false },

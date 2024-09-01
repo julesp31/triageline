@@ -26,15 +26,12 @@ $default-margin: 10px;
   color: white;
   display: inline-block;
   line-height: 1;
-  padding: 5px;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Text shadow for additional clarity */
+  border-radius: 5px; /* Rounded corners for the background */
+  font-weight: 700; /* Bold text */
 }
-
-
-// .home-image-container {
-//   position: relative;
-//   width: 100%;
-// }
-
 
 .welcome-card {
   content: '';
@@ -101,9 +98,9 @@ $default-margin: 10px;
 }
 
 .carousel-item img {
-  height: 200px; /* Adjust this based on your design needs */
-  object-fit: cover; /* This will cover the area of the carousel-item, cropping the image if necessary */
-  opacity: 0.9;
+  height: 170px;
+  object-fit: cover;
+  filter: brightness(70%); /* Darkens the image slightly */
 }
 
 .carousel-caption h1 {
