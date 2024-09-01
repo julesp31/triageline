@@ -10,6 +10,11 @@ class AppointmentsController < ApplicationController
       @appointments = current_user.appointments_as_patient.order(appointment_date: :desc)
     end
 
+    if params[:status].present?
+      @appointments = @appointments.where(status: params[:status])
+    end
+
+    @appointments = @appointments.order(appointment_date: :desc)
   end
 
   def show

@@ -1,11 +1,12 @@
 .chatroom {
   background: white;
   margin-top: 9px;
-  height: calc(100vh - 75px);
+  height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+  background-color: #dcf5f3;
 
   h1 {
     border-bottom: 1px solid $gray-200;
@@ -25,8 +26,6 @@
   }
 
   #new_message {
-    border-top: 1px solid $gray-200;
-
     .form-group {
       margin-bottom: 0;
     }
@@ -41,4 +40,80 @@
   margin: 0;
   height: 42px;
   margin-left: 16px;
+}
+
+.message-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 40px;  /* Set a fixed width */
+  height: 40px; /* Automatically adjust the height to maintain aspect ratio */
+  border-radius: 50%; /* Make the avatar circular */
+  object-fit: cover; /* Ensure the image covers the area without stretching */
+}
+
+.message-content {
+  max-width: 60%; /* Limit message width */
+  padding: 10px;
+  background-color: white; /* Default background color */
+  border-radius: 15px; /* Rounded corners for the speech bubble */
+  margin: 0 10px; /* Space between the avatar and message */
+  position: relative; /* Position for pseudo-element */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.message-content::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.message-item:not(.right) .message-content::after {
+  top: 15px; /* Position the tail near the top */
+  left: -8px; /* Position the tail on the left */
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent; /* Left side bubble tail */
+}
+
+.message-item.right .message-content::after {
+  top: 15px; /* Position the tail near the top */
+  right: -8px; /* Position the tail on the right */
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #e0f7fa; /* Right side bubble tail */
+}
+
+.timestamp {
+  font-size: 0.8em;
+  color: #888; /* Lighter color for timestamps */
+  margin-bottom: 5px;
+  align-self: flex-start;
+}
+
+.message-text {
+  margin: 0;
+  color: #333; /* Text color */
+}
+
+.message-item.right {
+  justify-content: flex-end; /* Align everything to the right */
+}
+
+.message-item.right .message-content {
+  background-color: #e0f7fa; /* Different background color for right-side messages */
+  text-align: left; /* Align text to the left */
+}
+
+.message-item.right .timestamp {
+  align-self: flex-end; /* Align timestamp to the right */
+}
+
+.message-item.right .avatar {
+  margin-left: 10px; /* Space between message bubble and avatar on the right */
 }

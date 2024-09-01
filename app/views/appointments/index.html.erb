@@ -4,14 +4,21 @@
       <h1 style='font-size: 30px;'>Appointments</h1>
     </div>
 
+    <!-- Dropdown to filter appointments by status -->
+    <div class="text-center mb-4">
+      <%= form_with url: appointments_path, method: :get, local: true, id: 'status-filter-form', class: 'form-inline' do %>
+        <%= select_tag :status, options_for_select([['All', ''], ['Pending', 'Pending'], ['Accepted', 'Accepted'], ['Closed', 'Closed']], params[:status]), class: 'form-control mr-sm-2', prompt: 'Select Status', onchange: 'this.form.submit();' %>
+      <% end %>
+    </div>
+
     <div class="row">
       <% @appointments.each do |appointment| %>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 mb-4" style="margin-top: -10px;">
           <div class="card-for-content">
             <div class="appointment-card-body">
               <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
                 <h5 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
-                  <%= appointment.appointment_date.strftime('%B %e, %Y') %> - <%= appointment.appointment_type %> - <%= appointment.status %>
+                  <%= appointment.appointment_date.strftime('%a, %B %e, %Y') %>
                 </h5>
               <% end %>
 
@@ -21,7 +28,7 @@
 
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                <strong>Date: <%= appointment.appointment_date.strftime('%B %e, %Y') %></strong>
+                <strong>Date: <%= appointment.appointment_date.strftime('%a, %B %e, %Y') %></strong>
               </div>
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Timeapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
@@ -44,7 +51,7 @@
               </div>
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Clinicianapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                <strong>Clinician: <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %></strong>
+                <strong>Clinician: <%= appointment.clinician.title %> <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %></strong>
               </div>
 
               <% if current_user.clinician? %>
@@ -56,7 +63,7 @@
             </div>
 
             <% if appointment.chatroom %>
-              <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom), class: 'done-button m-3 mt-1' %>
+              <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom), class: 'done-button m-2 mt-3' %>
             <% end %>
           </div>
         </div>
