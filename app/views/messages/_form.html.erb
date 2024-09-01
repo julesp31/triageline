@@ -1,0 +1,5 @@
+<!-- app/views/messages/_form.html.erb -->
+<%= simple_form_for [@appointment, @chatroom, @message], url: appointment_chatroom_messages_path(@appointment, @chatroom), html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex chat-form" } do |f| %>
+  <%= f.input :text, label: false, placeholder: "Write a message", wrapper_html: { class: "flex-grow-1" } %>
+  <%= f.submit "Send", class: "btn btn-primary submit-button" %>
+<% end %>

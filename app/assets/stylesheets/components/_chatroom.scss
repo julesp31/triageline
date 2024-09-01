@@ -47,13 +47,13 @@ textarea {
 
 .avatar {
   width: 40px; /* Set a fixed width */
-  height: 40px; /* Set a fixed height to maintain aspect ratio */
+  height: 40px; /* Automatically adjust the height to maintain aspect ratio */
   border-radius: 50%; /* Make the avatar circular */
   object-fit: cover; /* Ensure the image covers the area without stretching */
 }
 
 .message-content {
-  max-width: 88%; /* Limit message width */
+  max-width: 83%; /* Limit message width */
   padding: 10px;
   background-color: white; /* Default background color */
   border-radius: 15px; /* Rounded corners for the speech bubble */
@@ -64,7 +64,6 @@ textarea {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   word-wrap: break-word; /* Ensure long words break and wrap to the next line */
   overflow-wrap: break-word; /* Ensure content doesn't overflow */
-  overflow: hidden; /* Hide any overflowing content */
 }
 
 .message-content::after {
@@ -99,7 +98,6 @@ textarea {
 .message-text {
   margin: 0;
   color: #333; /* Text color */
-  white-space: normal; /* Ensure text wraps normally */
 }
 
 .message-item.right {
@@ -109,12 +107,10 @@ textarea {
 .message-item.right .message-content {
   background-color: #abf5ffb0; /* Different background color for right-side messages */
   text-align: left; /* Align text to the left */
+  margin-right: 10px; /* Add margin to the right for consistent spacing */
 }
+
 
 .message-item.right .timestamp {
   align-self: flex-end; /* Align timestamp to the right */
-}
-
-.message-item.right .avatar {
-  margin-left: 10px; /* Space between message bubble and avatar on the right */
 }
