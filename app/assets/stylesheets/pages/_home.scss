@@ -41,7 +41,7 @@ $default-margin: 10px;
   height: 130px; /* Ensures the card is not taller than 300px */
   margin-top: 58px;
   margin-bottom: 40px;
-  text-align: left;
+  text-align: center;
   background-color: $green;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden; /* Ensures content stays within the bounds of the card */
@@ -60,6 +60,7 @@ $default-margin: 10px;
 
 .welcomequestion {
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .homepage-name h2 {

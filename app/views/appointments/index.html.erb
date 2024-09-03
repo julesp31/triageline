@@ -26,6 +26,16 @@
                 <p class="card-text roboto">Severity: <%= appointment.severity %></p>
               <% end %>
 
+              <!-- Display Symptom Categories -->
+              <% if appointment.symptoms.any? %>
+                <% appointment.symptoms.each do |symptom| %>
+                  <div class="d-flex align-items-center mb-2">
+                    <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
+                    <strong>Symptom: <%= symptom.category %></strong>
+                  </div>
+                <% end %>
+              <% end %>
+
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 <strong>Date: <%= appointment.appointment_date.strftime('%a, %B %e, %Y') %></strong>
@@ -41,13 +51,6 @@
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Statusapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 <strong>Status: <%= appointment.status %></strong>
-
-                <div class="dropdown-menu" aria-labelledby="statusDropdown#{appointment.id}">
-                  <%= link_to 'Pending', '#', class: 'dropdown-item change-status', data: { status: 'Pending', id: appointment.id } %>
-                  <%= link_to 'Accepted', '#', class: 'dropdown-item change-status', data: { status: 'Accepted', id: appointment.id } %>
-                  <%= link_to 'Cancelled', '#', class: 'dropdown-item change-status', data: { status: 'Cancelled', id: appointment.id } %>
-                  <%= link_to 'Closed', '#', class: 'dropdown-item change-status', data: { status: 'Closed', id: appointment.id } %>
-                </div>
               </div>
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Clinicianapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
