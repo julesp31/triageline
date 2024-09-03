@@ -13,6 +13,11 @@
   position: absolute;
   top: 12px;
   left: 12px;
+  text-shadow:
+    -1px -1px 0 #000, /* Top-left shadow */
+    1px -1px 0 #000,  /* Top-right shadow */
+    -1px 1px 0 #000,  /* Bottom-left shadow */
+    1px 1px 0 #000;   /* Bottom-right shadow */
 }
 
 .rating-heart-container {
@@ -27,7 +32,7 @@
   top: 10px;
   right: 10px;
   font-size: 20px;
-  color: white;
+  color: #dcdcdc;
   cursor: pointer;
 }
 
@@ -128,7 +133,7 @@ p, .form-section p {
 
 #char-counter {
   margin-top: 15px;
-  color: #022B3A;
+  color: #1f7c8e;
 }
 
 #details-container p

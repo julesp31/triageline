@@ -162,25 +162,26 @@ document.addEventListener('DOMContentLoaded', function() {
     ]
   };
 
-  const cliniciansData = {
-    'phone': [
-        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['2:00pm', '3:30pm', '5:00pm'], favorite: true },
-        { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: false },
-        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: true },
-        { name: 'Physician Carol Smith', image: '/assets/carol.jpg', email: 'csmith@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: false },
-    ],
-    'video': [
-        { name: 'Doctor Liam Sanders', image: '/assets/liam.jpg', email: 'lsanders@gmail.com', times: ['8:30am', '10:30am', '1:30pm'], favorite: true },
-        { name: 'Doctor Alice Newton', image: '/assets/alice.jpg', email: 'anewton@gmail.com', times: ['9:30am', '11:30am', '2:30pm'], favorite: true },
-        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:30am', '11:30am', '2:30pm'], favorite: false },
-    ],
-    'in-person': [
-        { name: 'Doctor Alice Newton', image: '/assets/alice.jpg', email: 'anewton@gmail.com', times: ['8:45am', '10:45am', '1:45pm'], favorite: false },
-        { name: 'Doctor Marie Cure', image: '/assets/marie.jpg', email: 'clinician@gmail.com', times: ['9:45am', '11:45am', '2:45pm'], favorite: false },
-        { name: 'Doctor Albert Johnson', image: '/assets/albert.jpg', email: 'ajohnson@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: true },
-        { name: 'Senior Nurse Jane Doe', image: '/assets/jane.jpg', email: 'jdoe@gmail.com', times: ['9:00am', '11:00am', '2:00pm'], favorite: false },
-    ],
-};
+    const cliniciansData = {
+      'phone': [
+          { name: 'Doctor Marie Cure', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403884/marie_vzvgyh.jpg', email: 'clinician@gmail.com', times: ['2:30pm', '4:00pm', '7:30pm'], favorite: true },
+          { name: 'Doctor Albert Johnson', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403903/albert_iakaul.jpg', email: 'ajohnson@gmail.com', times: ['3:00pm', '5:30pm', '8:00pm'], favorite: false },
+          { name: 'Senior Nurse Jane Doe', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403854/jane_eyh6od.jpg', email: 'jdoe@gmail.com', times: ['2:15pm', '6:00pm', '8:45pm'], favorite: true },
+          { name: 'Physician Carol Smith', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403827/carol_mbm5ns.jpg', email: 'csmith@gmail.com', times: ['3:45pm', '5:00pm', '7:00pm'], favorite: false }
+      ],
+      'video': [
+          { name: 'Doctor Liam Sanders', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403866/liam_fxxlav.jpg', email: 'lsanders@gmail.com', times: ['2:00pm', '4:30pm', '6:15pm'], favorite: true },
+          { name: 'Doctor Alice Newton', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403913/alice_qozrvi.jpg', email: 'anewton@gmail.com', times: ['3:15pm', '5:45pm', '7:30pm'], favorite: true },
+          { name: 'Physician Carol Smith', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403827/carol_mbm5ns.jpg', email: 'csmith@gmail.com', times: ['3:45pm', '5:00pm', '7:00pm'], favorite: false },
+          { name: 'Senior Nurse Jane Doe', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403854/jane_eyh6od.jpg', email: 'jdoe@gmail.com', times: ['2:30pm', '4:00pm', '8:00pm'], favorite: false }
+      ],
+      'in-person': [
+          { name: 'Doctor Alice Newton', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403913/alice_qozrvi.jpg', email: 'anewton@gmail.com', times: ['2:15pm', '3:45pm', '5:30pm'], favorite: false },
+          { name: 'Doctor Marie Cure', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403884/marie_vzvgyh.jpg', email: 'clinician@gmail.com', times: ['2:30pm', '4:30pm', '5:15pm'], favorite: false },
+          { name: 'Doctor Albert Johnson', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403903/albert_iakaul.jpg', email: 'ajohnson@gmail.com', times: ['3:00pm', '4:15pm', '5:45pm'], favorite: true },
+          { name: 'Doctor Liam Sanders', image: 'https://res.cloudinary.com/djkohlole/image/upload/v1725403866/liam_fxxlav.jpg', email: 'lsanders@gmail.com', times: ['2:00pm', '4:30pm', '6:15pm'], favorite: true }
+      ],
+  };
 
   function showForm(form, appointmentType=null, selectedClinician=null) {
     const forms = [categoryList, triageQuestions, reasonForAppointment, appointmentTypeList, availableClinicians, calendarView, bookingDetails, appointmentPending];

@@ -28,14 +28,15 @@ h1{
     padding-top: 18px; /* Adjust this value to increase the space at the top */
     background-color: white;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgb(140, 221, 221);
+    box-shadow: 0 4px 8px #2D807C;
     z-index: 1;
     width: 90%;
     height: 170px;
-    margin-top: 15px;
   }
 
-
+  .appointment-confirmation-card p {
+    color: #2D807C;
+  }
 
 
   .done-button{
@@ -78,13 +79,13 @@ h1{
   h1 {
     padding-top: 0;
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   p {
     text-align: center;
     margin-top: 15px;
-    font-weight: 450;
+    font-weight: 430;
     line-height: 1.4;
   }
 
