@@ -17,9 +17,9 @@
           <div class="card-for-content">
             <div class="appointment-card-body">
               <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
-                <h5 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
-                  <%= appointment.appointment_date.strftime('%a, %B %e, %Y') %>
-                </h5>
+               <h2 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
+                   <strong><%= appointment.appointment_date.strftime('%a, %B %e, %Y') %>  </strong>
+                </h2>
               <% end %>
 
               <% if current_user.clinician? %>
@@ -36,25 +36,23 @@
                 <% end %>
               <% end %>
 
-              <div class="d-flex align-items-center mb-2">
-                <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                <strong>Date: <%= appointment.appointment_date.strftime('%a, %B %e, %Y') %></strong>
-              </div>
+
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Timeapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                <strong>Time: <%= appointment.appointment_date.strftime('%I:%M %p') %></strong>
+                Time: <%= appointment.appointment_date.strftime('%I:%M %p') %>
               </div>
+
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Typeapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                <strong>Type: <%= appointment.appointment_type %></strong>
+                Type: <%= appointment.appointment_type %>
               </div>
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Statusapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                <strong>Status: <%= appointment.status %></strong>
+                Status: <%= appointment.status %>
               </div>
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Clinicianapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                <strong>Clinician: <%= appointment.clinician.title %> <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %></strong>
+                Clinician: <%= appointment.clinician.title %> <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %>
               </div>
 
               <% if current_user.clinician? %>
