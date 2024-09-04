@@ -555,8 +555,4 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
-
-
-
-
 });
