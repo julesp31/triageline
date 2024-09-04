@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showCalendarView(clinician.name, appointmentType);
             });
             moreButton.textContent = 'More';
-            moreButton.className = 'more-button btn btn-secondary';
+            moreButton.className = 'more-button';
             times.appendChild(moreButton);
 
             clinicianCard.appendChild(times);
@@ -424,22 +424,47 @@ document.addEventListener('DOMContentLoaded', function() {
   function showBookingDetails(clinicianName, appointmentType, dateStr, time) {
     let appointmentFormDate = document.getElementById('appointment_date');
     let appointmentClinicianEmail = document.getElementById('clinician_email');
+
+    // Format the date
+    function formatDateString(dateStr) {
+        const date = new Date(dateStr);
+        let day = date.getDate();
+        let month = date.getMonth() + 1; // Months are zero-based
+        let year = date.getFullYear();
+
+        // Pad day and month with leading zeros if needed
+        day = day < 10 ? '0' + day : day;
+        month = month < 10 ? '0' + month : month;
+
+        return `${day}-${month}-${year}`;
+    }
+
+    // Format the date
+    const formattedDate = dateStr ? formatDateString(dateStr) : 'Not selected';
+
+    // Update form fields
     selectedDate = dateStr;
     selectedTime = time;
-    appointmentFormDate.value = dateStr + ' ' + time
-    console.log(cliniciansData[appointmentType])
-    const clinicianEmail = cliniciansData[appointmentType].find((clinician) => clinician.name === clinicianName).email
-    appointmentClinicianEmail.value = clinicianEmail
+    appointmentFormDate.value = `${formattedDate} ${time}`;
 
+    // Find clinician email
+    console.log(cliniciansData[appointmentType]);
+    const clinicianEmail = cliniciansData[appointmentType]
+        .find(clinician => clinician.name === clinicianName)
+        .email;
+    appointmentClinicianEmail.value = clinicianEmail;
+
+    // Update details container
     detailsContainer.innerHTML = `
       <p><strong>Clinician:</strong> ${clinicianName}</p>
-      <p><strong>Date:</strong> ${dateStr || 'Not selected'}</p>
+      <p><strong>Date:</strong> ${formattedDate || 'Not selected'}</p>
       <p><strong>Time:</strong> ${time}</p>
       <p style="display: none;"><strong>Severity:</strong> ${severity}</p>
     `;
 
     showForm(bookingDetails);
-  }
+}
+
 
   function handleConfirmBooking() {
     document.querySelector('#new_appointment').submit();

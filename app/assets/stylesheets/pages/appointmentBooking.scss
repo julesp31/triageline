@@ -47,6 +47,13 @@
   height: 100%;
 }
 
+#appointment-reason {
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 20px;
+  height: 220px;
+  align-content: baseline;
+}
+
 
 .appointmentbooking {
   font-family: 'Roboto', sans-serif;
@@ -114,7 +121,7 @@ p, .form-section p {
   margin: 10px 2px;
   width: calc(100% - 6px);
   max-width: 500px;
-  cursor: pointer;;
+  cursor: pointer;
 }
 
 .category-card {

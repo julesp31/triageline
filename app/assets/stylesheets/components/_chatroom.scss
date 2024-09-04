@@ -20,9 +20,11 @@
   padding: 1rem;
 }
 
-textarea {
-  height: 220px;
-  margin: 0;
+.btn, .form-control, textarea {
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 20px;
+  height: 45px;
+  align-content: center;
 }
 
 #new_message .form-group {
@@ -30,13 +32,19 @@ textarea {
 }
 
 .chat-form {
-  height: 150px;
+  height: 140px;
 }
 
 .submit-button {
   margin: 0;
-  height: 42px;
+  height: 44px;
   margin-left: 16px;
+}
+
+.submit-button:hover {
+  background-color: #1f7c8e; /* Same as default to remove hover effect */
+  color: white; /* Same as default */
+  cursor: pointer; /* Optional: ensure pointer cursor on hover */
 }
 
 .message-item {
