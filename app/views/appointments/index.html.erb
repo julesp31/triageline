@@ -20,8 +20,6 @@
                <h2 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
                    <strong><%= appointment.appointment_date.strftime('%a, %B %e, %Y') %>  </strong>
                 </h2>
-
-
               <% end %>
 
               <% if current_user.clinician? %>
