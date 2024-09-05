@@ -13,17 +13,22 @@
 
     <div class="row">
       <% @appointments.each do |appointment| %>
-        <div class="col-md-6 mb-4" style="margin-top: -10px;">
+        <div class="col-md-6 mb-5" style="margin-top: -10px; ">
           <div class="card-for-content">
             <div class="appointment-card-body">
               <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
-               <h2 class="card-title lobster-regular mb-3 <%= 'text-warning' if appointment.severity == 'High' %>">
-                   <strong><%= appointment.appointment_date.strftime('%a, %B %e, %Y') %>  </strong>
+               <h2 class="card-title lobster-regular mb-3">
+                   <strong>
+                      <%= appointment.appointment_date.strftime('%A') %><br>
+                      <%= appointment.appointment_date.strftime('%B %e, %Y') %>
+                    </strong>
                 </h2>
               <% end %>
 
               <% if current_user.clinician? %>
-                <p class="card-text roboto">Severity: <%= appointment.severity %></p>
+                <p class="card-text severity <%= 'severity-high' if appointment.severity == 'High' %> <%= 'severity-low' if appointment.severity == 'Low' %> roboto">
+                  Severity: <%= appointment.severity %>
+                </p>
               <% end %>
 
               <!-- Display Symptom Categories -->
@@ -31,11 +36,10 @@
                 <% appointment.symptoms.each do |symptom| %>
                   <div class="d-flex align-items-center mb-2">
                     <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                    <strong>Symptom: <%= symptom.category %></strong>
+                    Category: <%= symptom.category %>
                   </div>
                 <% end %>
               <% end %>
-
 
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Timeapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
@@ -61,11 +65,11 @@
                   <%= button_to "Accept", toggle_status_appointment_path(appointment), method: :post, params: {status: "Accepted"} %>
                 </div>
               <% end %>
-            </div>
 
-            <% if appointment.chatroom %>
-              <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom), class: 'done-button m-2 mt-3' %>
-            <% end %>
+              <% if appointment.chatroom %>
+                <%= link_to 'Chat', appointment_chatroom_path(appointment, appointment.chatroom), class: 'done-button m-2' %>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>

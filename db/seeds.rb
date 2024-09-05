@@ -19,8 +19,6 @@ Appointment.destroy_all
 Symptom.destroy_all
 User.destroy_all
 
-puts "Creating users..."
-
 clinician1 = User.new(
   email: 'clinician@gmail.com',
   password: 'test12345',
@@ -488,7 +486,7 @@ symptom7 = Symptom.create!(
   description: "I've had a persistent cough and sore throat for a few weeks now, along with some headaches and occasional earaches. Over-the-counter meds help a bit, but the symptoms keep coming back. I'm wondering if I might need something stronger."
 )
 
-puts "Total number of Appointments created: #{Symptom.count}"
+puts "Total number of Symptoms created: #{Symptom.count}"
 
 AppointmentSymptom.create!(
   appointment_id: appointment1.id,
@@ -520,4 +518,9 @@ AppointmentSymptom.create!(
   symptom_id: symptom6.id
 )
 
-puts "Total number of Appointment Symptom links created: #{AppointmentSymptom.count}"
+AppointmentSymptom.create!(
+  appointment_id: appointment7.id,
+  symptom_id: symptom7.id
+)
+
+puts "Total number of linked Appointments Symptoms created: #{AppointmentSymptom.count}"
