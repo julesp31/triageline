@@ -31,16 +31,6 @@
                 </p>
               <% end %>
 
-              <!-- Display Symptom Categories -->
-              <% if appointment.symptoms.any? %>
-                <% appointment.symptoms.each do |symptom| %>
-                  <div class="d-flex align-items-center mb-2">
-                    <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
-                    Category: <%= symptom.category %>
-                  </div>
-                <% end %>
-              <% end %>
-
               <div class="d-flex align-items-center mb-2">
                 <%= image_tag 'Timeapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 Time: <%= appointment.appointment_date.strftime('%I:%M %p') %>
@@ -58,6 +48,15 @@
                 <%= image_tag 'Clinicianapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                 Clinician: <%= appointment.clinician.title %> <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %>
               </div>
+
+              <% if appointment.symptoms.any? %>
+                <% appointment.symptoms.each do |symptom| %>
+                  <div class="d-flex align-items-center mb-2">
+                    <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
+                    Category: <%= symptom.category %>
+                  </div>
+                <% end %>
+              <% end %>
 
               <% if current_user.clinician? %>
                 <div class="appointment-button-decision">
