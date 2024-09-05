@@ -7,7 +7,7 @@
     <!-- Dropdown to filter appointments by status -->
     <div class="text-center mb-4">
       <%= form_with url: appointments_path, method: :get, local: true, id: 'status-filter-form', class: 'form-inline' do %>
-        <%= select_tag :status, options_for_select([['All', ''], ['Pending', 'Pending'], ['Accepted', 'Accepted'], ['Closed', 'Closed']], params[:status]), class: 'form-control mr-sm-2', prompt: 'Select Status', onchange: 'this.form.submit();' %>
+        <%= select_tag :status, options_for_select([['All', ''], ['Pending', 'Pending'], ['Accepted', 'Accepted'], ['Closed', 'Closed']], params[:status]), class: 'form-control mr-sm-2', onchange: 'this.form.submit();' %>
       <% end %>
     </div>
 
