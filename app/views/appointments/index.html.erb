@@ -17,11 +17,11 @@
           <div class="card-for-content">
             <div class="appointment-card-body">
               <%= link_to appointment_path(appointment), class: 'text-decoration-none text-dark' do %>
-               <h2 class="card-title lobster-regular mb-3">
-                   <strong>
-                      <%= appointment.appointment_date.strftime('%A') %><br>
-                      <%= appointment.appointment_date.strftime('%B %e, %Y') %>
-                    </strong>
+                <h2 class="card-title lobster-regular mb-3">
+                  <strong>
+                    <%= appointment.appointment_date.strftime('%A') %><br>
+                    <%= appointment.appointment_date.strftime('%B %e, %Y') %>
+                  </strong>
                 </h2>
               <% end %>
 
@@ -49,6 +49,7 @@
                 Clinician: <%= appointment.clinician.title %> <%= appointment.clinician.first_name %> <%= appointment.clinician.last_name %>
               </div>
 
+              <!-- Display symptoms or default category if none -->
               <% if appointment.symptoms.any? %>
                 <% appointment.symptoms.each do |symptom| %>
                   <div class="d-flex align-items-center mb-2">
@@ -56,6 +57,11 @@
                     Category: <%= symptom.category %>
                   </div>
                 <% end %>
+              <% else %>
+                <div class="d-flex align-items-center mb-2">
+                  <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
+                  Category: Muscle and Joints
+                </div>
               <% end %>
 
               <% if current_user.clinician? %>
