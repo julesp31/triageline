@@ -1,31 +1,33 @@
-<div class="footer-bar">
-  <a href="<%= root_path %>" class="nav-item <%= 'active' if current_page?(root_path) %>" data-name="Home">
-    <i class="fas fa-home"></i>
-    <span class="nav-text">Home</span>
-  </a>
+<% unless current_page?(new_user_session_path) %>
+  <div class="footer-bar">
+    <a href="<%= root_path %>" class="nav-item <%= 'active' if current_page?(root_path) %>" data-name="Home">
+      <i class="fas fa-home"></i>
+      <span class="nav-text">Home</span>
+    </a>
 
-  <a href="<%= appointments_path %>" class="nav-item <%= 'active' if current_page?(appointments_path) %>" data-name="Appointments" style="right:26px;">
-    <i class="fas fa-calendar-alt"></i>
-    <span class="nav-text">Appointments</span>
-  </a>
+    <a href="<%= appointments_path %>" class="nav-item <%= 'active' if current_page?(appointments_path) %>" data-name="Appointments" style="right:26px;">
+      <i class="fas fa-calendar-alt"></i>
+      <span class="nav-text">Appointments</span>
+    </a>
 
-  <!-- Plus Button as a dropdown toggle -->
-  <div class="plus-button-container">
-    <div class="fab plus-button dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="fas fa-plus"></i>
+    <!-- Plus Button as a dropdown toggle -->
+    <div class="plus-button-container">
+      <div class="fab plus-button dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-plus"></i>
+      </div>
+      <ul class="dropdown-menu dropdown-menu-center">
+        <li><a class="dropdown-item" href="/appointments/new">Book Appointment</a></li>
+      </ul>
     </div>
-    <ul class="dropdown-menu dropdown-menu-center">
-      <li><a class="dropdown-item" href="/appointments/new">Book Appointment</a></li>
-    </ul>
+
+    <a href="#" class="nav-item" data-name="Messages" style="left:20px;">
+      <i class="fas fa-comment-alt"></i>
+      <span class="nav-text">Messages</span>
+    </a>
+
+    <a href="#" class="nav-item" data-name="Profile">
+      <i class="fas fa-user-alt"></i>
+      <span class="nav-text">Profile</span>
+    </a>
   </div>
-
-  <a href="#" class="nav-item" data-name="Messages" style="left:20px;">
-    <i class="fas fa-comment-alt"></i>
-    <span class="nav-text">Messages</span>
-  </a>
-
-  <a href="#" class="nav-item" data-name="Profile">
-    <i class="fas fa-user-alt"></i>
-    <span class="nav-text">Profile</span>
-  </a>
-</div>
+<% end %>
