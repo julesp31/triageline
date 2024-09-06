@@ -11,13 +11,21 @@ class MessagesController < ApplicationController
     @message.chatroom_id = params[:chatroom_id]
     @chatroom = @message.chatroom
 
-    if @message.save
-      ChatroomChannel.broadcast_to(
-        @chatroom,
-        render_to_string(partial: "message", locals: {message: @message})
-      )
-      @message = Message.new
-      render "chatrooms/show", status: :ok
+    # if @message.save
+      if @message.save
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
+              locals: { message: @message })
+          end
+          format.html { redirect_to chatroom_path(@chatroom) }
+        end
+    #   ChatroomChannel.broadcast_to(
+    #     @chatroom,
+    #     render_to_string(partial: "message", locals: {message: @message})
+    #   )
+    #   @message = Message.new
+    #   render "chatrooms/show", status: :ok
     else
       render "chatrooms/show", status: :unprocessable_entity
     end
