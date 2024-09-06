@@ -53,13 +53,13 @@
               <% if appointment.symptoms.any? %>
                 <% appointment.symptoms.each do |symptom| %>
                   <div class="d-flex align-items-center mb-2">
-                    <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
+                    <%= image_tag 'Category.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                     Category: <%= symptom.category %>
                   </div>
                 <% end %>
               <% else %>
                 <div class="d-flex align-items-center mb-2">
-                  <%= image_tag 'Dateapp.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
+                  <%= image_tag 'Category.png', style: 'width: 30px; height: 30px; margin-right: 8px;' %>
                   Category: Muscle and Joints
                 </div>
               <% end %>

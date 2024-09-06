@@ -7,11 +7,11 @@
     max-width: 400px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 20px;
     overflow: hidden;
     background-color: white;
     margin: 20px;
-    top: 100px;
+    top: 110px;
   }
 
   .card-form {
@@ -26,11 +26,11 @@
   .card-form .form-actions {
     text-align: center;
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 0px 20px;
     background-color: $green;
     // color: $white;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     text-decoration: none;
     // display: inline-block;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -40,7 +40,7 @@
   .formbgrcontainer {
     position: relative; /* Ensure positioning context for pseudo-element */
     background-image: url('backgroundImage.webp');
-    max-width: 1800px;
+    max-width: 2000px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
