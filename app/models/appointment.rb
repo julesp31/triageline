@@ -1,6 +1,6 @@
 class Appointment < ApplicationRecord
 
-  enum status: { pending: 'Pending', accepted: 'Accepted', cancelled: 'Cancelled', closed: 'Closed' }
+  enum status: { Pending: 'Pending', Accepted: 'Accepted', Cancelled: 'Cancelled', Closed: 'Closed' }
   validates :status, inclusion: { in: statuses.keys }
 
   attr_accessor :date

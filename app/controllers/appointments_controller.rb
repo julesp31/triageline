@@ -30,7 +30,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     @appointment.patient_id = current_user.id
     @appointment.clinician_id = User.find_by(email: params[:clinician_email]).id
-    @appointment.status = 'pending'
+    @appointment.status = 'Pending'
     @appointment.appointment_date = DateTime.parse(params[:appointment][:date])
     @appointment.created_at = Time.now
 
